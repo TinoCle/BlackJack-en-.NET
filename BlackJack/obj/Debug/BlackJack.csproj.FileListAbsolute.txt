@@ -8,3 +8,13 @@ C:\Users\Tino\Desktop\Facultad\PGE\BlackJack\BlackJack\obj\Debug\BlackJack.cspro
 C:\Users\Tino\Desktop\Facultad\PGE\BlackJack\BlackJack\obj\Debug\BlackJack.csproj.CoreCompileInputs.cache
 C:\Users\Tino\Desktop\Facultad\PGE\BlackJack\BlackJack\obj\Debug\BlackJack.exe
 C:\Users\Tino\Desktop\Facultad\PGE\BlackJack\BlackJack\obj\Debug\BlackJack.pdb
+C:\Users\Tino\Desktop\BlackJack\BlackJack\bin\Debug\BlackJack.exe.config
+C:\Users\Tino\Desktop\BlackJack\BlackJack\bin\Debug\BlackJack.exe
+C:\Users\Tino\Desktop\BlackJack\BlackJack\bin\Debug\BlackJack.pdb
+C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.csprojAssemblyReference.cache
+C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.Form1.resources
+C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.Properties.Resources.resources
+C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.csproj.GenerateResource.cache
+C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.csproj.CoreCompileInputs.cache
+C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.exe
+C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.pdb

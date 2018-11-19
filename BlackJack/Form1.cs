@@ -12,16 +12,24 @@ namespace BlackJack
 {
     public partial class Form1 : Form
     {
+        Mazo mazo;
         public Form1()
         {
             InitializeComponent();
+            mazo = new Mazo();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            Carta carta = new Carta(rnd.Next(1, 5), rnd.Next(1, 14));
-            textBox1.Text = carta.Nombre;
+            Carta carta = mazo.SacarCarta();
+            if (carta != null)
+            {
+                textBox1.Text = carta.Nombre;
+            }
+            else
+            {
+                textBox1.Text = "Mazo vacío.";
+            }
         }
     }
 }
