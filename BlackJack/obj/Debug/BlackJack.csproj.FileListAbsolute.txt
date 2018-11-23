@@ -18,3 +18,13 @@ C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.csproj.GenerateRes
 C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.csproj.CoreCompileInputs.cache
 C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.exe
 C:\Users\Tino\Desktop\BlackJack\BlackJack\obj\Debug\BlackJack.pdb
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\bin\Debug\BlackJack.exe.config
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\bin\Debug\BlackJack.exe
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\bin\Debug\BlackJack.pdb
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\obj\Debug\BlackJack.csprojAssemblyReference.cache
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\obj\Debug\BlackJack.Form1.resources
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\obj\Debug\BlackJack.Properties.Resources.resources
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\obj\Debug\BlackJack.csproj.GenerateResource.cache
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\obj\Debug\BlackJack.csproj.CoreCompileInputs.cache
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\obj\Debug\BlackJack.exe
+D:\Archivos de Gonzalo\Programación\PGE\BlackJack-en-.NET\BlackJack\obj\Debug\BlackJack.pdb

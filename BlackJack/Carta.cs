@@ -29,31 +29,31 @@ namespace BlackJack
                     nom = "As";
                     break;
                 case 2:
-                    nom = "Dos";
+                    nom = "2";
                     break;
                 case 3:
-                    nom = "Tres";
+                    nom = "3";
                     break;
                 case 4:
-                    nom = "Cuatro";
+                    nom = "4";
                     break;
                 case 5:
-                    nom = "Cinco";
+                    nom = "5";
                     break;
                 case 6:
-                    nom = "Seis";
+                    nom = "6";
                     break;
                 case 7:
-                    nom = "Siete";
+                    nom = "7";
                     break;
                 case 8:
-                    nom = "Ocho";
+                    nom = "8";
                     break;
                 case 9:
-                    nom = "Nueve";
+                    nom = "9";
                     break;
                 case 10:
-                    nom = "Diez";
+                    nom = "10";
                     break;
                 case 11:
                     nom = "Jack";
@@ -77,7 +77,7 @@ namespace BlackJack
                     nom += " de diamantes";
                     break;
                 case 4:
-                    nom += " de tréboles";
+                    nom += " de treboles";
                     break;
             }
             return nom;

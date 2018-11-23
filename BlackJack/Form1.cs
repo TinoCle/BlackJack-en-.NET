@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackJack.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,12 +20,23 @@ namespace BlackJack
             mazo = new Mazo();
         }
 
+		private void CambiarImagen(string nombre)
+		{
+			if (Char.IsDigit(nombre[0])){
+				nombre = " " + nombre;
+			}
+			nombre=nombre.Replace(' ', '_');
+			object O = Resources.ResourceManager.GetObject(nombre);
+			pbCarta.Image = O as Image;
+		}
+
         private void button1_Click(object sender, EventArgs e)
         {
             Carta carta = mazo.SacarCarta();
             if (carta != null)
             {
                 textBox1.Text = carta.Nombre;
+				CambiarImagen(carta.Nombre);
             }
             else
             {
