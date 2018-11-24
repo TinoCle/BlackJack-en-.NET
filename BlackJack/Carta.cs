@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BlackJack
 {
-    class Carta
+    [Serializable]
+    public class Carta
     {
         int tipo;
         int numero;

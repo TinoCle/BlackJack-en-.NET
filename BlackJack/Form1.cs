@@ -14,13 +14,15 @@ namespace BlackJack
     public partial class Form1 : Form
     {
         Mazo mazo;
+        Servidor server;
         public Form1()
         {
             InitializeComponent();
+            server = new Servidor();
             mazo = new Mazo();
         }
 
-		private void CambiarImagen(string nombre)
+        private void CambiarImagen(string nombre)
 		{
 			if (Char.IsDigit(nombre[0])){
 				nombre = " " + nombre;
@@ -42,6 +44,19 @@ namespace BlackJack
             {
                 textBox1.Text = "Mazo vacío.";
             }
+        }
+
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+            EstadoServidor.BackColor = Color.Chartreuse;
+            btnIniciar.Enabled = false;
+            server.Start();
+            timerCheckBuffer.Start();
+        }
+
+        private void timerCheckBuffer_Tick(object sender, EventArgs e)
+        {
+            server.EsperarRespuesta();
         }
     }
 }
