@@ -13,11 +13,21 @@ namespace BJ_Cliente
     public partial class Form1 : Form
     {
         Cliente cliente;
+        Login ventanaLogin;
         public Form1()
         {
             InitializeComponent();
             cliente = new Cliente();
+            ventanaLogin = new Login();
+            ventanaLogin.Show();
+            ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
+        }
 
+        private void SetNombre(string n)
+        {
+            cliente.SetearClase(true,n);
+            ventanaLogin.Close();
+            this.Show();
         }
 
         private void btnOtra_Click(object sender, EventArgs e)
@@ -30,6 +40,11 @@ namespace BJ_Cliente
         {
             cliente.SetearClase(false);
             cliente.Start();
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

@@ -78,7 +78,7 @@
             this.groupBox1.Controls.Add(this.btnIniciar);
             this.groupBox1.Location = new System.Drawing.Point(140, 570);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(899, 382);
+            this.groupBox1.Size = new System.Drawing.Size(899, 539);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Prueba Servidor";
@@ -86,18 +86,18 @@
             // EstadoServidor
             // 
             this.EstadoServidor.BackColor = System.Drawing.Color.Red;
-            this.EstadoServidor.Location = new System.Drawing.Point(601, 139);
+            this.EstadoServidor.Location = new System.Drawing.Point(36, 46);
             this.EstadoServidor.Name = "EstadoServidor";
-            this.EstadoServidor.Size = new System.Drawing.Size(112, 108);
+            this.EstadoServidor.Size = new System.Drawing.Size(54, 54);
             this.EstadoServidor.TabIndex = 1;
             this.EstadoServidor.TabStop = false;
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.Location = new System.Drawing.Point(228, 139);
+            this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciar.Location = new System.Drawing.Point(108, 46);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(346, 108);
+            this.btnIniciar.Size = new System.Drawing.Size(242, 54);
             this.btnIniciar.TabIndex = 0;
             this.btnIniciar.Text = "Iniciar Servidor";
             this.btnIniciar.UseVisualStyleBackColor = true;
@@ -124,7 +124,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1230, 1031);
+            this.ClientSize = new System.Drawing.Size(1230, 1152);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4);

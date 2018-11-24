@@ -86,13 +86,14 @@ namespace BlackJack
             Respuesta deserializada = respuesta.DeSerialize();
 
             //Acá deserializa la clase, y se fija si pide otra
+            string nombre = deserializada.nombre;
             if (deserializada.otra)
             {
-                Console.WriteLine("EL CLIENTE PIDE OTRA");
+                Console.WriteLine("EL CLIENTE "+nombre.ToUpper()+" PIDE OTRA");
             }
             else
             {
-                Console.WriteLine("EL CLIENTE SE PLANTA");
+                Console.WriteLine("EL CLIENTE " + nombre.ToUpper() + " SE PLANTA");
             }
 
             allDone.Set(); //signals thread to continue

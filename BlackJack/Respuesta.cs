@@ -21,9 +21,11 @@ namespace BlackJack
         [NonSerialized]
         public byte[] buffer = new byte[1024];
 
+        //Valores servdor --> cliente
         public Carta carta;
-
+        //Valores cliente --> servidor
         public bool otra;
+        public string nombre;
 
         public byte[] Serialize()
         {

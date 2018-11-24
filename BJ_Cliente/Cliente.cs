@@ -14,9 +14,16 @@ namespace BJ_Cliente
     {
         ManualResetEvent allDone = new ManualResetEvent(false);
         Respuesta respuesta = new Respuesta();
-        public void SetearClase(bool o)
+
+        public void SetearClase(bool o=true, string nom=null)
         {
             //Acá le paso a 'respuesta' lo que quiero mandar
+            //nom va a ser null cuando el usuario presione uno de los botones
+            //solo se va a pasar el bool, el nombre se setea al principio
+            if (nom != null)
+            {
+                respuesta.nombre = nom;
+            }
             respuesta.otra = o;
         }
         ///
