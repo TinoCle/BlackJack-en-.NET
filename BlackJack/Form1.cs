@@ -20,8 +20,22 @@ namespace BlackJack
             InitializeComponent();
             server = new Servidor();
             mazo = new Mazo();
+            server.Start();
+            timerCheckBuffer.Start();
+            server.jugada += new Servidor.Jugada(ActualizarLog);
+            listLog.Items.Insert(0, "Servidor iniciado.");
         }
 
+        private void ActualizarLog(string s)
+        {
+            if (listLog.InvokeRequired)
+            {
+                listLog.Invoke(new MethodInvoker(delegate { listLog.Items.Insert(0, s); }));
+            }
+            //listLog.Items.Insert(0, s);
+        }
+
+        /*
         private void CambiarImagen(string nombre)
 		{
 			if (Char.IsDigit(nombre[0])){
@@ -32,6 +46,7 @@ namespace BlackJack
 			pbCarta.Image = O as Image;
 		}
 
+        
         private void button1_Click(object sender, EventArgs e)
         {
             Carta carta = mazo.SacarCarta();
@@ -53,6 +68,7 @@ namespace BlackJack
             server.Start();
             timerCheckBuffer.Start();
         }
+        */
 
         private void timerCheckBuffer_Tick(object sender, EventArgs e)
         {

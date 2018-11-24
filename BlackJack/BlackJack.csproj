@@ -245,5 +245,8 @@
   <ItemGroup>
     <None Include="Resources\Rey de treboles.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Server.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

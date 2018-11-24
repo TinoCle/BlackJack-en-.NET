@@ -12,7 +12,8 @@ namespace BlackJack
     public class Servidor
     {
         ManualResetEvent allDone = new ManualResetEvent(false);
-
+        public delegate void Jugada(string s);
+        public event Jugada jugada;
         ///
         /// Configura el servidor
         ///
@@ -34,7 +35,6 @@ namespace BlackJack
             allDone.Reset();
             listener.Listen(100);
             listener.BeginAccept(Accept, listener);
-            //allDone.WaitOne(); //halts this thread
         }
         ///
         /// Starts when an incomming connection was requested
@@ -89,11 +89,11 @@ namespace BlackJack
             string nombre = deserializada.nombre;
             if (deserializada.otra)
             {
-                Console.WriteLine("EL CLIENTE "+nombre.ToUpper()+" PIDE OTRA");
+                this.jugada("El cliente " + nombre + " pidió otra.");
             }
             else
             {
-                Console.WriteLine("EL CLIENTE " + nombre.ToUpper() + " SE PLANTA");
+                this.jugada("El cliente " + nombre + " se plantó.");
             }
 
             allDone.Set(); //signals thread to continue
