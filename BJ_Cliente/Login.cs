@@ -26,9 +26,17 @@ namespace BJ_Cliente
         private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = (e.KeyChar == (char)Keys.Space);
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                this.enterPresionado(txtUser.Text);
+                if (txtUser.Text.Length >= 4)
+                {
+                    this.enterPresionado(txtUser.Text);
+                }
+                else
+                {
+                    MessageBox.Show("El nombre debe tener al menos 4 caracteres", "Nombre inválido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    e.Handled = true;
+                }
             }
         }
     }
