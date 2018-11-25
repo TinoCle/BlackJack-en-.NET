@@ -1,4 +1,5 @@
 ﻿using BlackJack.Properties;
+using Cliente_Servidor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,16 @@ namespace BlackJack
     {
         Mazo mazo;
         Servidor server;
+        Cliente cliente;
         public Form1()
         {
             InitializeComponent();
             server = new Servidor();
+            cliente = new Cliente();
             mazo = new Mazo();
-            server.Start();
+            server.Start(5555);
             timerCheckBuffer.Start();
-            server.jugada += new Servidor.Jugada(ActualizarLog);
+            server.objetoRecibido += new Servidor.Recibido(ObjetoRecibido);
             listLog.Items.Insert(0, "Servidor iniciado.");
         }
 
@@ -33,6 +36,29 @@ namespace BlackJack
                 listLog.Invoke(new MethodInvoker(delegate { listLog.Items.Insert(0, s); }));
             }
             //listLog.Items.Insert(0, s);
+        }
+
+        private void ObjetoRecibido(Respuesta respuesta)
+        {
+            //Acá deserializa la clase, y se fija si pide otra
+            string nombre = respuesta.nombre;
+            if (respuesta.otra)
+            {
+                ActualizarLog("El cliente " + nombre + " pidió otra carta.");
+                EnviarCarta(nombre);
+            }
+            else
+            {
+                ActualizarLog("El cliente " + nombre + " se plantó.");
+            }
+        }
+
+        private void EnviarCarta(string nomUser)
+        {
+            Carta c = mazo.SacarCarta();
+            ActualizarLog(c.Nombre+" entregado a " + nomUser + ".");
+            cliente.SetearClase(true,null, c);
+            cliente.Start(6666);
         }
 
         /*

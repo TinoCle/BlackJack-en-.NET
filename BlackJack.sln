@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJack", "BlackJack\BlackJack.csproj", "{E348B071-493E-424E-8509-617C3C150F1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BJ_Server", "BlackJack\BJ_Server.csproj", "{E348B071-493E-424E-8509-617C3C150F1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BJ_Cliente", "BJ_Cliente\BJ_Cliente.csproj", "{0B8DBA9E-DC94-497C-A5F3-624BBFC0EB3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BJ_Jugador", "BJ_Cliente\BJ_Jugador.csproj", "{0B8DBA9E-DC94-497C-A5F3-624BBFC0EB3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliente-Servidor", "Cliente-Servidor\Cliente-Servidor.csproj", "{DF80727E-2A09-403F-8EDC-555E8F152569}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0B8DBA9E-DC94-497C-A5F3-624BBFC0EB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B8DBA9E-DC94-497C-A5F3-624BBFC0EB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B8DBA9E-DC94-497C-A5F3-624BBFC0EB3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF80727E-2A09-403F-8EDC-555E8F152569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF80727E-2A09-403F-8EDC-555E8F152569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF80727E-2A09-403F-8EDC-555E8F152569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF80727E-2A09-403F-8EDC-555E8F152569}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

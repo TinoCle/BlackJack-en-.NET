@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cliente_Servidor;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace BJ_Cliente
 {
     public partial class Form1 : Form
     {
+        Servidor server;
         Cliente cliente;
         Login ventanaLogin;
         public Form1()
@@ -21,6 +23,19 @@ namespace BJ_Cliente
             ventanaLogin = new Login();
             ventanaLogin.Show();
             ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
+            server = new Servidor();
+            server.objetoRecibido += new Servidor.Recibido(ObjetoRecibido);
+            server.Start(6666);
+            timerListen.Start();
+
+        }
+
+        private void ObjetoRecibido(Respuesta respuesta)
+        {
+            if (txtCartaRecibida.InvokeRequired)
+            {
+                txtCartaRecibida.Invoke(new MethodInvoker(delegate { txtCartaRecibida.Text = respuesta.carta.Nombre; }));
+            }
         }
 
         private void SetNombre(string n)
@@ -33,18 +48,23 @@ namespace BJ_Cliente
         private void btnOtra_Click(object sender, EventArgs e)
         {
             cliente.SetearClase(true);
-            cliente.Start();
+            cliente.Start(5555);
         }
 
         private void btnPlantarse_Click(object sender, EventArgs e)
         {
             cliente.SetearClase(false);
-            cliente.Start();
+            cliente.Start(5555);
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void timerListen_Tick(object sender, EventArgs e)
+        {
+            server.EsperarRespuesta();
         }
     }
 }
