@@ -56,9 +56,16 @@ namespace BlackJack
         private void EnviarCarta(string nomUser)
         {
             Carta c = mazo.SacarCarta();
-            ActualizarLog(c.Nombre+" entregado a " + nomUser + ".");
-            cliente.SetearClase(true,null, c);
-            cliente.Start(6666);
+            if (c == null)
+            {
+                ActualizarLog("Mazo vacío.");
+            }
+            else
+            {
+                ActualizarLog(c.Nombre + " entregado a " + nomUser + ".");
+                cliente.SetearClase(true, null, c);
+                cliente.Start(6666);
+            }
         }
 
         /*
