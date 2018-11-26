@@ -15,17 +15,17 @@ namespace BlackJack
     public partial class Form1 : Form
     {
         Mazo mazo;
-        Servidor server;
-        Cliente cliente;
+        Escuchar escuchar;
+        Enviar enviar;
         public Form1()
         {
             InitializeComponent();
-            server = new Servidor();
-            cliente = new Cliente();
+            escuchar = new Escuchar();
+            enviar = new Enviar();
             mazo = new Mazo();
-            server.Start(5555);
+            escuchar.Start(5555);
             timerCheckBuffer.Start();
-            server.objetoRecibido += new Servidor.Recibido(ObjetoRecibido);
+            escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
             listLog.Items.Insert(0, "Servidor iniciado.");
         }
 
@@ -63,8 +63,8 @@ namespace BlackJack
             else
             {
                 ActualizarLog(c.Nombre + " entregado a " + nomUser + ".");
-                cliente.SetearClase(true, null, c);
-                cliente.Start(6666);
+                enviar.SetearClase(true, null, c);
+                enviar.Start(6666);
             }
         }
 
@@ -105,7 +105,7 @@ namespace BlackJack
 
         private void timerCheckBuffer_Tick(object sender, EventArgs e)
         {
-            server.EsperarRespuesta();
+            escuchar.EsperarRespuesta();
         }
     }
 }

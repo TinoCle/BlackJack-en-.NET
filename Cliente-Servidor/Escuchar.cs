@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace Cliente_Servidor
 {
-    public class Servidor
+    public class Escuchar
     {
         ManualResetEvent allDone = new ManualResetEvent(false);
         public delegate void Recibido(Respuesta r);

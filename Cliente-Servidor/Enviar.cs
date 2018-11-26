@@ -9,7 +9,7 @@ using System.Net.Sockets;
 
 namespace Cliente_Servidor
 {
-    public class Cliente
+    public class Enviar
     {
         ManualResetEvent allDone = new ManualResetEvent(false);
         Respuesta respuesta = new Respuesta();

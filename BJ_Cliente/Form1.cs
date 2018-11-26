@@ -13,19 +13,19 @@ namespace BJ_Cliente
 {
     public partial class Form1 : Form
     {
-        Servidor server;
-        Cliente cliente;
+        Escuchar escuchar;
+        Enviar enviar;
         Login ventanaLogin;
         public Form1()
         {
             InitializeComponent();
-            cliente = new Cliente();
+            enviar = new Enviar();
             ventanaLogin = new Login();
             ventanaLogin.Show();
             ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
-            server = new Servidor();
-            server.objetoRecibido += new Servidor.Recibido(ObjetoRecibido);
-            server.Start(6666);
+            escuchar = new Escuchar();
+            escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
+            escuchar.Start(6666);
             timerListen.Start();
 
         }
@@ -40,21 +40,21 @@ namespace BJ_Cliente
 
         private void SetNombre(string n)
         {
-            cliente.SetearClase(true,n);
+            enviar.SetearClase(true,n);
             ventanaLogin.Close();
             this.Show();
         }
 
         private void btnOtra_Click(object sender, EventArgs e)
         {
-            cliente.SetearClase(true);
-            cliente.Start(5555);
+            enviar.SetearClase(true);
+            enviar.Start(5555);
         }
 
         private void btnPlantarse_Click(object sender, EventArgs e)
         {
-            cliente.SetearClase(false);
-            cliente.Start(5555);
+            enviar.SetearClase(false);
+            enviar.Start(5555);
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace BJ_Cliente
 
         private void timerListen_Tick(object sender, EventArgs e)
         {
-            server.EsperarRespuesta();
+            escuchar.EsperarRespuesta();
         }
     }
 }
