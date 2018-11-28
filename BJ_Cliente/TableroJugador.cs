@@ -16,6 +16,7 @@ namespace BJ_Cliente
         Escuchar escuchar;
         Enviar enviar;
         Login ventanaLogin;
+        string nombreCliente;
         public TableroJugador()
         {
             InitializeComponent();
@@ -32,28 +33,34 @@ namespace BJ_Cliente
 
         private void ObjetoRecibido(Respuesta respuesta)
         {
-            if (txtCartaRecibida.InvokeRequired)
+            if (txtCartaRecibida.InvokeRequired && respuesta.nombre==nombreCliente)
             {
                 txtCartaRecibida.Invoke(new MethodInvoker(delegate { txtCartaRecibida.Text = respuesta.carta.Nombre; }));
             }
         }
 
+        /// <summary>
+        /// Se envian los vallores iniciales del cliente para que el servidor lo registre
+        /// </summary>
+        /// <param name="n">string con el nombre del jugador</param>
         private void SetNombre(string n)
         {
-            enviar.SetearClase(true,n);
+            nombreCliente = n;
+            enviar.SetearClase(true,nombreCliente, null, escuchar.puerto);
+            enviar.Start(5555);
             ventanaLogin.Close();
             this.Show();
         }
 
         private void btnOtra_Click(object sender, EventArgs e)
         {
-            enviar.SetearClase(true);
+            enviar.SetearClase(true, nombreCliente);
             enviar.Start(5555);
         }
 
         private void btnPlantarse_Click(object sender, EventArgs e)
         {
-            enviar.SetearClase(false);
+            enviar.SetearClase(false, nombreCliente);
             enviar.Start(5555);
         }
 

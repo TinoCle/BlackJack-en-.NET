@@ -9,26 +9,31 @@ using System.Net.Sockets;
 
 namespace Cliente_Servidor
 {
+    /// <summary>
+    /// Esta clase se utiliza para enviar una clase serializada a un puerto de escucha
+    /// </summary>
     public class Enviar
     {
         ManualResetEvent allDone = new ManualResetEvent(false);
         Respuesta respuesta = new Respuesta();
         private int port;
-
-        public void SetearClase(bool o=true, string nom=null, Carta c = null)
+        /// <summary>
+        /// Se carga la clase a serializar con los parametros que se enviaran por red
+        /// </summary>
+        /// <param name="o">Bool que indica si el cliente pide otra carta</param>
+        /// <param name="nom">string con el nombre del jugador</param>
+        /// <param name="c">la carta que devuelve el servidor</param>
+        /// <param name="p">el puerto desde el que va a escuchar el cliente</param>
+        public void SetearClase(bool o=true, string nom=null, Carta c = null, int p=0)
         {
             //Acá le paso a 'respuesta' lo que quiero mandar
             //nom va a ser null, cuando el usuario presione uno de los botones
             //solo se va a pasar el bool, el nombre se setea al principio
-            if (nom != null)
-            {
-                respuesta.nombre = nom;
-            }
-            if (c != null)
-            {
-                respuesta.carta = c;
-            }
+            respuesta.nombre = nom;
+            respuesta.carta = c;
+            respuesta.puerto = p;
             respuesta.otra = o;
+            Console.WriteLine("ENVIADO EL PUERTO "+p.ToString());
         }
         ///
         /// Starts the client and attempts to send an object to the server

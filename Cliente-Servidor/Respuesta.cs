@@ -26,6 +26,7 @@ namespace Cliente_Servidor
         //Valores cliente --> servidor
         public bool otra;
         public string nombre;
+        public int puerto;
 
         public byte[] Serialize()
         {

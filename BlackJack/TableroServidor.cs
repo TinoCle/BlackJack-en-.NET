@@ -17,6 +17,12 @@ namespace BlackJack
         Mazo mazo;
         Escuchar escuchar;
         Enviar enviar;
+        List<int> puertosClientes = new List<int>();
+        /// <summary>
+        /// Esta función inicializa las clases.
+        /// Abre una escucha en el puerto 5555 y setea el timer para chequear el buffer.
+        /// Asigna un evento referenciando al método ObjetoRecibido
+        /// </summary>
         public TableroServidor()
         {
             InitializeComponent();
@@ -29,27 +35,39 @@ namespace BlackJack
             listLog.Items.Insert(0, "Servidor iniciado.");
         }
 
+        /// <summary>
+        /// Esta función inserta una nueva entrada en el log del servidor.
+        /// </summary>
+        /// <param name="s">Es el string que va a aparecer en el log del servidor.</param>
         private void ActualizarLog(string s)
         {
             if (listLog.InvokeRequired)
             {
                 listLog.Invoke(new MethodInvoker(delegate { listLog.Items.Insert(0, s); }));
             }
-            //listLog.Items.Insert(0, s);
         }
 
         private void ObjetoRecibido(Respuesta respuesta)
         {
             //Acá deserializa la clase, y se fija si pide otra
             string nombre = respuesta.nombre;
-            if (respuesta.otra)
+            if (respuesta.puerto != 0)
             {
-                ActualizarLog("El cliente " + nombre + " pidió otra carta.");
-                EnviarCarta(nombre);
+                puertosClientes.Add(respuesta.puerto);
+                ActualizarLog("Cliente " + nombre + " encontrado en el puerto " + respuesta.puerto.ToString() + ".");
             }
-            else
+            //Si ya están conectados los dos clientes se puede empezar a enviar cartas
+            else if (puertosClientes.Count > 1)
             {
-                ActualizarLog("El cliente " + nombre + " se plantó.");
+                if (respuesta.otra)
+                {
+                    ActualizarLog("El cliente " + nombre + " pidió otra carta.");
+                    EnviarCarta(nombre);
+                }
+                else
+                {
+                    ActualizarLog("El cliente " + nombre + " se plantó.");
+                }
             }
         }
 
@@ -63,8 +81,9 @@ namespace BlackJack
             else
             {
                 ActualizarLog(c.Nombre + " entregado a " + nomUser + ".");
-                enviar.SetearClase(true, null, c);
-                enviar.Start(6666);
+                enviar.SetearClase(true, nomUser, c);
+                enviar.Start(puertosClientes[0]);
+                enviar.Start(puertosClientes[1]);
             }
         }
 

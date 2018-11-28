@@ -9,21 +9,35 @@ using System.Threading;
 
 namespace Cliente_Servidor
 {
+    /// <summary>
+    /// clase que escucha en un puerto para obtener objetos entrantes
+    /// </summary>
     public class Escuchar
     {
         ManualResetEvent allDone = new ManualResetEvent(false);
         public delegate void Recibido(Respuesta r);
         public event Recibido objetoRecibido;
+        public int puerto = 0;
         ///
         /// Configura el servidor
         ///
         Socket listener;
-        public void Start(int port)
+        public void Start(int port=0)
         {
-            listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            listener.Bind(new IPEndPoint(IPAddress.Loopback, port));
-            Console.WriteLine("Servidor iniciado.");
-            EsperarRespuesta();
+            try
+            {
+                puerto = port;
+                listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                listener.Bind(new IPEndPoint(IPAddress.Loopback, puerto));
+                Console.WriteLine("Servidor iniciado.");
+                EsperarRespuesta();
+            }
+            catch (SocketException)
+            {
+                puerto += 1;
+                Start(puerto);
+            }
+            
         }
 
         /// <summary>
