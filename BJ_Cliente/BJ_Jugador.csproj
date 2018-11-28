@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Juego.cs" />
     <Compile Include="TableroJugador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +100,165 @@
       <Project>{df80727e-2a09-403f-8edc-555e8f152569}</Project>
       <Name>Cliente-Servidor</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10 de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10 de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10 de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10 de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ace_of_spades.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ace_of_spades2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\As de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\As de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\As de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jack de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jack de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jack de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jack de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reina de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reina de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reina de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reina de treboles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rey de corazones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rey de diamantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rey de picas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rey de treboles.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
