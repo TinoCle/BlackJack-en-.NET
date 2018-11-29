@@ -107,14 +107,18 @@ namespace BlackJack
 					}
 					else
 					{
-						if(puntosJugador2<=21 && puntosJugador2 > puntosJugador1)
+						ActualizarLog("PUNTOS DE JUGADOR 1:" + puntosJugador1);
+						ActualizarLog("PUNTOS JUGADOR 2:" + puntosJugador2);
+						if (puntosJugador2<=21 && puntosJugador2 > puntosJugador1)
 						{
+							ActualizarLog("Ganador: " + nombresClientes[1]);
 							EnviarGanador(nombresClientes[1]);
 						}
 						else if (puntosJugador2 == puntosJugador1)
 							EnviarGanador("Empate");
 						else
 						{
+							ActualizarLog("Ganador: " + nombresClientes[0]);
 							EnviarGanador(nombresClientes[0]);
 						}
 					}
