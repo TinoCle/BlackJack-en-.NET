@@ -19,12 +19,19 @@ namespace BJ_Cliente
         Login ventanaLogin;
         string nombreCliente;
 
+
 		Juego juego;
+
+		#region Para los Listboxes
 		int x = 100;
 		int y = 150;
 		int x2 = 513;
 		int y2 = 166;
 		int i = 1;
+		#endregion
+
+		//Para solucionar el Problema con el MessageBox
+		bool yaEsMiTurno;
 
 		int puntosRival;
 		List<PictureBox> cartas = new List<PictureBox>();
@@ -38,6 +45,7 @@ namespace BJ_Cliente
 
 			juego = new Juego(20);
 			puntosRival = 0;
+			yaEsMiTurno = false;
 
 			ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
             escuchar = new Escuchar();
@@ -49,47 +57,177 @@ namespace BJ_Cliente
 
         private void ObjetoRecibido(Respuesta respuesta)
         {
-            if (txtCartaRecibida.InvokeRequired && respuesta.nombre==nombreCliente)
-            {
-                txtCartaRecibida.Invoke(new MethodInvoker(delegate { txtCartaRecibida.Text = respuesta.carta.Nombre; }));
-            }
-			if (respuesta.nombre == this.nombreCliente)
+			//Esperando Conexion
+			switch (respuesta.tipo)
 			{
-				if (!juego.SumarPuntos(respuesta.carta.Nombre))
-					Console.WriteLine("Te pasastes wey");
-					//EliminarCartas();
-				else
-				{
-					lblPuntos.Text = juego.Puntos.ToString();
-					AgregarCarta(respuesta);
-				}
-			}
-			//Si la carta que se recibio no es para mi, es para el rival
-			else
-			{
-				//Si es una carta que empieza con un numero
-				try
-				{
-					puntosRival += int.Parse(respuesta.carta.Nombre.Substring(0, respuesta.carta.Nombre.IndexOf(" ")));
-				}
-				catch
-				{
-					//Si la carta es un As y sumado 10 se pasa de los 21, se suma 1
-					if((respuesta.carta.Nombre.Substring(0, respuesta.carta.Nombre.IndexOf(" ")) == "As") && puntosRival + 10 > 21)
+				//Conexiones, if true => se conectaron
+				case 0:
+					if (respuesta.conexion == false)
 					{
-						puntosRival += 1;
+						Esconder();
+						lblEsperar.Show();
 					}
-					//Si no es un As se suman 10 puntos de todas formas
+					else if (respuesta.conexion == true)
+					{
+						Mostrar();
+						lblEsperar.Hide();
+					}
+					break;
+				//Intercambio de Nombres
+				case 1:
+					lblYo.Text = nombreCliente;
+					lblRival.Text = respuesta.nombre;break;
+				//Determinar de quien es el Turno
+				case 2:
+					if (respuesta.turno==true && respuesta.nombre == nombreCliente)
+					{
+						if (!yaEsMiTurno)
+						{ 
+							MessageBox.Show("Tu Turno","Turno",MessageBoxButtons.OK,MessageBoxIcon.Information);
+							HabilitarBotones();
+							yaEsMiTurno=true;
+						}
+					}
 					else
 					{
-						puntosRival += 10;
+						DeshabilitarBotones();
+						yaEsMiTurno = false;
+					}
+					break;
+				//Cuando se reciben Cartas
+				case 3:
+					if (txtCartaRecibida.InvokeRequired && respuesta.nombre == nombreCliente)
+					{
+						txtCartaRecibida.Invoke(new MethodInvoker(delegate { txtCartaRecibida.Text = respuesta.carta.Nombre; }));
+					}
+					//Si la carta era para mi
+					if (respuesta.nombre == this.nombreCliente)
+					{
+						if (!juego.SumarPuntos(respuesta.carta.Nombre))
+						{
+							AgregarCarta(respuesta);
+							//Para plantarse directamente
+							btnPlantarse.PerformClick();
+							MessageBox.Show("Te pasaste de 21");
+						}
+						//EliminarCartas();
+						else
+						{
+							lblPuntos.Text = juego.Puntos.ToString();
+							AgregarCarta(respuesta);
+						}
+					}
+					//Si la carta que se recibio no es para mi, es para el rival
+					else
+					{
+						//Si es una carta que empieza con un numero
+						try
+						{
+							puntosRival += int.Parse(respuesta.carta.Nombre.Substring(0, respuesta.carta.Nombre.IndexOf(" ")));
+						}
+						catch
+						{
+							//Si la carta es un As y sumado 10 se pasa de los 21, se suma 1
+							if ((respuesta.carta.Nombre.Substring(0, respuesta.carta.Nombre.IndexOf(" ")) == "As") && puntosRival + 10 > 21)
+							{
+								puntosRival += 1;
+							}
+							//Si no es un As se suman 10 puntos de todas formas
+							else
+							{
+								puntosRival += 10;
+							}
+						}
+						lblPuntosRival.Text = puntosRival.ToString();
+						AgregarCartaRival(respuesta);
+					}
+					break;
+				case 100:
+					if (respuesta.nombre == nombreCliente)
+						MessageBox.Show("Ganaste", "Ganador");
+					else
+						MessageBox.Show("Perdiste");
+					break;
+			}
+
+			#region Lo de antes, cuando no se tenia el atributo Tipo
+			/*	if (respuesta.conexion == false)
+				{
+					Esconder();
+					lblEsperar.Show();
+					//MessageBox.Show("Esperando Conexion");
+				}
+				//Conexion ya recibida
+				else if(respuesta.conexion==true)
+				{
+					Mostrar();
+				}
+				*/
+			/*
+			if (respuesta.SetearNombres == true && respuesta.turno==false && respuesta.otra == false)
+			{
+				lblYo.Text = nombreCliente;
+				lblRival.Text = respuesta.nombre;
+			}
+
+			if (respuesta.turno == true && respuesta.nombre==nombreCliente)
+			{
+				MessageBox.Show("Tu Turno");
+				HabilitarBotones();
+			}
+			else
+			{
+				DeshabilitarBotones();
+			}
+
+			if(respuesta.carta!=null)
+			{
+				if (txtCartaRecibida.InvokeRequired && respuesta.nombre == nombreCliente)
+				{
+					txtCartaRecibida.Invoke(new MethodInvoker(delegate { txtCartaRecibida.Text = respuesta.carta.Nombre; }));
+				}
+				//La carta era para mi
+				if (respuesta.nombre == this.nombreCliente)
+				{
+					if (!juego.SumarPuntos(respuesta.carta.Nombre))
+						Console.WriteLine("Te pasastes wey");
+					//EliminarCartas();
+					else
+					{
+						lblPuntos.Text = juego.Puntos.ToString();
+						AgregarCarta(respuesta);
 					}
 				}
-			lblPuntosRival.Text = puntosRival.ToString();
-			AgregarCartaRival(respuesta);
-			}
+				//Si la carta que se recibio no es para mi, es para el rival
+				else
+				{
+					//Si es una carta que empieza con un numero
+					try
+					{
+						puntosRival += int.Parse(respuesta.carta.Nombre.Substring(0, respuesta.carta.Nombre.IndexOf(" ")));
+					}
+					catch
+					{
+						//Si la carta es un As y sumado 10 se pasa de los 21, se suma 1
+						if ((respuesta.carta.Nombre.Substring(0, respuesta.carta.Nombre.IndexOf(" ")) == "As") && puntosRival + 10 > 21)
+						{
+							puntosRival += 1;
+						}
+						//Si no es un As se suman 10 puntos de todas formas
+						else
+						{
+							puntosRival += 10;
+						}
+					}
+					lblPuntosRival.Text = puntosRival.ToString();
+					AgregarCartaRival(respuesta);
+				}
+			}*/
+			#endregion
+
 		}
 
+		#region AgregarCartas
 		private void AgregarCartaRival(Respuesta respuesta)
 		{
 			if (this.InvokeRequired)
@@ -115,8 +253,6 @@ namespace BJ_Cliente
 			}
 		}
 
-
-		#region AgregarCartas
 		private void AgregarCarta(Respuesta respuesta)
 		{
 			if (this.InvokeRequired)
@@ -153,6 +289,18 @@ namespace BJ_Cliente
 		}
 		#endregion
 
+		private void HabilitarBotones()
+		{
+			btnOtra.Enabled = true;
+			btnPlantarse.Enabled = true;
+		}
+
+		private void DeshabilitarBotones()
+		{
+			btnOtra.Enabled = false;
+			btnPlantarse.Enabled = false;
+		}
+
 		/// <summary>
 		/// Para Limpiar el Tablero, la funcion que te dije
 		/// </summary>
@@ -163,6 +311,8 @@ namespace BJ_Cliente
 				carta.Dispose();
 			}
 		}*/
+
+
 
 		/// <summary>
 		/// Se envian los vallores iniciales del cliente para que el servidor lo registre
@@ -185,8 +335,17 @@ namespace BJ_Cliente
 
         private void btnPlantarse_Click(object sender, EventArgs e)
         {
-            enviar.SetearClase(false, nombreCliente);
-            enviar.Start(5555);
+			if (int.Parse(lblPuntos.Text) > 0)
+			{
+				DeshabilitarBotones();
+				enviar.SetearPuntos(int.Parse(lblPuntos.Text));
+				//enviar.SetearClase(false, nombreCliente);
+				enviar.Start(5555);
+			}
+			else
+			{
+				MessageBox.Show("Todavia no pediste ninguna Carta");
+			}
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -194,9 +353,30 @@ namespace BJ_Cliente
             this.Hide();
         }
 
+		private void Esconder()
+		{
+			foreach(Control control in this.Controls)
+			{
+				control.Hide();
+			}
+		}
+
+		private void Mostrar()
+		{
+			foreach(Control control in this.Controls)
+			{
+				control.Show();
+			}
+		}
+
         private void timerListen_Tick(object sender, EventArgs e)
         {
             escuchar.EsperarRespuesta();
         }
-    }
+
+		private void TableroJugador_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Application.ExitThread();
+		}
+	}
 }

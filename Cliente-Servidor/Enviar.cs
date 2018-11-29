@@ -16,25 +16,82 @@ namespace Cliente_Servidor
     {
         ManualResetEvent allDone = new ManualResetEvent(false);
         Respuesta respuesta = new Respuesta();
-        private int port;
-        /// <summary>
-        /// Se carga la clase a serializar con los parametros que se enviaran por red
-        /// </summary>
-        /// <param name="o">Bool que indica si el cliente pide otra carta</param>
-        /// <param name="nom">string con el nombre del jugador</param>
-        /// <param name="c">la carta que devuelve el servidor</param>
-        /// <param name="p">el puerto desde el que va a escuchar el cliente</param>
-        public void SetearClase(bool o=true, string nom=null, Carta c = null, int p=0)
+
+
+
+		//Tipos de Respuesta:
+		//Tipo 0: Conexion
+		//Tipo 1: Intercambio de Nombres
+		//Tipo 2: Envio de Turnos
+		//Tipo 3: Envio de Cartas
+		//Tipo 99: Envio de Puntos
+		//Tipo 100: Envio de Resultado/Ganador
+
+		private int port;
+		/// <summary>
+		/// Se carga la clase a serializar con los parametros que se enviaran por red
+		/// </summary>
+		/// <param name="o">Bool que indica si el cliente pide otra carta</param>
+		/// <param name="nom">string con el nombre del jugador</param>
+		/// <param name="c">la carta que devuelve el servidor</param>
+		/// <param name="p">el puerto desde el que va a escuchar el cliente</param>
+		/// 
+		public void SetearClase(bool o = true, string nom = null, Carta c = null, int p = 0, int tipo = 3)
         {
-            //Acá le paso a 'respuesta' lo que quiero mandar
-            //nom va a ser null, cuando el usuario presione uno de los botones
-            //solo se va a pasar el bool, el nombre se setea al principio
-            respuesta.nombre = nom;
+			//Acá le paso a 'respuesta' lo que quiero mandar
+			//nom va a ser null, cuando el usuario presione uno de los botones
+			//solo se va a pasar el bool, el nombre se setea al principio
+			respuesta.tipo = tipo;
+			respuesta.nombre = nom;
             respuesta.carta = c;
             respuesta.puerto = p;
             respuesta.otra = o;
             Console.WriteLine("ENVIADO EL PUERTO "+p.ToString());
         }
+
+		public void SetearPuntos(int puntos,int tipo = 99)
+		{
+			respuesta.tipo = 99;
+			respuesta.puntos = puntos;
+		}
+
+		public void SetearGanador(string ganador,int tipo = 100)
+		{
+			respuesta.nombre = ganador;
+			respuesta.tipo = 100;
+		}
+
+		//Se usa solo al principio para que cuando uno de los 2 jugadores se conecte, no empiece sin el otro
+		public void SetearConexion(bool conexion = false, string nombre = null, int puerto = 0, int tipo = 0)
+		{
+			respuesta.tipo = tipo;
+			respuesta.turno = false;
+			respuesta.conexion = conexion;
+			respuesta.puerto = puerto;
+			respuesta.carta = null;
+		}
+
+		//Para que al principio ambos jugadores reciban el nombre del otro jugador
+		public void SetearNombres(string nombre, int tipo = 1)
+		{
+			respuesta.tipo = tipo;
+			respuesta.SetearNombres = true;
+			respuesta.nombre = nombre;
+			respuesta.turno = false;
+			respuesta.otra = false;
+		}
+
+		
+		//Para enviar de quien es el turno
+		public void SetearTurno(bool turno = false, string nombre = null, int puerto = 0, int tipo = 2)
+		{
+			respuesta.tipo = tipo;
+			respuesta.turno = turno;
+			respuesta.nombre = nombre;
+			respuesta.puerto = puerto;
+			respuesta.carta = null;
+		}
+
         ///
         /// Starts the client and attempts to send an object to the server
         ///

@@ -21,6 +21,15 @@ namespace Cliente_Servidor
         [NonSerialized]
         public byte[] buffer = new byte[1024];
 
+
+
+		public int tipo;
+		public int puntos;
+		public bool SetearNombres;
+		
+		public bool turno;
+		//Bool para decir si la conexion se establecio
+		public bool conexion;
         //Valores servdor --> cliente
         public Carta carta;
         //Valores cliente --> servidor
