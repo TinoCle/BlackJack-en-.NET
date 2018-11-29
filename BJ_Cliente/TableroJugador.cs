@@ -46,8 +46,7 @@ namespace BJ_Cliente
 			juego = new Juego(20);
 			puntosRival = 0;
 			yaEsMiTurno = false;
-
-			ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
+            ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
             escuchar = new Escuchar();
             escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
             escuchar.Start(6666);
@@ -65,18 +64,35 @@ namespace BJ_Cliente
 					if (respuesta.conexion == false)
 					{
 						Esconder();
-						lblEsperar.Show();
-					}
+                        if (lblEsperar.InvokeRequired)
+                        {
+                            lblEsperar.Invoke(new MethodInvoker(delegate { lblEsperar.Show(); }));
+                        }
+                    }
 					else if (respuesta.conexion == true)
 					{
 						Mostrar();
-						lblEsperar.Hide();
-					}
+                        if (lblEsperar.InvokeRequired)
+                        {
+                            lblEsperar.Invoke(new MethodInvoker(delegate { lblEsperar.Hide(); }));
+                        }
+                    }
 					break;
 				//Intercambio de Nombres
 				case 1:
-					lblYo.Text = nombreCliente;
-					lblRival.Text = respuesta.nombre;break;
+                    if (lblRival.InvokeRequired)
+                    {
+                        lblRival.Invoke(new MethodInvoker(delegate {
+                            lblRival.Text = respuesta.nombre;
+                        }));
+                    }
+                    if (lblYo.InvokeRequired)
+                    {
+                        lblYo.Invoke(new MethodInvoker(delegate {
+                            lblYo.Text = nombreCliente;
+                        }));
+                    }
+                    break;
 				//Determinar de quien es el Turno
 				case 2:
 					if (respuesta.turno==true && respuesta.nombre == nombreCliente)
@@ -113,8 +129,11 @@ namespace BJ_Cliente
 						//EliminarCartas();
 						else
 						{
-							lblPuntos.Text = juego.Puntos.ToString();
-							AgregarCarta(respuesta);
+                            if (lblPuntos.InvokeRequired)
+                            {
+                                lblPuntos.Invoke(new MethodInvoker(delegate { lblPuntos.Text = juego.Puntos.ToString(); }));
+                            }
+                            AgregarCarta(respuesta);
 						}
 					}
 					//Si la carta que se recibio no es para mi, es para el rival
@@ -138,8 +157,11 @@ namespace BJ_Cliente
 								puntosRival += 10;
 							}
 						}
-						lblPuntosRival.Text = puntosRival.ToString();
-						AgregarCartaRival(respuesta);
+                        if (lblPuntosRival.InvokeRequired)
+                        {
+                            lblPuntosRival.Invoke(new MethodInvoker(delegate { lblPuntosRival.Text = puntosRival.ToString(); }));
+                        }
+                        AgregarCartaRival(respuesta);
 					}
 					break;
 				case 100:
@@ -357,15 +379,21 @@ namespace BJ_Cliente
 		{
 			foreach(Control control in this.Controls)
 			{
-				control.Hide();
-			}
+                if (control.InvokeRequired)
+                {
+                    control.Invoke(new MethodInvoker(delegate { control.Hide(); }));
+                }
+            }
 		}
 
 		private void Mostrar()
 		{
 			foreach(Control control in this.Controls)
 			{
-				control.Show();
+                if (control.InvokeRequired)
+                {
+                    control.Invoke(new MethodInvoker(delegate { control.Show(); }));
+                }
 			}
 		}
 
