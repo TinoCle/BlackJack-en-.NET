@@ -56,7 +56,6 @@ namespace BlackJack
 
         private void ObjetoRecibido(Respuesta respuesta)
         {
-            //Acá deserializa la clase, y se fija si pide otra
             string nombre = respuesta.nombre;
 			
 			//Conexion Inicial

@@ -122,8 +122,11 @@ namespace BJ_Cliente
 						if (!juego.SumarPuntos(respuesta.carta.Nombre))
 						{
 							AgregarCarta(respuesta);
-							//Para plantarse directamente
-							btnPlantarse.PerformClick();
+                            //Para plantarse directamente
+                            if (btnPlantarse.InvokeRequired)
+                            {
+                                btnPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse.PerformClick(); }));
+                            }
 							MessageBox.Show("Te pasaste de 21");
 						}
 						//EliminarCartas();
@@ -313,15 +316,27 @@ namespace BJ_Cliente
 
 		private void HabilitarBotones()
 		{
-			btnOtra.Enabled = true;
-			btnPlantarse.Enabled = true;
+            if (btnOtra.InvokeRequired)
+            {
+                btnOtra.Invoke(new MethodInvoker(delegate { btnOtra.Enabled = true; }));
+            }
+            if (btnPlantarse.InvokeRequired)
+            {
+                btnPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse.Enabled = true; }));
+            }
 		}
 
 		private void DeshabilitarBotones()
 		{
-			btnOtra.Enabled = false;
-			btnPlantarse.Enabled = false;
-		}
+            if (btnOtra.InvokeRequired)
+            {
+                btnOtra.Invoke(new MethodInvoker(delegate { btnOtra.Enabled = false; }));
+            }
+            if (btnPlantarse.InvokeRequired)
+            {
+                btnPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse.Enabled = false; }));
+            }
+        }
 
 		/// <summary>
 		/// Para Limpiar el Tablero, la funcion que te dije
