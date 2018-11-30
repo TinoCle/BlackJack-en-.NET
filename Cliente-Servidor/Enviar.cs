@@ -26,6 +26,7 @@ namespace Cliente_Servidor
 		//Tipo 3: Envio de Cartas
 		//Tipo 99: Envio de Puntos
 		//Tipo 100: Envio de Resultado/Ganador
+		//Tipo 101: ACK del Resultado
 
 		private int port;
 		/// <summary>
@@ -48,6 +49,12 @@ namespace Cliente_Servidor
             respuesta.otra = o;
             Console.WriteLine("ENVIADO EL PUERTO "+p.ToString());
         }
+
+		public void SetearACK(string nombre, int tipo = 101)
+		{
+			respuesta.nombre = nombre;
+			respuesta.tipo = tipo;
+		}
 
 		public void SetearPuntos(int puntos,int tipo = 99)
 		{

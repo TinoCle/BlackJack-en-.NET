@@ -122,8 +122,12 @@ namespace BJ_Cliente
 						if (!juego.SumarPuntos(respuesta.carta.Nombre))
 						{
 							AgregarCarta(respuesta);
-                            //Para plantarse directamente
-                            if (btnPlantarse.InvokeRequired)
+							if (lblPuntos.InvokeRequired)
+							{
+								lblPuntos.Invoke(new MethodInvoker(delegate { lblPuntos.Text = juego.Puntos.ToString(); }));
+							}
+							//Para plantarse directamente
+							if (btnPlantarse.InvokeRequired)
                             {
                                 btnPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse.PerformClick(); }));
                             }
@@ -170,8 +174,13 @@ namespace BJ_Cliente
 				case 100:
 					if (respuesta.nombre == nombreCliente)
 						MessageBox.Show("Ganaste", "Ganador");
+					else if (respuesta.nombre == "Empate")
+						MessageBox.Show("Empate");
 					else
 						MessageBox.Show("Perdiste");
+					EliminarCartas();
+					ResetPuntos();
+					EnviarACK();
 					break;
 			}
 
@@ -314,6 +323,13 @@ namespace BJ_Cliente
 		}
 		#endregion
 
+		private void ResetPuntos()
+		{
+			lblPuntos.Invoke(new MethodInvoker(delegate () { lblPuntos.Text= "0";}));
+			lblPuntosRival.Invoke(new MethodInvoker(delegate () { lblPuntosRival.Text = "0"; }));
+			puntosRival = 0;
+		}
+
 		private void HabilitarBotones()
 		{
             if (btnOtra.InvokeRequired)
@@ -338,16 +354,31 @@ namespace BJ_Cliente
             }
         }
 
+		private void EnviarACK()
+		{
+			enviar.SetearACK(nombreCliente);
+			enviar.Start(5555);
+		}
+
 		/// <summary>
 		/// Para Limpiar el Tablero, la funcion que te dije
 		/// </summary>
-		/*private void EliminarCartas()
+		private void EliminarCartas()
 		{
 			foreach (PictureBox carta in cartas)
 			{
-				carta.Dispose();
+				if (carta.InvokeRequired)
+				{
+					carta.Invoke(new MethodInvoker(delegate () { carta.Dispose(); }));
+				}
 			}
-		}*/
+			x = 100;
+			y = 150;
+			x2 = 513;
+			y2 = 166;
+			i = 1;
+			juego = new Juego(20);
+		}
 
 
 

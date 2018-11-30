@@ -25,6 +25,10 @@ namespace BlackJack
 		int puntosJugador1;
 		int puntosJugador2;
 
+		bool ACKJugador1 = false;
+		bool ACKJugador2 = false;
+
+		string ganador;
         /// <summary>
         /// Esta función inicializa las clases.
         /// Abre una escucha en el puerto 5555 y setea el timer para chequear el buffer.
@@ -108,20 +112,57 @@ namespace BlackJack
 					{
 						ActualizarLog("PUNTOS DE JUGADOR 1:" + puntosJugador1);
 						ActualizarLog("PUNTOS JUGADOR 2:" + puntosJugador2);
-						if (puntosJugador2<=21 && puntosJugador2 > puntosJugador1)
+						if (puntosJugador2 <= 21 && puntosJugador2 > puntosJugador1)
 						{
 							ActualizarLog("Ganador: " + nombresClientes[1]);
+							ganador = nombresClientes[1];
 							EnviarGanador(nombresClientes[1]);
 						}
 						else if (puntosJugador2 == puntosJugador1)
+						{
+							ActualizarLog("Empate");
 							EnviarGanador("Empate");
+							ganador = "";
+						}
+						else if (puntosJugador1>21 && puntosJugador2 > 21)
+						{
+							ActualizarLog("Ambos se pasaron de 21. Empate");
+							EnviarGanador("Empate");
+							ganador = "";
+						}
 						else
 						{
 							ActualizarLog("Ganador: " + nombresClientes[0]);
+							ganador = nombresClientes[0];
 							EnviarGanador(nombresClientes[0]);
 						}
 					}
                 }
+
+				else if (respuesta.tipo == 101)
+				{
+					if (respuesta.nombre == nombresClientes[0])
+						ACKJugador1 = true;
+					else
+						ACKJugador2 = true;
+					mazo = new Mazo();
+					if (ACKJugador1 == true && ACKJugador2 == true)
+					{
+						puntosJugador1 = 0;
+						puntosJugador2 = 0;
+						ActualizarLog("Nueva Ronda");
+						//Si no empataron, le mando el turno al ganador
+						if (ganador != "")
+							EnviarTurno(true, ganador);
+						//Si empataron, le mando el turno al primer jugador
+						else
+							EnviarTurno(true, nombresClientes[0]);
+						ganador = "";
+						ACKJugador1 = false;
+						ACKJugador2 = false;
+					}
+				}
+
             }
         }
 
