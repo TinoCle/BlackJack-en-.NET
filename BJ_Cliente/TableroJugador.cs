@@ -91,15 +91,11 @@ namespace BJ_Cliente
 				case 1:
                     if (lblRival.InvokeRequired)
                     {
-                        lblRival.Invoke(new MethodInvoker(delegate {
-                            lblRival.Text = respuesta.nombre;
-                        }));
+                        lblRival.Invoke(new MethodInvoker(delegate {lblRival.Text = respuesta.nombre;}));
                     }
                     if (lblYo.InvokeRequired)
                     {
-                        lblYo.Invoke(new MethodInvoker(delegate {
-                            lblYo.Text = nombreCliente;
-                        }));
+                        lblYo.Invoke(new MethodInvoker(delegate {lblYo.Text = nombreCliente;}));
                     }
                     break;
 				//Determinar de quien es el Turno
@@ -107,8 +103,11 @@ namespace BJ_Cliente
 					if (respuesta.turno==true && respuesta.nombre == nombreCliente)
 					{
 						if (!yaEsMiTurno)
-						{ 
-							MessageBox.Show("Tu Turno","Turno",MessageBoxButtons.OK,MessageBoxIcon.Information);
+						{
+                            if (this.InvokeRequired)
+                            {
+                                this.Invoke(new MethodInvoker(delegate {this.BringToFront();}));
+                            }
 							HabilitarBotones();
 							yaEsMiTurno=true;
 						}
@@ -345,6 +344,12 @@ namespace BJ_Cliente
 
 		private void HabilitarBotones()
 		{
+            //Cambia la imágen de fondo
+            if (pictureBox1.InvokeRequired)
+            {
+                pictureBox1.Invoke(new MethodInvoker(delegate { pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Tablero; }));
+            }
+            //Activa los botones
             if (panelPedirOtra.InvokeRequired)
             {
                 panelPedirOtra.Invoke(new MethodInvoker(delegate { panelPedirOtra.Enabled = true; }));
@@ -357,6 +362,12 @@ namespace BJ_Cliente
 
 		private void DeshabilitarBotones()
 		{
+            //Cambia la imágen de fondo
+            if (pictureBox1.InvokeRequired)
+            {
+                pictureBox1.Invoke(new MethodInvoker(delegate { pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Tablero_desactivado; }));
+            }
+            //Desactiva los botones
             if (panelPedirOtra.InvokeRequired)
             {
                 panelPedirOtra.Invoke(new MethodInvoker(delegate { panelPedirOtra.Enabled = false; }));
