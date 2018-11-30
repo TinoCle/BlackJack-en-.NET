@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,11 @@ namespace BJ_Cliente
         public Login()
         {
             InitializeComponent();
-            txtUser.MaxLength = 13;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
+            txtUser.MaxLength = 13;
+            txtUser.Font = new Font(pfc.Families[0], 16, FontStyle.Regular);
         }
 
 
