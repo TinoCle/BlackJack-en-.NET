@@ -166,8 +166,33 @@ namespace BlackJack
 					}
 				}
 
+				else if (respuesta.tipo == 200)
+				{
+					ActualizarLog("El Cliente " + respuesta.nombre + " se desconecto");
+					mazo = new Mazo();
+					conexionEstablecida = false;
+					EnviarAbandono(respuesta.nombre);
+				}
             }
         }
+
+		private void EnviarAbandono(string nombre)
+		{
+			if (nombre == nombresClientes[0])
+			{
+				enviar.SetearAbandono(nombre);
+				enviar.Start(puertosClientes[1]);
+				nombresClientes.RemoveAt(0);
+				puertosClientes.RemoveAt(0);
+			}
+			else
+			{
+				enviar.SetearAbandono(nombre);
+				enviar.Start(puertosClientes[0]);
+				nombresClientes.RemoveAt(1);
+				puertosClientes.RemoveAt(1);
+			}
+		}
 
 		private void EnviarGanador(string ganador)
 		{

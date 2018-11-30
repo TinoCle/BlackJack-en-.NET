@@ -79,7 +79,7 @@ namespace BJ_Cliente
 					{
                         if (ventanaLogin.InvokeRequired)
                         {
-                            ventanaLogin.Invoke(new MethodInvoker(delegate { ventanaLogin.Close(); }));
+                            ventanaLogin.Invoke(new MethodInvoker(delegate { ventanaLogin.Hide(); }));
                         }
                         if (this.InvokeRequired)
                         {
@@ -187,6 +187,14 @@ namespace BJ_Cliente
 					ResetPuntos();
 					EnviarACK();
 					break;
+				case 201:
+					MessageBox.Show("El otro jugador Abandono la Partida");
+					ResetPuntos();
+					EliminarCartas();
+					this.Hide();
+					ventanaLogin.ReOpen();
+					ventanaLogin.Show();
+					break;
 			}
 
 			#region Lo de antes, cuando no se tenia el atributo Tipo
@@ -278,7 +286,7 @@ namespace BJ_Cliente
 					pictureBox.Name = "pictureBox" + i+1;
 					pictureBox.Size = new System.Drawing.Size(100, 150);
 					pictureBox.TabIndex = 4;
-					pictureBox.BackColor = Color.White;
+					pictureBox.BackColor = Color.Transparent;
 					pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 					pictureBox.TabStop = false;
 
@@ -431,6 +439,8 @@ namespace BJ_Cliente
 
 		private void TableroJugador_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			enviar.SetearDesconexion(nombreCliente);
+			enviar.Start(5555);
 			Application.ExitThread();
 		}
     }

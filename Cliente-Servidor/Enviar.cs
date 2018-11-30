@@ -27,6 +27,7 @@ namespace Cliente_Servidor
 		//Tipo 99: Envio de Puntos
 		//Tipo 100: Envio de Resultado/Ganador
 		//Tipo 101: ACK del Resultado
+		//Tipo 200: Desconexion
 
 		private int port;
 		/// <summary>
@@ -97,6 +98,18 @@ namespace Cliente_Servidor
 			respuesta.nombre = nombre;
 			respuesta.puerto = puerto;
 			respuesta.carta = null;
+		}
+
+		public void SetearDesconexion(string nombre,int tipo = 200)
+		{
+			respuesta.tipo = tipo;
+			respuesta.nombre = nombre;
+		}
+		//Para notificarle al jugador conectado la desconexion de su rival
+		public void SetearAbandono(string nombre, int tipo = 201)
+		{
+			respuesta.tipo = tipo;
+			respuesta.nombre = nombre;
 		}
 
         ///

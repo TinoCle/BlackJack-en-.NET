@@ -25,7 +25,14 @@ namespace BJ_Cliente
             txtUser.MaxLength = 11;
             txtUser.Font = new Font(pfc.Families[0], 16,FontStyle.Bold);
         }
+		public bool yaJugue = false;
 
+		
+		public void ReOpen()
+		{
+			pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
+			txtUser.Visible = false;
+		}
 
         /// <summary>
         /// Este método lanza el evento de enterPresionado para informar al formulario del jugador
@@ -41,6 +48,7 @@ namespace BJ_Cliente
                     pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
                     txtUser.Visible = false;
                     this.enterPresionado(txtUser.Text);
+					yaJugue = true;
                 }
                 else
                 {
