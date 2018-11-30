@@ -64,11 +64,11 @@ namespace BlackJack
         private void ObjetoRecibido(Respuesta respuesta)
         {
             string nombre = respuesta.nombre;
-			
+
 			//Conexion Inicial
 			if (respuesta.puerto != 0)
-            {
-                puertosClientes.Add(respuesta.puerto);
+			{
+				puertosClientes.Add(respuesta.puerto);
 				nombresClientes.Add(nombre);
 
 				ActualizarLog("Cliente " + nombre + " encontrado en el puerto " + respuesta.puerto.ToString() + ".");
@@ -76,7 +76,7 @@ namespace BlackJack
 				if (puertosClientes.Count == 1)
 					EnviarConexion(false);
 
-				if(puertosClientes.Count>1 && conexionEstablecida==false)
+				if (puertosClientes.Count > 1 && conexionEstablecida == false)
 				{
 					EnviarConexion(true);
 					EnviarNombres(nombresClientes[0], nombresClientes[1]);
@@ -84,19 +84,19 @@ namespace BlackJack
 					EnviarTurno(true, respuesta.nombre);
 					conexionEstablecida = true;
 				}
-            }
-            
+			}
+
 			//Si ya están conectados los dos clientes se puede empezar a enviar cartas
-            else if (puertosClientes.Count > 1)
-            {
-				if (respuesta.otra && respuesta.tipo==3)
+			else if (puertosClientes.Count > 1)
+			{
+				if (respuesta.otra && respuesta.tipo == 3)
 				{
 					ActualizarLog("El cliente " + nombre + " pidió otra carta.");
 					EnviarCarta(nombre);
 				}
 				else if (respuesta.tipo == 99)
-                {
-                    ActualizarLog("El cliente " + nombre + " se plantó.");
+				{
+					ActualizarLog("El cliente " + nombre + " se plantó.");
 					ActualizarLog("Puntos de " + nombre + ":" + respuesta.puntos);
 					if (nombresClientes[0] == nombre)
 						puntosJugador1 = respuesta.puntos;
@@ -127,7 +127,7 @@ namespace BlackJack
 							EnviarGanador("Empate");
 							ganador = "";
 						}
-						else if (puntosJugador1>21 && puntosJugador2 > 21)
+						else if (puntosJugador1 > 21 && puntosJugador2 > 21)
 						{
 							ActualizarLog("Ambos se pasaron de 21. Empate");
 							EnviarGanador("Empate");
@@ -140,7 +140,7 @@ namespace BlackJack
 							EnviarGanador(nombresClientes[0]);
 						}
 					}
-                }
+				}
 
 				else if (respuesta.tipo == 101)
 				{
@@ -165,15 +165,15 @@ namespace BlackJack
 						ACKJugador2 = false;
 					}
 				}
-
-				else if (respuesta.tipo == 200)
-				{
-					ActualizarLog("El Cliente " + respuesta.nombre + " se desconecto");
-					mazo = new Mazo();
-					conexionEstablecida = false;
-					EnviarAbandono(respuesta.nombre);
-				}
-            }
+			}
+			if (respuesta.tipo == 200)
+			{
+				ActualizarLog("El Cliente " + respuesta.nombre + " se desconecto");
+				mazo = new Mazo();
+				conexionEstablecida = false;
+				EnviarAbandono(respuesta.nombre);
+			}
+            
         }
 
 		private void EnviarAbandono(string nombre)
