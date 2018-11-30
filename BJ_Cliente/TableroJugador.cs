@@ -61,6 +61,7 @@ namespace BJ_Cliente
 			{
 				//Conexiones, if true => se conectaron
 				case 0:
+                    /*
 					if (respuesta.conexion == false)
 					{
 						Esconder();
@@ -69,12 +70,23 @@ namespace BJ_Cliente
                             lblEsperar.Invoke(new MethodInvoker(delegate { lblEsperar.Show(); }));
                         }
                     }
-					else if (respuesta.conexion == true)
+					else*/
+                    if (respuesta.conexion == true)
 					{
-						Mostrar();
+                        /*
+                         * Mostrar();
                         if (lblEsperar.InvokeRequired)
                         {
                             lblEsperar.Invoke(new MethodInvoker(delegate { lblEsperar.Hide(); }));
+                        }
+                        */
+                        if (ventanaLogin.InvokeRequired)
+                        {
+                            ventanaLogin.Invoke(new MethodInvoker(delegate { ventanaLogin.Close(); }));
+                        }
+                        if (this.InvokeRequired)
+                        {
+                            this.Invoke(new MethodInvoker(delegate { Show(); }));
                         }
                     }
 					break;
@@ -391,8 +403,6 @@ namespace BJ_Cliente
             nombreCliente = n;
             enviar.SetearClase(true,nombreCliente, null, escuchar.puerto);
             enviar.Start(5555);
-            ventanaLogin.Close();
-            this.Show();
         }
 
         private void btnOtra_Click(object sender, EventArgs e)
@@ -420,28 +430,6 @@ namespace BJ_Cliente
         {
             this.Hide();
         }
-
-		private void Esconder()
-		{
-			foreach(Control control in this.Controls)
-			{
-                if (control.InvokeRequired)
-                {
-                    control.Invoke(new MethodInvoker(delegate { control.Hide(); }));
-                }
-            }
-		}
-
-		private void Mostrar()
-		{
-			foreach(Control control in this.Controls)
-			{
-                if (control.InvokeRequired)
-                {
-                    control.Invoke(new MethodInvoker(delegate { control.Show(); }));
-                }
-			}
-		}
 
         private void timerListen_Tick(object sender, EventArgs e)
         {

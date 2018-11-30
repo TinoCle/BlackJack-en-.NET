@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace BlackJack
 {
+    /// <summary>
+    /// Esta clase representa al formulario del servidor
+    /// </summary>
     public partial class TableroServidor : Form
     {
         Mazo mazo;
@@ -265,6 +268,11 @@ namespace BlackJack
         private void timerCheckBuffer_Tick(object sender, EventArgs e)
         {
             escuchar.EsperarRespuesta();
+        }
+
+        private void TableroServidor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.ExitThread();
         }
     }
 }

@@ -26,7 +26,10 @@ namespace BJ_Cliente
         }
 
 
-        //Para evitar espacios y enviar el nombre al otro formulario con Enter
+        /// <summary>
+        /// Este método lanza el evento de enterPresionado para informar al formulario del jugador
+        /// el nombre que eligió, luego ese formulario informa al servidor.
+        /// </summary>
         private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = (e.KeyChar == (char)Keys.Space);
@@ -34,6 +37,8 @@ namespace BJ_Cliente
             {
                 if (txtUser.Text.Length >= 4)
                 {
+                    pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
+                    txtUser.Visible = false;
                     this.enterPresionado(txtUser.Text);
                 }
                 else
