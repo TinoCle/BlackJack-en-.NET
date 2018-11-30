@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,20 @@ namespace BJ_Cliente
             ventanaLogin = new Login();
             ventanaLogin.Show();
 
-			juego = new Juego(20);
+            //Seteando las fuentes privadas
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
+            lblYo.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
+            lblRival.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
+            lblPuntos.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
+            lblPuntosRival.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
+            //Seteando los botones transparentes
+            panelPedirOtra.Parent = pictureBox1;
+            panelPlantarse.Parent = pictureBox1;
+            panelPedirOtra.BackColor = Color.Transparent;
+            panelPlantarse.BackColor = Color.Transparent;
+            
+            juego = new Juego(20);
 			puntosRival = 0;
 			yaEsMiTurno = false;
             ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
@@ -61,25 +75,8 @@ namespace BJ_Cliente
 			{
 				//Conexiones, if true => se conectaron
 				case 0:
-                    /*
-					if (respuesta.conexion == false)
-					{
-						Esconder();
-                        if (lblEsperar.InvokeRequired)
-                        {
-                            lblEsperar.Invoke(new MethodInvoker(delegate { lblEsperar.Show(); }));
-                        }
-                    }
-					else*/
                     if (respuesta.conexion == true)
 					{
-                        /*
-                         * Mostrar();
-                        if (lblEsperar.InvokeRequired)
-                        {
-                            lblEsperar.Invoke(new MethodInvoker(delegate { lblEsperar.Hide(); }));
-                        }
-                        */
                         if (ventanaLogin.InvokeRequired)
                         {
                             ventanaLogin.Invoke(new MethodInvoker(delegate { ventanaLogin.Close(); }));
@@ -124,10 +121,6 @@ namespace BJ_Cliente
 					break;
 				//Cuando se reciben Cartas
 				case 3:
-					if (txtCartaRecibida.InvokeRequired && respuesta.nombre == nombreCliente)
-					{
-						txtCartaRecibida.Invoke(new MethodInvoker(delegate { txtCartaRecibida.Text = respuesta.carta.Nombre; }));
-					}
 					//Si la carta era para mi
 					if (respuesta.nombre == this.nombreCliente)
 					{
@@ -139,9 +132,9 @@ namespace BJ_Cliente
 								lblPuntos.Invoke(new MethodInvoker(delegate { lblPuntos.Text = juego.Puntos.ToString(); }));
 							}
 							//Para plantarse directamente
-							if (btnPlantarse.InvokeRequired)
+							if (panelPlantarse.InvokeRequired)
                             {
-                                btnPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse.PerformClick(); }));
+                                panelPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse_Click(new object(), new EventArgs()); }));
                             }
 							MessageBox.Show("Te pasaste de 21");
 						}
@@ -344,25 +337,25 @@ namespace BJ_Cliente
 
 		private void HabilitarBotones()
 		{
-            if (btnOtra.InvokeRequired)
+            if (panelPedirOtra.InvokeRequired)
             {
-                btnOtra.Invoke(new MethodInvoker(delegate { btnOtra.Enabled = true; }));
+                panelPedirOtra.Invoke(new MethodInvoker(delegate { panelPedirOtra.Enabled = true; }));
             }
-            if (btnPlantarse.InvokeRequired)
+            if (panelPlantarse.InvokeRequired)
             {
-                btnPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse.Enabled = true; }));
+                panelPlantarse.Invoke(new MethodInvoker(delegate { panelPlantarse.Enabled = true; }));
             }
 		}
 
 		private void DeshabilitarBotones()
 		{
-            if (btnOtra.InvokeRequired)
+            if (panelPedirOtra.InvokeRequired)
             {
-                btnOtra.Invoke(new MethodInvoker(delegate { btnOtra.Enabled = false; }));
+                panelPedirOtra.Invoke(new MethodInvoker(delegate { panelPedirOtra.Enabled = false; }));
             }
-            if (btnPlantarse.InvokeRequired)
+            if (panelPlantarse.InvokeRequired)
             {
-                btnPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse.Enabled = false; }));
+                panelPlantarse.Invoke(new MethodInvoker(delegate { panelPlantarse.Enabled = false; }));
             }
         }
 
@@ -440,5 +433,5 @@ namespace BJ_Cliente
 		{
 			Application.ExitThread();
 		}
-	}
+    }
 }

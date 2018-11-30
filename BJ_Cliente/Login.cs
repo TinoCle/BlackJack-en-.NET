@@ -19,9 +19,10 @@ namespace BJ_Cliente
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
             PrivateFontCollection pfc = new PrivateFontCollection();
             pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
-            txtUser.MaxLength = 13;
+            txtUser.MaxLength = 11;
             txtUser.Font = new Font(pfc.Families[0], 16,FontStyle.Bold);
         }
 

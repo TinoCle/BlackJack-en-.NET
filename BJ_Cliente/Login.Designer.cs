@@ -42,7 +42,7 @@
             this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Multiline = true;
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(564, 77);
+            this.txtUser.Size = new System.Drawing.Size(531, 77);
             this.txtUser.TabIndex = 1;
             this.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
