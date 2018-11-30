@@ -34,9 +34,9 @@
             this.lblPuntosRival = new System.Windows.Forms.Label();
             this.lblRival = new System.Windows.Forms.Label();
             this.lblYo = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelPedirOtra = new System.Windows.Forms.Panel();
             this.panelPlantarse = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,17 +96,6 @@
             this.lblYo.TabIndex = 11;
             this.lblYo.Text = "JUGADOR";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Tablero;
-            this.pictureBox1.Location = new System.Drawing.Point(-3, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1947, 975);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
             // panelPedirOtra
             // 
             this.panelPedirOtra.BackColor = System.Drawing.Color.Transparent;
@@ -124,6 +113,17 @@
             this.panelPlantarse.Size = new System.Drawing.Size(526, 100);
             this.panelPlantarse.TabIndex = 14;
             this.panelPlantarse.Click += new System.EventHandler(this.btnPlantarse_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Tablero;
+            this.pictureBox1.Location = new System.Drawing.Point(-3, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1947, 975);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
             // 
             // TableroJugador
             // 

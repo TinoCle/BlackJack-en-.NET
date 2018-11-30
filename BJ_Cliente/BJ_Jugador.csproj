@@ -266,5 +266,8 @@
   <ItemGroup>
     <None Include="Resources\Tablero.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tablero_desactivado.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
