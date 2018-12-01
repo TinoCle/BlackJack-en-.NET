@@ -26,6 +26,7 @@ namespace Cliente_Servidor
 		public int tipo;
 		public int puntos;
 		public bool SetearNombres;
+		public int dinero;
 		
 		public bool turno;
 		//Bool para decir si la conexion se establecio

@@ -226,12 +226,6 @@
     <None Include="Resources\10 de treboles.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ace_of_spades.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ace_of_spades2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\As de corazones.png" />
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +287,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\As de picas.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

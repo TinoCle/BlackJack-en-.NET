@@ -23,6 +23,7 @@ namespace BlackJack
         Enviar enviar;
         List<int> puertosClientes = new List<int>();
 		List<string> nombresClientes = new List<string>();
+		Dictionary<string,int> dineroJugadores;
 
 		bool conexionEstablecida = false;
 		int puntosJugador1;
@@ -43,6 +44,7 @@ namespace BlackJack
             escuchar = new Escuchar();
             enviar = new Enviar();
             mazo = new Mazo();
+			dineroJugadores = new Dictionary<string, int>();
             escuchar.Start(5555);
             timerCheckBuffer.Start();
             escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
@@ -72,6 +74,12 @@ namespace BlackJack
 				nombresClientes.Add(nombre);
 
 				ActualizarLog("Cliente " + nombre + " encontrado en el puerto " + respuesta.puerto.ToString() + ".");
+				ActualizarLog("Dinero de " + respuesta.nombre + ":" + respuesta.dinero);
+				try
+				{
+					dineroJugadores.Add(respuesta.nombre, respuesta.dinero);
+				}
+				catch { }
 
 				if (puertosClientes.Count == 1)
 					EnviarConexion(false);
@@ -83,6 +91,7 @@ namespace BlackJack
 					//Decidir quien empieza, vamos a darle el turno al ultimo que se conectó para hacerlo más sencillo
 					EnviarTurno(true, respuesta.nombre);
 					conexionEstablecida = true;
+					EnviarDineros(nombresClientes[0], nombresClientes[1]);
 				}
 			}
 
@@ -115,30 +124,52 @@ namespace BlackJack
 					{
 						ActualizarLog("PUNTOS DE JUGADOR 1:" + puntosJugador1);
 						ActualizarLog("PUNTOS JUGADOR 2:" + puntosJugador2);
-						if (puntosJugador2 <= 21 && puntosJugador2 > puntosJugador1)
+						if (puntosJugador2 <= 21 && (puntosJugador2 > puntosJugador1 && puntosJugador1 < 21))
 						{
 							ActualizarLog("Ganador: " + nombresClientes[1]);
 							ganador = nombresClientes[1];
 							EnviarGanador(nombresClientes[1]);
+							ActualizarDineros(ganador);
 						}
+						else if (puntosJugador2 <= 21 &&  puntosJugador1 > 21)
+						{
+							ActualizarLog("Ganador: " + nombresClientes[1]);
+							ganador = nombresClientes[1];
+							EnviarGanador(nombresClientes[1]);
+							ActualizarDineros(ganador);
+						}
+
+						else if (puntosJugador1 <= 21 && (puntosJugador1 > puntosJugador2 && puntosJugador2 < 21))
+						{
+							ActualizarLog("Ganador: " + nombresClientes[0]);
+							ganador = nombresClientes[0];
+							EnviarGanador(nombresClientes[0]);
+							ActualizarDineros(ganador);
+						}
+
+						else if (puntosJugador1 <= 21 && puntosJugador2 > 21)
+						{
+							ActualizarLog("Ganador: " + nombresClientes[0]);
+							ganador = nombresClientes[0];
+							EnviarGanador(nombresClientes[0]);
+							ActualizarDineros(ganador);
+						}
+
 						else if (puntosJugador2 == puntosJugador1)
 						{
 							ActualizarLog("Empate");
 							EnviarGanador("Empate");
 							ganador = "";
+							ActualizarDineros(ganador);
 						}
 						else if (puntosJugador1 > 21 && puntosJugador2 > 21)
 						{
 							ActualizarLog("Ambos se pasaron de 21. Empate");
 							EnviarGanador("Empate");
 							ganador = "";
+							ActualizarDineros(ganador);
 						}
-						else
-						{
-							ActualizarLog("Ganador: " + nombresClientes[0]);
-							ganador = nombresClientes[0];
-							EnviarGanador(nombresClientes[0]);
-						}
+						
 					}
 				}
 
@@ -173,24 +204,78 @@ namespace BlackJack
 				conexionEstablecida = false;
 				EnviarAbandono(respuesta.nombre);
 			}
+			/*if (respuesta.tipo == 4)
+			{
+				ActualizarLog("Dinero de " + respuesta.nombre + ":" + respuesta.dinero);
+				dineroJugadores.Add(respuesta.nombre, respuesta.dinero);
+			}*/
             
         }
 
 		private void EnviarAbandono(string nombre)
 		{
-			if (nombre == nombresClientes[0])
+			try
 			{
-				enviar.SetearAbandono(nombre);
-				enviar.Start(puertosClientes[1]);
-				nombresClientes.RemoveAt(0);
-				puertosClientes.RemoveAt(0);
+				if (nombre == nombresClientes[0])
+				{
+					enviar.SetearAbandono(nombre);
+					enviar.Start(puertosClientes[1]);
+					nombresClientes.RemoveAt(0);
+					puertosClientes.RemoveAt(0);
+				}
+				else
+				{
+					enviar.SetearAbandono(nombre);
+					enviar.Start(puertosClientes[0]);
+					nombresClientes.RemoveAt(1);
+					puertosClientes.RemoveAt(1);
+				}
 			}
-			else
+			catch(Exception ec)
 			{
-				enviar.SetearAbandono(nombre);
+				ActualizarLog(ec.Message);
+			}
+		}
+
+		private void ActualizarDineros(string ganador)
+		{
+			int auxDinero;
+			if (ganador != "")
+			{
+				if (ganador == nombresClientes[0])
+				{
+					dineroJugadores[nombresClientes[0]] += 100;
+
+					dineroJugadores[nombresClientes[1]] -= 100;
+				}
+				if (ganador == nombresClientes[1])
+				{
+					dineroJugadores[nombresClientes[1]] += 100;
+
+					dineroJugadores[nombresClientes[0]] -= 100;
+				}
+
+				ActualizarLog("Dinero de " + nombresClientes[1] + ":" + dineroJugadores[nombresClientes[1]]);
+				ActualizarLog("Dinero de " + nombresClientes[0] + ":" + dineroJugadores[nombresClientes[0]]);
+
+				/*enviar.SetearDinero(dineroJugadores[nombresClientes[1]], nombresClientes[1]);
+				enviar.Start(puertosClientes[1]);
+				enviar.SetearDinero(dineroJugadores[nombresClientes[1]], nombresClientes[0]);
+				enviar.Start(puertosClientes[1]);
+
+				enviar.SetearDinero(auxDinero2, nombresClientes[0]);
 				enviar.Start(puertosClientes[0]);
-				nombresClientes.RemoveAt(1);
-				puertosClientes.RemoveAt(1);
+				enviar.SetearDinero(auxDinero2, nombresClientes[1]);
+				enviar.Start(puertosClientes[0]);
+				*/
+
+				EnviarDineros(nombresClientes[0], nombresClientes[1]);
+
+
+				/*enviar.SetearDinero((int) dineroJugadores[1], nombresClientes[1]);
+				enviar.Start(puertosClientes[1]);
+				enviar.SetearDinero((int) dineroJugadores[0], nombresClientes[0]);
+				enviar.Start(puertosClientes[0]);*/
 			}
 		}
 
@@ -206,6 +291,19 @@ namespace BlackJack
 			enviar.SetearNombres(user1);
 			enviar.Start(puertosClientes[1]);
 			enviar.SetearNombres(user2);
+			enviar.Start(puertosClientes[0]);
+		}
+
+		private void EnviarDineros(string user1, string user2)
+		{
+			enviar.SetearDinero(dineroJugadores[user2], user2);
+			enviar.Start(puertosClientes[0]);
+			enviar.SetearDinero(dineroJugadores[user2], user2);
+			enviar.Start(puertosClientes[1]);
+
+			enviar.SetearDinero(dineroJugadores[user1], user1);
+			enviar.Start(puertosClientes[1]);
+			enviar.SetearDinero(dineroJugadores[user1], user1);
 			enviar.Start(puertosClientes[0]);
 		}
 

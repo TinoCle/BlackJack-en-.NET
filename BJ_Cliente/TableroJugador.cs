@@ -57,10 +57,12 @@ namespace BJ_Cliente
             panelPedirOtra.BackColor = Color.Transparent;
             panelPlantarse.BackColor = Color.Transparent;
             
-            juego = new Juego(20);
+            juego = new Juego(0);
 			puntosRival = 0;
 			yaEsMiTurno = false;
             ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
+			//ventanaLogin.enviarDinero += new Login.EnviarDinero(SetDinero);
+
             escuchar = new Escuchar();
             escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
             escuchar.Start(6666);
@@ -92,12 +94,12 @@ namespace BJ_Cliente
                     if (lblRival.InvokeRequired)
                     {
                         lblRival.Invoke(new MethodInvoker(delegate {lblRival.Text = respuesta.nombre;}));
-                    }
-                    if (lblYo.InvokeRequired)
+					}
+					if (lblYo.InvokeRequired)
                     {
                         lblYo.Invoke(new MethodInvoker(delegate {lblYo.Text = nombreCliente;}));
-                    }
-                    break;
+					}
+					break;
 				//Determinar de quien es el Turno
 				case 2:
 					if (respuesta.turno==true && respuesta.nombre == nombreCliente)
@@ -175,13 +177,46 @@ namespace BJ_Cliente
                         AgregarCartaRival(respuesta);
 					}
 					break;
+				//Intercambio de Dinero (para saber cuanta plata tiene cada uno)
+				case 4:
+					if (respuesta.nombre == nombreCliente)
+						juego.Fichas = respuesta.dinero;
+					if (respuesta.nombre != nombreCliente)
+					{
+						if (lblDineroRival.InvokeRequired)
+						{
+							lblDineroRival.Invoke(new MethodInvoker(delegate { lblDineroRival.Text = respuesta.dinero.ToString(); }));
+						}
+					}
+					if (respuesta.nombre == nombreCliente)
+					{
+						if (lblDineroMio.InvokeRequired)
+						{
+							lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = respuesta.dinero.ToString(); }));
+						}
+					}
+					break;
 				case 100:
 					if (respuesta.nombre == nombreCliente)
+					{
 						MessageBox.Show("Ganaste", "Ganador");
+						//juego.Fichas += 100;
+						if (lblDineroMio.InvokeRequired)
+						{
+							lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = juego.Fichas.ToString(); }));
+						}
+					}
 					else if (respuesta.nombre == "Empate")
 						MessageBox.Show("Empate");
 					else
+					{
 						MessageBox.Show("Perdiste");
+						//juego.Fichas -= 100;
+						if (lblDineroMio.InvokeRequired)
+						{
+							lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = juego.Fichas.ToString(); }));
+						}
+					}
 					EliminarCartas();
 					ResetPuntos();
 					EnviarACK();
@@ -401,7 +436,7 @@ namespace BJ_Cliente
 			x2 = 513;
 			y2 = 166;
 			i = 1;
-			juego = new Juego(20);
+			juego = new Juego(int.Parse(lblDineroMio.Text));
 		}
 
 
@@ -410,10 +445,19 @@ namespace BJ_Cliente
 		/// Se envian los vallores iniciales del cliente para que el servidor lo registre
 		/// </summary>
 		/// <param name="n">string con el nombre del jugador</param>
-		private void SetNombre(string n)
+
+		private void SetDinero(int dinero)
+		{
+			juego.Fichas = dinero;
+			enviar.SetearDinero(dinero, nombreCliente);
+			enviar.Start(5555);
+		}
+
+		private void SetNombre(string n, int dinero)
         {
+			juego.Fichas = dinero;
             nombreCliente = n;
-            enviar.SetearClase(true,nombreCliente, null, escuchar.puerto);
+            enviar.SetearClase(true,nombreCliente, null, escuchar.puerto,dinero);
             enviar.Start(5555);
         }
 

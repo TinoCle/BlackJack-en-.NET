@@ -178,9 +178,6 @@
   <data name="Rey_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rey de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ace_of_spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ace_of_spades.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_9_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\9 de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -280,13 +277,13 @@
   <data name="_3_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ace_of_spades2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ace_of_spades2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_4_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4 de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tablero_desactivado" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tablero_desactivado.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="As_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\As de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

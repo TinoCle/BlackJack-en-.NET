@@ -24,6 +24,7 @@ namespace Cliente_Servidor
 		//Tipo 1: Intercambio de Nombres
 		//Tipo 2: Envio de Turnos
 		//Tipo 3: Envio de Cartas
+		//Tipo 4: Envio de Dinero
 		//Tipo 99: Envio de Puntos
 		//Tipo 100: Envio de Resultado/Ganador
 		//Tipo 101: ACK del Resultado
@@ -38,18 +39,21 @@ namespace Cliente_Servidor
 		/// <param name="c">la carta que devuelve el servidor</param>
 		/// <param name="p">el puerto desde el que va a escuchar el cliente</param>
 		/// 
-		public void SetearClase(bool o = true, string nom = null, Carta c = null, int p = 0, int tipo = 3)
+		public void SetearClase(bool o = true, string nom = null, Carta c = null, int p = 0,int dinero=0, int tipo = 3)
         {
 			//Acá le paso a 'respuesta' lo que quiero mandar
 			//nom va a ser null, cuando el usuario presione uno de los botones
 			//solo se va a pasar el bool, el nombre se setea al principio
 			respuesta.tipo = tipo;
 			respuesta.nombre = nom;
+			respuesta.dinero = dinero;
             respuesta.carta = c;
             respuesta.puerto = p;
             respuesta.otra = o;
             Console.WriteLine("ENVIADO EL PUERTO "+p.ToString());
         }
+
+		
 
 		public void SetearACK(string nombre, int tipo = 101)
 		{
@@ -89,7 +93,14 @@ namespace Cliente_Servidor
 			respuesta.otra = false;
 		}
 
-		
+		public void SetearDinero(int dinero, string nombre, int tipo = 4)
+		{
+			respuesta.dinero = dinero;
+			respuesta.nombre = nombre;
+			respuesta.tipo = tipo;
+		}
+
+
 		//Para enviar de quien es el turno
 		public void SetearTurno(bool turno = false, string nombre = null, int puerto = 0, int tipo = 2)
 		{

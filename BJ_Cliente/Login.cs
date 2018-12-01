@@ -13,8 +13,11 @@ namespace BJ_Cliente
 {
     public partial class Login : Form
     {
-        public delegate void ElegirNombre(string n);
+        public delegate void ElegirNombre(string n,int d);
         public event ElegirNombre enterPresionado;
+		//public delegate void EnviarDinero(int dinero);
+		//public event EnviarDinero enviarDinero;
+
         public Login()
         {
             InitializeComponent();
@@ -24,6 +27,9 @@ namespace BJ_Cliente
             pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
             txtUser.MaxLength = 11;
             txtUser.Font = new Font(pfc.Families[0], 16,FontStyle.Bold);
+
+			txtFichas.MaxLength = 8;
+			txtFichas.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
         }
 		public bool yaJugue = false;
 
@@ -43,20 +49,37 @@ namespace BJ_Cliente
             e.Handled = (e.KeyChar == (char)Keys.Space);
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if (txtUser.Text.Length >= 4)
-                {
-                    pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
-                    txtUser.Visible = false;
-                    this.enterPresionado(txtUser.Text);
+				if (txtUser.Text.Length >= 4 && txtFichas.Text.Any(Char.IsLetter)==false && txtFichas.Text!="")
+				{
+					pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
+					txtUser.Visible = false;
+					this.enterPresionado(txtUser.Text, int.Parse(txtFichas.Text));
+					//this.enviarDinero(int.Parse(txtFichas.Text));
 					yaJugue = true;
-                }
-                else
+				}
+				else if (txtUser.Text.Length < 4)
                 {
                     MessageBox.Show("El nombre debe tener al menos 4 caracteres", "Nombre inválido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     e.Handled = true;
                 }
+				else
+				{
+					MessageBox.Show("Ingrese Correctamente el Monto de Dinero", "Dinero Inválido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					e.Handled = true;
+					txtFichas.Text = "";
+					txtFichas.Focus();
+				}
             }
         }
 
+		private void txtFichas_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			
+			if (e.KeyChar == (char) Keys.Enter)
+			{
+				e.Handled = true;
+				SendKeys.Send("{TAB}");
+			}
+		}
 	}
 }
