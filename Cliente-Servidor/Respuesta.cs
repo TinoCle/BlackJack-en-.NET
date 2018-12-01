@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Soap;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Runtime.Serialization;
 
@@ -22,6 +23,7 @@ namespace Cliente_Servidor
         public byte[] buffer = new byte[1024];
 
 
+		public Dictionary<string, int> ranking;
 
 		public int tipo;
 		public int puntos;
@@ -40,10 +42,21 @@ namespace Cliente_Servidor
 
         public byte[] Serialize()
         {
-            SoapFormatter formatter = new SoapFormatter();
-            MemoryStream mem = new MemoryStream();
-            formatter.Serialize(mem, this);
-            return mem.GetBuffer();
+			try
+			{
+				SoapFormatter formatter = new SoapFormatter();
+				MemoryStream mem = new MemoryStream();
+				formatter.Serialize(mem, this);
+				return mem.GetBuffer();
+			}
+			catch
+			{
+				BinaryFormatter formatter = new BinaryFormatter();
+				MemoryStream mem = new MemoryStream();
+				formatter.Serialize(mem, this);
+				Console.WriteLine("Serializacion Hecha");
+				return mem.GetBuffer();
+			}
         }
 
         public Respuesta DeSerialize()
@@ -59,9 +72,16 @@ namespace Cliente_Servidor
             }
             catch (SerializationException e)
             {
+				byte[] dataBuffer = TransmissionBuffer.ToArray();
+				BinaryFormatter formatter = new BinaryFormatter();
+				MemoryStream mem = new MemoryStream();
+				mem.Write(dataBuffer, 0, dataBuffer.Length);
+				mem.Seek(0, 0);
+				return (Respuesta) formatter.Deserialize(mem);
+				/*
                 Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
-                return null;
-            }
+                return null;*/
+			}
         }
     }
 }

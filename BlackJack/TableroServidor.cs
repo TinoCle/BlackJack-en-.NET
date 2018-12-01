@@ -68,7 +68,7 @@ namespace BlackJack
             string nombre = respuesta.nombre;
 
 			//Conexion Inicial
-			if (respuesta.puerto != 0)
+			if (respuesta.puerto != 0 && respuesta.tipo==3)
 			{
 				puertosClientes.Add(respuesta.puerto);
 				nombresClientes.Add(nombre);
@@ -199,10 +199,19 @@ namespace BlackJack
 			}
 			if (respuesta.tipo == 200)
 			{
+				listLog.Items.Clear();
+				ActualizarLog("Partida Finalizada");
 				ActualizarLog("El Cliente " + respuesta.nombre + " se desconecto");
 				mazo = new Mazo();
 				conexionEstablecida = false;
 				EnviarAbandono(respuesta.nombre);
+				conexionEstablecida = false;
+				ActualizarLog(puertosClientes.Count.ToString());
+			}
+			if (respuesta.tipo == 999)
+			{
+				ActualizarLog("Solicitud de Ranking recibida");
+				EnviarRanking();
 			}
 			/*if (respuesta.tipo == 4)
 			{
@@ -212,6 +221,17 @@ namespace BlackJack
             
         }
 
+		private void EnviarRanking()
+		{
+			ActualizarLog("Aaaaaaaaaaaaaa");
+			if (dineroJugadores.Count == 0)
+			{
+				dineroJugadores.Add("Vacio", 0);
+			}
+			enviar.SetearRanking(dineroJugadores);
+			enviar.Start(9999);
+		}
+
 		private void EnviarAbandono(string nombre)
 		{
 			try
@@ -220,15 +240,19 @@ namespace BlackJack
 				{
 					enviar.SetearAbandono(nombre);
 					enviar.Start(puertosClientes[1]);
-					nombresClientes.RemoveAt(0);
-					puertosClientes.RemoveAt(0);
+					nombresClientes.Clear();
+					puertosClientes.Clear();
+					/*nombresClientes.RemoveAt(0);
+					puertosClientes.RemoveAt(0);*/
 				}
 				else
 				{
 					enviar.SetearAbandono(nombre);
 					enviar.Start(puertosClientes[0]);
-					nombresClientes.RemoveAt(1);
-					puertosClientes.RemoveAt(1);
+					nombresClientes.Clear();
+					puertosClientes.Clear();
+					/*nombresClientes.RemoveAt(1);
+					puertosClientes.RemoveAt(1);*/
 				}
 			}
 			catch(Exception ec)

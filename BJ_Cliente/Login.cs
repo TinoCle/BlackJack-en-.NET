@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Cliente_Servidor;
 
 namespace BJ_Cliente
 {
@@ -17,13 +18,21 @@ namespace BJ_Cliente
         public event ElegirNombre enterPresionado;
 		//public delegate void EnviarDinero(int dinero);
 		//public event EnviarDinero enviarDinero;
+		Escuchar escuchar;
+		Enviar enviar;
 
-        public Login()
+		public Login()
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
-            PrivateFontCollection pfc = new PrivateFontCollection();
+			escuchar = new Escuchar();
+			enviar = new Enviar();
+			escuchar.Start(9999);
+			escuchar.objetoRecibido += new Escuchar.Recibido(VisualizarRanking);
+
+
+			PrivateFontCollection pfc = new PrivateFontCollection();
             pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
             txtUser.MaxLength = 11;
             txtUser.Font = new Font(pfc.Families[0], 16,FontStyle.Bold);
@@ -36,6 +45,7 @@ namespace BJ_Cliente
 		
 		public void ReOpen()
 		{
+			Application.Restart();
 			pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
 			txtUser.Visible = false;
 		}
@@ -80,6 +90,26 @@ namespace BJ_Cliente
 				e.Handled = true;
 				SendKeys.Send("{TAB}");
 			}
+		}
+
+		private void btSalir_Click(object sender, EventArgs e)
+		{
+			DialogResult result = MessageBox.Show("Estas seguro que quieres Salir?", "Salir del Juego", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+			if (result == DialogResult.Yes)
+				Application.ExitThread();
+		}
+
+		private void VisualizarRanking(Respuesta respuesta)
+		{
+			MessageBox.Show("RAnking recibido?");
+			MessageBox.Show("Respuesta tipo:" + respuesta.tipo);
+			MessageBox.Show("Diccionario de Tamaño:" + respuesta.ranking.ToString());
+		}
+
+		private void btRanking_Click(object sender, EventArgs e)
+		{
+			enviar.SetearRanking();
+			enviar.Start(5555);
 		}
 	}
 }

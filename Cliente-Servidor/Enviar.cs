@@ -29,6 +29,7 @@ namespace Cliente_Servidor
 		//Tipo 100: Envio de Resultado/Ganador
 		//Tipo 101: ACK del Resultado
 		//Tipo 200: Desconexion
+		//Tipo 999: Solicitud de Ranking
 
 		private int port;
 		/// <summary>
@@ -121,6 +122,12 @@ namespace Cliente_Servidor
 		{
 			respuesta.tipo = tipo;
 			respuesta.nombre = nombre;
+		}
+
+		public void SetearRanking(Dictionary<string,int> ranking=null,int tipo= 999)
+		{
+			respuesta.ranking = ranking;
+			respuesta.tipo = tipo;
 		}
 
         ///

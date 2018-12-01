@@ -496,7 +496,7 @@ namespace BJ_Cliente
 		{
 			enviar.SetearDesconexion(nombreCliente);
 			enviar.Start(5555);
-			Application.ExitThread();
+			//Application.ExitThread();
 		}
     }
 }
