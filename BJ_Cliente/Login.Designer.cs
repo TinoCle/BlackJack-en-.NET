@@ -40,7 +40,7 @@
             this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUser.ForeColor = System.Drawing.Color.DarkViolet;
-            this.txtUser.Location = new System.Drawing.Point(279, 729);
+            this.txtUser.Location = new System.Drawing.Point(279, 710);
             this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Multiline = true;
             this.txtUser.Name = "txtUser";
