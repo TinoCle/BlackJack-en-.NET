@@ -1,13 +1,7 @@
-﻿using BlackJack.Properties;
-using Cliente_Servidor;
+﻿using Cliente_Servidor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,8 +18,9 @@ namespace BlackJack
         List<int> puertosClientes = new List<int>();
 		List<string> nombresClientes = new List<string>();
 		Dictionary<string,int> dineroJugadores;
+        Dictionary<string, int> puertosJugadores;
 
-		bool conexionEstablecida = false;
+        bool conexionEstablecida = false;
 		int puntosJugador1;
 		int puntosJugador2;
 
@@ -49,6 +44,7 @@ namespace BlackJack
             escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
             listLog.Items.Insert(0, "Servidor iniciado.");
             Serializador serializador = new Serializador();
+            puertosJugadores = new Dictionary<string, int>();
             try
             {
                 dineroJugadores = serializador.Deserializar();
@@ -82,6 +78,7 @@ namespace BlackJack
 			{
 				puertosClientes.Add(respuesta.puerto);
 				nombresClientes.Add(nombre);
+                puertosJugadores.Add(nombre, respuesta.puerto);
 
 				ActualizarLog("Cliente " + nombre + " encontrado en el puerto " + respuesta.puerto.ToString() + ".");
 
@@ -339,6 +336,16 @@ namespace BlackJack
 
 		private void EnviarDineros(string user1, string user2)
 		{
+            enviar.SetearDinero(dineroJugadores[user1],user1);
+            enviar.Start(puertosJugadores[user1]);
+            enviar.SetearDinero(dineroJugadores[user2], user2);
+            enviar.Start(puertosJugadores[user1]);
+
+            enviar.SetearDinero(dineroJugadores[user1], user1);
+            enviar.Start(puertosJugadores[user2]);
+            enviar.SetearDinero(dineroJugadores[user2], user2);
+            enviar.Start(puertosJugadores[user2]);
+            /*
             enviar.SetearDinero(dineroJugadores[user1], user1);
 			enviar.Start(puertosClientes[0]);
 			enviar.SetearDinero(dineroJugadores[user2], user2);
@@ -348,7 +355,8 @@ namespace BlackJack
 			enviar.Start(puertosClientes[1]);
 			enviar.SetearDinero(dineroJugadores[user2], user2);
 			enviar.Start(puertosClientes[1]);
-		}
+            */
+        }
 
 		//Para enviar la informacion de que si esta conectado otro jugador o no (dps aparece esperando al otro jugador en el cliente)
 		private void EnviarConexion(bool conexion)

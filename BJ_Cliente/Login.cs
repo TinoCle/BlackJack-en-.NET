@@ -32,8 +32,15 @@ namespace BJ_Cliente
 			escuchar2.objetoRecibido += new Escuchar.Recibido(VisualizarRanking);
 			escuchar2.EsperarRespuesta();
 
+            #region seteo los botones transparentes
+            panelRanking.Parent = fondoLogin;
+            panelSalir.Parent = fondoLogin;
+            panelRanking.BackColor = Color.Transparent;
+            panelSalir.BackColor = Color.Transparent;
+            #endregion
+
             //Carga la fuente personalizada
-			PrivateFontCollection pfc = new PrivateFontCollection();
+            PrivateFontCollection pfc = new PrivateFontCollection();
             pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
             //Maximos caracteres en el nombre de usuario
             txtUser.MaxLength = 9;
@@ -45,7 +52,7 @@ namespace BJ_Cliente
 		public void ReOpen()
 		{
 			Application.Restart();
-			pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
+			fondoLogin.Image = global::BJ_Cliente.Properties.Resources.Esperando;
 			txtUser.Visible = false;
 		}
 
@@ -60,7 +67,7 @@ namespace BJ_Cliente
             {
 				if (txtUser.Text.Length >= 4)
 				{
-					pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
+					fondoLogin.Image = global::BJ_Cliente.Properties.Resources.Esperando;
 					txtUser.Visible = false;
 					this.enterPresionado(txtUser.Text);
 					yaJugue = true;
