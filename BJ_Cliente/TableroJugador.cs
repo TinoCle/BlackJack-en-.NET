@@ -2,13 +2,8 @@
 using Cliente_Servidor;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BJ_Cliente
@@ -108,7 +103,7 @@ namespace BJ_Cliente
 					break;
 				//Determinar de quien es el Turno
 				case 2:
-					if (respuesta.turno==true && respuesta.nombre == nombreCliente)
+					if (respuesta.nombre == nombreCliente)
 					{
 						if (!yaEsMiTurno)
 						{
@@ -186,19 +181,21 @@ namespace BJ_Cliente
 				//Intercambio de Dinero (para saber cuanta plata tiene cada uno)
 				case 4:
 					if (respuesta.nombre == nombreCliente)
-						juego.Fichas = respuesta.dinero;
-					if (respuesta.nombre != nombreCliente)
-					{
+                    {
+                        //Actualizo mi clase juego
+                        juego.Fichas = respuesta.dinero;
+                        //Actualizo mi label
+                        if (lblDineroMio.InvokeRequired)
+                        {
+                            lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = respuesta.dinero.ToString(); }));
+                        }
+                    }
+                    //Actualizo el label del rival
+                    else
+                    {
 						if (lblDineroRival.InvokeRequired)
 						{
 							lblDineroRival.Invoke(new MethodInvoker(delegate { lblDineroRival.Text = respuesta.dinero.ToString(); }));
-						}
-					}
-					if (respuesta.nombre == nombreCliente)
-					{
-						if (lblDineroMio.InvokeRequired)
-						{
-							lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = respuesta.dinero.ToString(); }));
 						}
 					}
 					break;
@@ -228,7 +225,7 @@ namespace BJ_Cliente
 					EnviarACK();
 					break;
 				case 201:
-					MessageBox.Show("El otro jugador Abandono la Partida");
+					MessageBox.Show(lblRival.Text+" abandonó la Partida");
 					ResetPuntos();
 					EliminarCartas();
                     this.Invoke(new MethodInvoker(delegate () { this.Hide(); }));
@@ -376,18 +373,18 @@ namespace BJ_Cliente
 		/// </summary>
 		/// <param name="n">string con el nombre del jugador</param>
 
+        /*
 		private void SetDinero(int dinero)
 		{
 			juego.Fichas = dinero;
 			enviar.SetearDinero(dinero, nombreCliente);
 			enviar.Start(5555);
 		}
-
-		private void SetNombre(string n, int dinero)
+        */
+		private void SetNombre(string n)
         {
-			juego.Fichas = dinero;
             nombreCliente = n;
-            enviar.SetearClase(true,nombreCliente, null, escuchar.puerto,dinero);
+            enviar.SetearClase(true,nombreCliente, null, escuchar.puerto);
             enviar.Start(5555);
         }
 
@@ -403,12 +400,11 @@ namespace BJ_Cliente
 			{
 				DeshabilitarBotones();
 				enviar.SetearPuntos(int.Parse(lblPuntos.Text));
-				//enviar.SetearClase(false, nombreCliente);
 				enviar.Start(5555);
 			}
 			else
 			{
-				MessageBox.Show("Todavia no pediste ninguna Carta");
+				MessageBox.Show("Todavia no pidio ninguna Carta");
 			}
         }
 

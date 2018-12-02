@@ -14,14 +14,12 @@ namespace BJ_Cliente
 {
     public partial class Login : Form
     {
-        public delegate void ElegirNombre(string n,int d);
+        public delegate void ElegirNombre(string n);
         public event ElegirNombre enterPresionado;
 		//public delegate void EnviarDinero(int dinero);
 		//public event EnviarDinero enviarDinero;
 		Escuchar escuchar2;
 		Enviar enviar2;
-
-		Form3 form3;
 
 		public Login()
         {
@@ -34,14 +32,12 @@ namespace BJ_Cliente
 			escuchar2.objetoRecibido += new Escuchar.Recibido(VisualizarRanking);
 			escuchar2.EsperarRespuesta();
 
-
+            //Carga la fuente personalizada
 			PrivateFontCollection pfc = new PrivateFontCollection();
             pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
+            //Maximos caracteres en el nombre de usuario
             txtUser.MaxLength = 9;
             txtUser.Font = new Font(pfc.Families[0], 16,FontStyle.Bold);
-
-			txtFichas.MaxLength = 8;
-			txtFichas.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
         }
 		public bool yaJugue = false;
 
@@ -62,12 +58,11 @@ namespace BJ_Cliente
             e.Handled = (e.KeyChar == (char)Keys.Space);
             if (e.KeyChar == (char)Keys.Enter)
             {
-				if (txtUser.Text.Length >= 4 && txtFichas.Text.Any(Char.IsLetter)==false && txtFichas.Text!="")
+				if (txtUser.Text.Length >= 4)
 				{
 					pictureBox1.Image = global::BJ_Cliente.Properties.Resources.Esperando;
 					txtUser.Visible = false;
-					this.enterPresionado(txtUser.Text, int.Parse(txtFichas.Text));
-					//this.enviarDinero(int.Parse(txtFichas.Text));
+					this.enterPresionado(txtUser.Text);
 					yaJugue = true;
 				}
 				else if (txtUser.Text.Length < 4)
@@ -75,25 +70,8 @@ namespace BJ_Cliente
                     MessageBox.Show("El nombre debe tener al menos 4 caracteres", "Nombre inválido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     e.Handled = true;
                 }
-				else
-				{
-					MessageBox.Show("Ingrese Correctamente el Monto de Dinero", "Dinero Inválido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					e.Handled = true;
-					txtFichas.Text = "";
-					txtFichas.Focus();
-				}
             }
         }
-
-		private void txtFichas_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			
-			if (e.KeyChar == (char) Keys.Enter)
-			{
-				e.Handled = true;
-				SendKeys.Send("{TAB}");
-			}
-		}
 
 		private void btSalir_Click(object sender, EventArgs e)
 		{
@@ -104,14 +82,15 @@ namespace BJ_Cliente
 
 		private void VisualizarRanking(Respuesta respuesta)
 		{
-			MessageBox.Show("RAnking recibido?");
+            /*
+			MessageBox.Show("Ranking recibido?");
 			MessageBox.Show("Respuesta tipo:" + respuesta.tipo);
 			MessageBox.Show("Diccionario de Tamaño:" + respuesta.ranking.Count.ToString());
+            */
 
-
-			Form3 form3 = new Form3();
-			form3.SetAux(respuesta.ranking);
-			Task.Run(() => { form3.ShowDialog(); });
+			Ranking ranking = new Ranking();
+            ranking.SetAux(respuesta.ranking);
+			Task.Run(() => { ranking.ShowDialog(); });
 			
 			/*if (this.InvokeRequired)
 			{

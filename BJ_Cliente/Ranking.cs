@@ -12,12 +12,12 @@ using Cliente_Servidor;
 
 namespace BJ_Cliente
 {
-	public partial class Form3 : Form
+	public partial class Ranking : Form
 	{
 		Dictionary<string, int> ranking = new Dictionary<string, int>();
 		ArrayList aux = new ArrayList();
 
-		public Form3()
+		public Ranking()
 		{
 			InitializeComponent();
 		}
@@ -33,13 +33,13 @@ namespace BJ_Cliente
 		/// </summary>
 		private void HacerRanking()
 		{
-			Ranking auxiliar = new Ranking();
+            Cliente_Servidor.Ranking auxiliar = new Cliente_Servidor.Ranking();
 			
 			//Por cada Elemento en el ArrayList Aux, lo voy a agregar a mi Diccionario
 			for (int i= 0;i < aux.Count; i++)
 			{
 				//Uso este auxiliar para hacer mas facil el Add
-				auxiliar = (Ranking)aux[i];
+				auxiliar = (Cliente_Servidor.Ranking)aux[i];
 				//Si es diferente de null lo agrego, para evitar posibles errores
 				if (aux[i] != null)
 					ranking.Add(auxiliar.nombre, auxiliar.dinero);

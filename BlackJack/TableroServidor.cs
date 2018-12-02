@@ -44,21 +44,21 @@ namespace BlackJack
             escuchar = new Escuchar();
             enviar = new Enviar();
             mazo = new Mazo();
-			Serializador serializador = new Serializador();
-			try
-			{
-				dineroJugadores = serializador.Deserializar();
-				listLog.Items.Insert(0, "Ranking encontrado");
-			}
-			catch
-			{
-				listLog.Items.Insert(0, "Ranking no encontrado.");
-				dineroJugadores = new Dictionary<string, int>();
-			}
             escuchar.Start(5555);
             timerCheckBuffer.Start();
             escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
             listLog.Items.Insert(0, "Servidor iniciado.");
+            Serializador serializador = new Serializador();
+            try
+            {
+                dineroJugadores = serializador.Deserializar();
+                ActualizarLog("Ranking encontrado.");
+            }
+            catch
+            {
+                ActualizarLog( "Ranking no encontrado, se creará uno nuevo.");
+                dineroJugadores = new Dictionary<string, int>();
+            }
         }
 
         /// <summary>
@@ -84,12 +84,26 @@ namespace BlackJack
 				nombresClientes.Add(nombre);
 
 				ActualizarLog("Cliente " + nombre + " encontrado en el puerto " + respuesta.puerto.ToString() + ".");
-				ActualizarLog("Dinero de " + respuesta.nombre + ":" + respuesta.dinero);
-				try
-				{
-					dineroJugadores.Add(respuesta.nombre, respuesta.dinero);
-				}
-				catch { }
+
+                //Aca debemos fijarnos en el ranking si ese cliente ya tiene historial, sino su
+                //dinero va a ser $500
+                if (dineroJugadores.ContainsKey(nombre))
+                {
+                    respuesta.dinero = dineroJugadores[nombre];
+                }
+                else
+                {
+                    respuesta.dinero = 500;
+                    try
+                    {
+                        dineroJugadores.Add(respuesta.nombre, respuesta.dinero);
+                    }
+                    catch { }
+                }
+
+				ActualizarLog("Dinero de " + respuesta.nombre + ": " + respuesta.dinero);
+                
+
 
 				if (puertosClientes.Count == 1)
 					EnviarConexion(false);
@@ -99,7 +113,7 @@ namespace BlackJack
 					EnviarConexion(true);
 					EnviarNombres(nombresClientes[0], nombresClientes[1]);
 					//Decidir quien empieza, vamos a darle el turno al ultimo que se conectó para hacerlo más sencillo
-					EnviarTurno(true, respuesta.nombre);
+					EnviarTurno(respuesta.nombre);
 					conexionEstablecida = true;
 					EnviarDineros(nombresClientes[0], nombresClientes[1]);
 				}
@@ -126,14 +140,14 @@ namespace BlackJack
 					if (puntosJugador2 == 0 || puntosJugador1 == 0)
 					{
 						if (nombresClientes[0] == nombre)
-							EnviarTurno(true, nombresClientes[1]);
+							EnviarTurno(nombresClientes[1]);
 						else
-							EnviarTurno(true, nombresClientes[0]);
+							EnviarTurno(nombresClientes[0]);
 					}
 					else
 					{
-						ActualizarLog("PUNTOS DE JUGADOR 1:" + puntosJugador1);
-						ActualizarLog("PUNTOS JUGADOR 2:" + puntosJugador2);
+						ActualizarLog("PUNTOS DE JUGADOR 1: " + puntosJugador1);
+						ActualizarLog("PUNTOS JUGADOR 2: " + puntosJugador2);
 						if (puntosJugador2 <= 21 && (puntosJugador2 > puntosJugador1 && puntosJugador1 < 21))
 						{
 							ActualizarLog("Ganador: " + nombresClientes[1]);
@@ -167,14 +181,14 @@ namespace BlackJack
 
 						else if (puntosJugador2 == puntosJugador1)
 						{
-							ActualizarLog("Empate");
+							ActualizarLog("Empate.");
 							EnviarGanador("Empate");
 							ganador = "";
 							ActualizarDineros(ganador);
 						}
 						else if (puntosJugador1 > 21 && puntosJugador2 > 21)
 						{
-							ActualizarLog("Ambos se pasaron de 21. Empate");
+							ActualizarLog("Ambos se pasaron de 21. Empate.");
 							EnviarGanador("Empate");
 							ganador = "";
 							ActualizarDineros(ganador);
@@ -197,10 +211,10 @@ namespace BlackJack
 						ActualizarLog("Nueva Ronda");
 						//Si no empataron, le mando el turno al ganador
 						if (ganador != "")
-							EnviarTurno(true, ganador);
+							EnviarTurno(ganador);
 						//Si empataron, le mando el turno al primer jugador
 						else
-							EnviarTurno(true, nombresClientes[0]);
+							EnviarTurno(nombresClientes[0]);
 						ganador = "";
 						ACKJugador1 = false;
 						ACKJugador2 = false;
@@ -213,8 +227,8 @@ namespace BlackJack
 				{
 					listLog.Invoke(new MethodInvoker(delegate { listLog.Items.Clear(); }));
 				}
-				ActualizarLog("Partida Finalizada");
-				ActualizarLog("El Cliente " + respuesta.nombre + " se desconecto");
+				ActualizarLog("Partida Finalizada.");
+				ActualizarLog("El Cliente " + respuesta.nombre + " se desconectó.");
 				mazo = new Mazo();
 				conexionEstablecida = false;
 				EnviarAbandono(respuesta.nombre);
@@ -227,7 +241,7 @@ namespace BlackJack
 			if (respuesta.tipo == 999)
 			{
 				ActualizarLog("Cliente encontrado en el puerto " + respuesta.puerto.ToString() + ".");
-				ActualizarLog("Solicitud de Ranking recibida");
+				ActualizarLog("Solicitud de Ranking recibida.");
 				EnviarRanking(respuesta.puerto);
 			}
 
@@ -285,7 +299,6 @@ namespace BlackJack
 
 		private void ActualizarDineros(string ganador)
 		{
-			int auxDinero;
 			if (ganador != "")
 			{
 				if (ganador == nombresClientes[0])
@@ -293,16 +306,24 @@ namespace BlackJack
 					dineroJugadores[nombresClientes[0]] += 100;
 
 					dineroJugadores[nombresClientes[1]] -= 100;
+                    if (dineroJugadores[nombresClientes[1]] <= 0)
+                    {
+                        //JUGADOR 2 PIERDE
+                    }
 				}
 				if (ganador == nombresClientes[1])
 				{
 					dineroJugadores[nombresClientes[1]] += 100;
 
 					dineroJugadores[nombresClientes[0]] -= 100;
-				}
+                    if (dineroJugadores[nombresClientes[0]] <= 0)
+                    {
+                        //JUGADOR 1 PIERDE
+                    }
+                }
 
-				ActualizarLog("Dinero de " + nombresClientes[1] + ":" + dineroJugadores[nombresClientes[1]]);
-				ActualizarLog("Dinero de " + nombresClientes[0] + ":" + dineroJugadores[nombresClientes[0]]);
+				ActualizarLog("Dinero de " + nombresClientes[1] + ": $" + dineroJugadores[nombresClientes[1]]);
+				ActualizarLog("Dinero de " + nombresClientes[0] + ": $" + dineroJugadores[nombresClientes[0]]);
 
 				/*enviar.SetearDinero(dineroJugadores[nombresClientes[1]], nombresClientes[1]);
 				enviar.Start(puertosClientes[1]);
@@ -342,15 +363,15 @@ namespace BlackJack
 
 		private void EnviarDineros(string user1, string user2)
 		{
-			enviar.SetearDinero(dineroJugadores[user2], user2);
+            enviar.SetearDinero(dineroJugadores[user1], user1);
 			enviar.Start(puertosClientes[0]);
 			enviar.SetearDinero(dineroJugadores[user2], user2);
-			enviar.Start(puertosClientes[1]);
+			enviar.Start(puertosClientes[0]);
 
 			enviar.SetearDinero(dineroJugadores[user1], user1);
 			enviar.Start(puertosClientes[1]);
-			enviar.SetearDinero(dineroJugadores[user1], user1);
-			enviar.Start(puertosClientes[0]);
+			enviar.SetearDinero(dineroJugadores[user2], user2);
+			enviar.Start(puertosClientes[1]);
 		}
 
 		//Para enviar la informacion de que si esta conectado otro jugador o no (dps aparece esperando al otro jugador en el cliente)
@@ -376,9 +397,9 @@ namespace BlackJack
 		}
 
 		//Para controlar de quien es el turno
-		private void EnviarTurno(bool turno,string nomUser)
+		private void EnviarTurno(string nomUser)
 		{
-			enviar.SetearTurno(turno, nomUser);
+			enviar.SetearTurno(nomUser);
 			enviar.Start(puertosClientes[0]);
 			enviar.Start(puertosClientes[1]);
 		}

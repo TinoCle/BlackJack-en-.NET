@@ -79,7 +79,6 @@ namespace Cliente_Servidor
 		public void SetearConexion(bool conexion = false, string nombre = null, int puerto = 0, int tipo = 0)
 		{
 			respuesta.tipo = tipo;
-			respuesta.turno = false;
 			respuesta.conexion = conexion;
 			respuesta.puerto = puerto;
 			respuesta.carta = null;
@@ -91,7 +90,6 @@ namespace Cliente_Servidor
 			respuesta.tipo = tipo;
 			respuesta.SetearNombres = true;
 			respuesta.nombre = nombre;
-			respuesta.turno = false;
 			respuesta.otra = false;
 		}
 
@@ -104,13 +102,10 @@ namespace Cliente_Servidor
 
 
 		//Para enviar de quien es el turno
-		public void SetearTurno(bool turno = false, string nombre = null, int puerto = 0, int tipo = 2)
+		public void SetearTurno(string nombre = null, int tipo = 2)
 		{
 			respuesta.tipo = tipo;
-			respuesta.turno = turno;
 			respuesta.nombre = nombre;
-			respuesta.puerto = puerto;
-			respuesta.carta = null;
 		}
 
 		public void SetearDesconexion(string nombre,int tipo = 200)

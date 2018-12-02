@@ -1,6 +1,6 @@
 ﻿namespace BJ_Cliente
 {
-	partial class Form3
+	partial class Ranking
 	{
 		/// <summary>
 		/// Required designer variable.
