@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -124,9 +125,15 @@ namespace Cliente_Servidor
 			respuesta.nombre = nombre;
 		}
 
-		public void SetearRanking(Dictionary<string,int> ranking=null,int tipo= 999)
+		public void SetearRanking(ArrayList ranking,int puerto=0,int tipo= 999)
 		{
+			/*List<KeyValuePair<string,int>> lista = ranking.ToList();
+			foreach (KeyValuePair<string,int> pairs in lista)
+			{
+				respuesta.ranking.
+			}*/
 			respuesta.ranking = ranking;
+			respuesta.puerto = puerto;
 			respuesta.tipo = tipo;
 		}
 

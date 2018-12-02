@@ -52,6 +52,7 @@
     <Compile Include="Mazo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranking.cs" />
     <Compile Include="Respuesta.cs" />
     <Compile Include="Escuchar.cs" />
   </ItemGroup>

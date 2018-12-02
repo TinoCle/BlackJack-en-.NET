@@ -18,18 +18,21 @@ namespace BJ_Cliente
         public event ElegirNombre enterPresionado;
 		//public delegate void EnviarDinero(int dinero);
 		//public event EnviarDinero enviarDinero;
-		Escuchar escuchar;
-		Enviar enviar;
+		Escuchar escuchar2;
+		Enviar enviar2;
+
+		Form3 form3;
 
 		public Login()
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
-			escuchar = new Escuchar();
-			enviar = new Enviar();
-			escuchar.Start(9999);
-			escuchar.objetoRecibido += new Escuchar.Recibido(VisualizarRanking);
+			escuchar2 = new Escuchar();
+			enviar2 = new Enviar();
+			escuchar2.Start(9999);
+			escuchar2.objetoRecibido += new Escuchar.Recibido(VisualizarRanking);
+			escuchar2.EsperarRespuesta();
 
 
 			PrivateFontCollection pfc = new PrivateFontCollection();
@@ -103,13 +106,31 @@ namespace BJ_Cliente
 		{
 			MessageBox.Show("RAnking recibido?");
 			MessageBox.Show("Respuesta tipo:" + respuesta.tipo);
-			MessageBox.Show("Diccionario de Tamaño:" + respuesta.ranking.ToString());
+			MessageBox.Show("Diccionario de Tamaño:" + respuesta.ranking.Count.ToString());
+
+
+			Form3 form3 = new Form3();
+			form3.SetAux(respuesta.ranking);
+			Task.Run(() => { form3.ShowDialog(); });
+			
+			/*if (this.InvokeRequired)
+			{
+				Form3 form3 = new Form3();
+				form3.Show();
+			}
+			else
+			{
+				
+			}*/
+			//form3 = new Form3();
+			//form3.SetAux(respuesta.ranking);
+			//form3.Show();
 		}
 
 		private void btRanking_Click(object sender, EventArgs e)
 		{
-			enviar.SetearRanking();
-			enviar.Start(5555);
+			enviar2.SetearRanking(null,escuchar2.puerto);
+			enviar2.Start(5555);
 		}
 	}
 }

@@ -44,7 +44,17 @@ namespace BlackJack
             escuchar = new Escuchar();
             enviar = new Enviar();
             mazo = new Mazo();
-			dineroJugadores = new Dictionary<string, int>();
+			Serializador serializador = new Serializador();
+			try
+			{
+				dineroJugadores = serializador.Deserializar();
+				listLog.Items.Insert(0, "Ranking encontrado");
+			}
+			catch
+			{
+				listLog.Items.Insert(0, "Ranking no encontrado.");
+				dineroJugadores = new Dictionary<string, int>();
+			}
             escuchar.Start(5555);
             timerCheckBuffer.Start();
             escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
@@ -199,7 +209,10 @@ namespace BlackJack
 			}
 			if (respuesta.tipo == 200)
 			{
-				listLog.Items.Clear();
+				if (listLog.InvokeRequired)
+				{
+					listLog.Invoke(new MethodInvoker(delegate { listLog.Items.Clear(); }));
+				}
 				ActualizarLog("Partida Finalizada");
 				ActualizarLog("El Cliente " + respuesta.nombre + " se desconecto");
 				mazo = new Mazo();
@@ -207,29 +220,38 @@ namespace BlackJack
 				EnviarAbandono(respuesta.nombre);
 				conexionEstablecida = false;
 				ActualizarLog(puertosClientes.Count.ToString());
+
+				Serializador serializador = new Serializador();
+				serializador.Serialize(dineroJugadores);
 			}
 			if (respuesta.tipo == 999)
 			{
+				ActualizarLog("Cliente encontrado en el puerto " + respuesta.puerto.ToString() + ".");
 				ActualizarLog("Solicitud de Ranking recibida");
-				EnviarRanking();
+				EnviarRanking(respuesta.puerto);
 			}
-			/*if (respuesta.tipo == 4)
-			{
-				ActualizarLog("Dinero de " + respuesta.nombre + ":" + respuesta.dinero);
-				dineroJugadores.Add(respuesta.nombre, respuesta.dinero);
-			}*/
-            
+
         }
 
-		private void EnviarRanking()
+		private void EnviarRanking(int puerto)
 		{
-			ActualizarLog("Aaaaaaaaaaaaaa");
+			ArrayList aux = new ArrayList();
+			Ranking aux2 = new Ranking();
+
 			if (dineroJugadores.Count == 0)
-			{
 				dineroJugadores.Add("Vacio", 0);
+
+			foreach (KeyValuePair<string, int> entry in dineroJugadores)
+			{
+				aux2 = new Ranking(entry.Key, entry.Value);
+				aux.Add(aux2);
+				/*aux[indice].nombre = entry.Key;
+				aux[indice].dinero = entry.Value;*/
 			}
-			enviar.SetearRanking(dineroJugadores);
-			enviar.Start(9999);
+			ActualizarLog("Ranking Enviado");
+			
+			enviar.SetearRanking(aux);
+			enviar.Start(puerto);
 		}
 
 		private void EnviarAbandono(string nombre)
