@@ -44,13 +44,19 @@ namespace BJ_Cliente
             ventanaLogin = new Login();
             ventanaLogin.Show();
 
-            //Seteando las fuentes privadas
+            #region Seteando las fuentes privadas
             PrivateFontCollection pfc = new PrivateFontCollection();
             pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
-            lblYo.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
-            lblRival.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
-            lblPuntos.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
-            lblPuntosRival.Font = new Font(pfc.Families[0], 16, FontStyle.Bold);
+            lblYo.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblRival.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblPuntos.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblPuntosRival.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblDinero1.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblDinero2.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblDineroMio.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblDineroRival.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            #endregion
+
             //Seteando los botones transparentes
             panelPedirOtra.Parent = pictureBox1;
             panelPlantarse.Parent = pictureBox1;
@@ -225,87 +231,11 @@ namespace BJ_Cliente
 					MessageBox.Show("El otro jugador Abandono la Partida");
 					ResetPuntos();
 					EliminarCartas();
-					this.Hide();
-					ventanaLogin.ReOpen();
+                    this.Invoke(new MethodInvoker(delegate () { this.Hide(); }));
+                    ventanaLogin.ReOpen();
 					ventanaLogin.Show();
 					break;
 			}
-
-			#region Lo de antes, cuando no se tenia el atributo Tipo
-			/*	if (respuesta.conexion == false)
-				{
-					Esconder();
-					lblEsperar.Show();
-					//MessageBox.Show("Esperando Conexion");
-				}
-				//Conexion ya recibida
-				else if(respuesta.conexion==true)
-				{
-					Mostrar();
-				}
-				*/
-			/*
-			if (respuesta.SetearNombres == true && respuesta.turno==false && respuesta.otra == false)
-			{
-				lblYo.Text = nombreCliente;
-				lblRival.Text = respuesta.nombre;
-			}
-
-			if (respuesta.turno == true && respuesta.nombre==nombreCliente)
-			{
-				MessageBox.Show("Tu Turno");
-				HabilitarBotones();
-			}
-			else
-			{
-				DeshabilitarBotones();
-			}
-
-			if(respuesta.carta!=null)
-			{
-				if (txtCartaRecibida.InvokeRequired && respuesta.nombre == nombreCliente)
-				{
-					txtCartaRecibida.Invoke(new MethodInvoker(delegate { txtCartaRecibida.Text = respuesta.carta.Nombre; }));
-				}
-				//La carta era para mi
-				if (respuesta.nombre == this.nombreCliente)
-				{
-					if (!juego.SumarPuntos(respuesta.carta.Nombre))
-						Console.WriteLine("Te pasastes wey");
-					//EliminarCartas();
-					else
-					{
-						lblPuntos.Text = juego.Puntos.ToString();
-						AgregarCarta(respuesta);
-					}
-				}
-				//Si la carta que se recibio no es para mi, es para el rival
-				else
-				{
-					//Si es una carta que empieza con un numero
-					try
-					{
-						puntosRival += int.Parse(respuesta.carta.Nombre.Substring(0, respuesta.carta.Nombre.IndexOf(" ")));
-					}
-					catch
-					{
-						//Si la carta es un As y sumado 10 se pasa de los 21, se suma 1
-						if ((respuesta.carta.Nombre.Substring(0, respuesta.carta.Nombre.IndexOf(" ")) == "As") && puntosRival + 10 > 21)
-						{
-							puntosRival += 1;
-						}
-						//Si no es un As se suman 10 puntos de todas formas
-						else
-						{
-							puntosRival += 10;
-						}
-					}
-					lblPuntosRival.Text = puntosRival.ToString();
-					AgregarCartaRival(respuesta);
-				}
-			}*/
-			#endregion
-
 		}
 
 		#region AgregarCartas
@@ -442,7 +372,7 @@ namespace BJ_Cliente
 
 
 		/// <summary>
-		/// Se envian los vallores iniciales del cliente para que el servidor lo registre
+		/// Se envian los valores iniciales del cliente para que el servidor lo registre
 		/// </summary>
 		/// <param name="n">string con el nombre del jugador</param>
 

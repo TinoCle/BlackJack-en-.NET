@@ -37,7 +37,7 @@ namespace BJ_Cliente
 
 			PrivateFontCollection pfc = new PrivateFontCollection();
             pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
-            txtUser.MaxLength = 11;
+            txtUser.MaxLength = 9;
             txtUser.Font = new Font(pfc.Families[0], 16,FontStyle.Bold);
 
 			txtFichas.MaxLength = 8;
