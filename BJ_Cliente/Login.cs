@@ -28,7 +28,7 @@ namespace BJ_Cliente
 
 			escuchar2 = new Escuchar();
 			enviar2 = new Enviar();
-			escuchar2.Start(9999);
+			escuchar2.Start(7777);
 			escuchar2.objetoRecibido += new Escuchar.Recibido(VisualizarRanking);
 			escuchar2.EsperarRespuesta();
 

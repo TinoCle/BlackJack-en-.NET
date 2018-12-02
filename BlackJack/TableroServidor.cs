@@ -259,8 +259,6 @@ namespace BlackJack
 			{
 				aux2 = new Ranking(entry.Key, entry.Value);
 				aux.Add(aux2);
-				/*aux[indice].nombre = entry.Key;
-				aux[indice].dinero = entry.Value;*/
 			}
 			ActualizarLog("Ranking Enviado");
 			
@@ -278,8 +276,6 @@ namespace BlackJack
 					enviar.Start(puertosClientes[1]);
 					nombresClientes.Clear();
 					puertosClientes.Clear();
-					/*nombresClientes.RemoveAt(0);
-					puertosClientes.RemoveAt(0);*/
 				}
 				else
 				{
@@ -287,8 +283,6 @@ namespace BlackJack
 					enviar.Start(puertosClientes[0]);
 					nombresClientes.Clear();
 					puertosClientes.Clear();
-					/*nombresClientes.RemoveAt(1);
-					puertosClientes.RemoveAt(1);*/
 				}
 			}
 			catch(Exception ec)
@@ -324,25 +318,7 @@ namespace BlackJack
 
 				ActualizarLog("Dinero de " + nombresClientes[1] + ": $" + dineroJugadores[nombresClientes[1]]);
 				ActualizarLog("Dinero de " + nombresClientes[0] + ": $" + dineroJugadores[nombresClientes[0]]);
-
-				/*enviar.SetearDinero(dineroJugadores[nombresClientes[1]], nombresClientes[1]);
-				enviar.Start(puertosClientes[1]);
-				enviar.SetearDinero(dineroJugadores[nombresClientes[1]], nombresClientes[0]);
-				enviar.Start(puertosClientes[1]);
-
-				enviar.SetearDinero(auxDinero2, nombresClientes[0]);
-				enviar.Start(puertosClientes[0]);
-				enviar.SetearDinero(auxDinero2, nombresClientes[1]);
-				enviar.Start(puertosClientes[0]);
-				*/
-
 				EnviarDineros(nombresClientes[0], nombresClientes[1]);
-
-
-				/*enviar.SetearDinero((int) dineroJugadores[1], nombresClientes[1]);
-				enviar.Start(puertosClientes[1]);
-				enviar.SetearDinero((int) dineroJugadores[0], nombresClientes[0]);
-				enviar.Start(puertosClientes[0]);*/
 			}
 		}
 
@@ -377,18 +353,6 @@ namespace BlackJack
 		//Para enviar la informacion de que si esta conectado otro jugador o no (dps aparece esperando al otro jugador en el cliente)
 		private void EnviarConexion(bool conexion)
 		{
-			//conexion = false no se conecto todavia el otro jugador
-			//conexion = true se conecto el otro jugador
-
-			//Para Avisarle al Jugador2, le paso el nombre del usuario 1
-			//para hacer mas facil el tramite del turno
-			/*enviar.SetearConexion(conexion);
-			enviar.Start(puertosClientes[0]);
-
-			//Avisarle al Jugador1, le paso el nombre del jugador2
-			enviar.SetearConexion(conexion);
-			enviar.Start(puertosClientes[1]);*/
-
 			enviar.SetearConexion(conexion);
 			foreach (int puerto in puertosClientes)
 			{
@@ -419,42 +383,7 @@ namespace BlackJack
                 enviar.Start(puertosClientes[1]);
             }
         }
-
-        /*
-        private void CambiarImagen(string nombre)
-		{
-			if (Char.IsDigit(nombre[0])){
-				nombre = " " + nombre;
-			}
-			nombre=nombre.Replace(' ', '_');
-			object O = Resources.ResourceManager.GetObject(nombre);
-			pbCarta.Image = O as Image;
-		}
-
         
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Carta carta = mazo.SacarCarta();
-            if (carta != null)
-            {
-                textBox1.Text = carta.Nombre;
-				CambiarImagen(carta.Nombre);
-            }
-            else
-            {
-                textBox1.Text = "Mazo vacío.";
-            }
-        }
-
-        private void btnIniciar_Click(object sender, EventArgs e)
-        {
-            EstadoServidor.BackColor = Color.Chartreuse;
-            btnIniciar.Enabled = false;
-            server.Start();
-            timerCheckBuffer.Start();
-        }
-        */
-
         private void timerCheckBuffer_Tick(object sender, EventArgs e)
         {
             escuchar.EsperarRespuesta();

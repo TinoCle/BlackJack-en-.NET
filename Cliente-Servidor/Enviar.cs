@@ -122,11 +122,6 @@ namespace Cliente_Servidor
 
 		public void SetearRanking(ArrayList ranking,int puerto=0,int tipo= 999)
 		{
-			/*List<KeyValuePair<string,int>> lista = ranking.ToList();
-			foreach (KeyValuePair<string,int> pairs in lista)
-			{
-				respuesta.ranking.
-			}*/
 			respuesta.ranking = ranking;
 			respuesta.puerto = puerto;
 			respuesta.tipo = tipo;

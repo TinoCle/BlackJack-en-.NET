@@ -372,15 +372,7 @@ namespace BJ_Cliente
 		/// Se envian los valores iniciales del cliente para que el servidor lo registre
 		/// </summary>
 		/// <param name="n">string con el nombre del jugador</param>
-
-        /*
-		private void SetDinero(int dinero)
-		{
-			juego.Fichas = dinero;
-			enviar.SetearDinero(dinero, nombreCliente);
-			enviar.Start(5555);
-		}
-        */
+        
 		private void SetNombre(string n)
         {
             nombreCliente = n;
