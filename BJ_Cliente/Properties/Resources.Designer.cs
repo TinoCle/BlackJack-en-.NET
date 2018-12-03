@@ -483,6 +483,16 @@ namespace BJ_Cliente.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Instrucciones {
+            get {
+                object obj = ResourceManager.GetObject("Instrucciones", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Jack_de_corazones {
             get {
                 object obj = ResourceManager.GetObject("Jack_de_corazones", resourceCulture);

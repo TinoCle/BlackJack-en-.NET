@@ -33,8 +33,10 @@ namespace BJ_Cliente
             #region seteo los botones transparentes
             panelRanking.Parent = fondoLogin;
             panelSalir.Parent = fondoLogin;
+            panelInstrucciones.Parent = fondoLogin;
             panelRanking.BackColor = Color.Transparent;
             panelSalir.BackColor = Color.Transparent;
+            panelInstrucciones.BackColor = Color.Transparent;
             #endregion
 
             //Carga la fuente personalizada
@@ -144,5 +146,11 @@ namespace BJ_Cliente
             drag = false;
         }
         #endregion
+
+        private void btInstrucciones_Click(object sender, EventArgs e)
+        {
+            Instrucciones instrucciones = new Instrucciones();
+            Task.Run(() => { instrucciones.ShowDialog(); });
+        }
     }
 }

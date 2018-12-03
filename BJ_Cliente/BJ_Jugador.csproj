@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Instrucciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instrucciones.Designer.cs">
+      <DependentUpon>Instrucciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ranking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Instrucciones.resx">
+      <DependentUpon>Instrucciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ranking.resx">
       <DependentUpon>Ranking.cs</DependentUpon>
     </EmbeddedResource>
@@ -314,6 +323,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Resultados.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Instrucciones.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
