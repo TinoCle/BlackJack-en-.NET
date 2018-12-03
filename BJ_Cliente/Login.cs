@@ -47,6 +47,9 @@ namespace BJ_Cliente
 		public bool yaJugue = false;
 
 		
+		/// <summary>
+		/// Este método re abre el formulario Login cuando la partida finaliza o se desconecta el otro jugador
+		/// </summary>
 		public void ReOpen()
 		{
 			Application.Restart();
@@ -78,6 +81,12 @@ namespace BJ_Cliente
             }
         }
 
+		/// <summary>
+		/// Pregunta al usuario antes de cerrar el formulario si esta seguro de que quiere salir
+		/// Si la respuesta es Sí, termina los hilos de ejecución del programa
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btSalir_Click(object sender, EventArgs e)
 		{
 			DialogResult result = MessageBox.Show("Estas seguro que quieres Salir?", "Salir del Juego", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -85,6 +94,11 @@ namespace BJ_Cliente
 				Application.ExitThread();
 		}
 
+		/// <summary>
+		/// Este Método toma a un objeto de tipo Respuesta que va a contener el ranking, el cual se va a mostrar
+		/// en el Formulario Ranking
+		/// </summary>
+		/// <param name="respuesta"></param>
 		private void VisualizarRanking(Respuesta respuesta)
 		{
 			Ranking ranking = new Ranking();
@@ -92,6 +106,12 @@ namespace BJ_Cliente
 			Task.Run(() => { ranking.ShowDialog(); });
 		}
 
+		/// <summary>
+		/// Este evento manda una solicitud de Tipo: 999 al Server para que éste le responda con el Ranking y así poder
+		/// mostrarlo luego
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btRanking_Click(object sender, EventArgs e)
 		{
 			enviar2.SetearRanking(null,escuchar2.puerto);

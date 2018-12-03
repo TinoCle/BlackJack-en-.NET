@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Cliente_Servidor
 {
-    public class Mazo
+	/// <summary>
+	/// Clase Mazo que contendrá las 52 cartas utilizadas para jugar al BlackJack
+	/// </summary>
+	public class Mazo
     {
         private ArrayList mazo;
         public Mazo()
@@ -17,6 +20,9 @@ namespace Cliente_Servidor
             Mezclar();
         }
 
+		/// <summary>
+		/// Añade las Cartas a la Colección Mazo
+		/// </summary>
         private void CargarMazo()
         {
             for(int x = 1; x <= 4; x++)
@@ -29,6 +35,10 @@ namespace Cliente_Servidor
             }
         }
         
+		/// <summary>
+		/// Saca la primer carta del Mazo
+		/// </summary>
+		/// <returns>Devuelve la Carta o null si el mazo está vacío</returns>
         public Carta SacarCarta()
         {
             if (mazo.Count > 0)
@@ -40,6 +50,9 @@ namespace Cliente_Servidor
             return null;
         }
 
+		/// <summary>
+		/// Luego de Terminar la Ronda se mezcla el mazo
+		/// </summary>
         private void Mezclar()
         {
             ArrayList mazoMezclado = new ArrayList();

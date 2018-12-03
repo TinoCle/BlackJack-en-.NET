@@ -28,7 +28,8 @@ namespace BlackJack
 		bool ACKJugador2 = false;
 
 		string ganador;
-        /// <summary>
+        
+		/// <summary>
         /// Esta función inicializa las clases.
         /// Abre una escucha en el puerto 5555 y setea el timer para chequear el buffer.
         /// Asigna un evento referenciando al método ObjetoRecibido
@@ -69,6 +70,10 @@ namespace BlackJack
             }
         }
 
+		/// <summary>
+		/// Al recibir un mensaje o petición por parte de los Clientes/Jugadores, se ejecuta este Método
+		/// </summary>
+		/// <param name="respuesta"></param>
         private void ObjetoRecibido(Respuesta respuesta)
         {
             string nombre = respuesta.nombre;
@@ -244,6 +249,11 @@ namespace BlackJack
 
         }
 
+		/// <summary>
+		/// Este método envia el Ranking al Cliente/Jugador que lo solicitó, para esto transforma el diccionario del
+		/// ranking en una colección No Genérica así se la puede serializar y enviar al Jugador
+		/// </summary>
+		/// <param name="puerto"></param>
 		private void EnviarRanking(int puerto)
 		{
 			ArrayList aux = new ArrayList();
@@ -263,6 +273,11 @@ namespace BlackJack
 			enviar.Start(puerto);
 		}
 
+		/// <summary>
+		/// Este método envia al usuario todavía conectado la notificación del 
+		/// abandono de la partida por parte del otro Jugador
+		/// </summary>
+		/// <param name="nombre"></param>
 		private void EnviarAbandono(string nombre)
 		{
 			try
@@ -288,6 +303,10 @@ namespace BlackJack
 			}
 		}
 
+		/// <summary>
+		/// Este método Actualiza el Dinero de los Jugadores según el resultado de la Ronda
+		/// </summary>
+		/// <param name="ganador"></param>
 		private void ActualizarDineros(string ganador)
 		{
 			if (ganador != "")
@@ -319,6 +338,11 @@ namespace BlackJack
 			}
 		}
 
+		/// <summary>
+		/// Al finalizar la Ronda, el servidor envia una notificación a los Jugadores de la partida indicando
+		/// quien ganó la Ronda.
+		/// </summary>
+		/// <param name="ganador"></param>
 		private void EnviarGanador(string ganador)
 		{
 			enviar.SetearGanador(ganador);
@@ -326,6 +350,11 @@ namespace BlackJack
 			enviar.Start(puertosClientes[1]);
 		}
 
+		/// <summary>
+		/// Al realizarse la conexión inicial de los Jugadores, se realiza el intercambio de los Nombres de los Jugadores
+		/// </summary>
+		/// <param name="user1"></param>
+		/// <param name="user2"></param>
 		private void EnviarNombres(string user1,string user2)
 		{
 			enviar.SetearNombres(user1);
@@ -334,6 +363,11 @@ namespace BlackJack
 			enviar.Start(puertosClientes[0]);
 		}
 
+		/// <summary>
+		/// Realiza el Intercambio de Dinero de los Jugadores
+		/// </summary>
+		/// <param name="user1"></param>
+		/// <param name="user2"></param>
 		private void EnviarDineros(string user1, string user2)
 		{
             enviar.SetearDinero(dineroJugadores[user1],user1);
@@ -368,7 +402,10 @@ namespace BlackJack
 			}
 		}
 
-		//Para controlar de quien es el turno
+		/// <summary>
+		/// Envía a los Jugadores información sobre de quién es el turno
+		/// </summary>
+		/// <param name="nomUser"></param>
 		private void EnviarTurno(string nomUser)
 		{
 			enviar.SetearTurno(nomUser);
@@ -376,6 +413,10 @@ namespace BlackJack
 			enviar.Start(puertosClientes[1]);
 		}
 
+		/// <summary>
+		/// Envía una Carta a los Jugadores
+		/// </summary>
+		/// <param name="nomUser"></param>
 		private void EnviarCarta(string nomUser)
         {
             Carta c = mazo.SacarCarta();

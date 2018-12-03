@@ -20,6 +20,11 @@ namespace BJ_Cliente
 		public int Puntos { get => puntos; set => puntos = value; }
 		public int Fichas { get => fichas; set => fichas = value; }
 
+		/// <summary>
+		/// Calcula y Suma los puntos de acuerdo a la Carta obtenida
+		/// </summary>
+		/// <param name="nombreCarta"></param>
+		/// <returns></returns>
 		public bool SumarPuntos(string nombreCarta)
 		{
 			try

@@ -41,6 +41,10 @@ namespace BJ_Cliente
 
         }
 
+		/// <summary>
+		/// Setea al ArrayList de Ranking
+		/// </summary>
+		/// <param name="value"></param>
         public void SetAux(ArrayList value)
 		{
 			aux = value;
@@ -49,6 +53,7 @@ namespace BJ_Cliente
 
 		/// <summary>
 		/// Esta función Mostrará el ranking de los jugadores de forma Descendente segun el dinero obtenido
+		/// Transforma el ArrayList en un Diccionario que luego es ordenado de forma descendente de acuerdo al Dinero
 		/// </summary>
 		private void HacerRanking()
 		{

@@ -10,7 +10,7 @@ using System.Threading;
 namespace Cliente_Servidor
 {
     /// <summary>
-    /// clase que escucha en un puerto para obtener objetos entrantes
+    /// Clase que escucha en un puerto para obtener objetos entrantes
     /// </summary>
     public class Escuchar
     {
@@ -22,7 +22,12 @@ namespace Cliente_Servidor
         /// Configura el servidor
         ///
         Socket listener;
-        public void Start(int port=0)
+
+		/// <summary>
+		/// Inicia el una escucha de objetos en un Puerto determinado
+		/// </summary>
+		/// <param name="port">Puerto por el que se va a escuchar por objetos</param>
+		public void Start(int port=0)
         {
             try
             {
@@ -50,20 +55,23 @@ namespace Cliente_Servidor
             listener.Listen(100);
             listener.BeginAccept(Accept, listener);
         }
-        ///
-        /// Starts when an incomming connection was requested
-        ///
-        public void Accept(IAsyncResult result)
+
+		/// <summary>
+		/// Comienza cuando se solicita una conexión de entrada
+		/// </summary>
+		/// <param name="result"></param>
+		public void Accept(IAsyncResult result)
         {
             Respuesta respuesta = new Respuesta();
             respuesta.Socket = ((Socket)result.AsyncState).EndAccept(result);
             respuesta.Socket.BeginReceive(respuesta.buffer, 0, respuesta.buffer.Length, SocketFlags.None, Receive, respuesta);
         }
 
-        ///
-        /// Receives the data, puts it in a buffer and checks if we need to receive again.
-        ///
-        public void Receive(IAsyncResult result)
+		/// <summary>
+		/// Recibe los datos, los pone en un buffer y comprueba si necesitamos recibirlos de nuevo.
+		/// </summary>
+		/// <param name="result"></param>
+		public void Receive(IAsyncResult result)
         {
             Respuesta respuesta = (Respuesta)result.AsyncState;
             int read = respuesta.Socket.EndReceive(result);
@@ -90,17 +98,18 @@ namespace Cliente_Servidor
             }
         }
 
-        ///
-        /// Deserializes and outputs the received object
-        ///
-        public void Done(Respuesta respuesta)
+		/// <summary>
+		/// Deserializa y emite el objeto recibido
+		/// </summary>
+		/// <param name="respuesta"></param>
+		public void Done(Respuesta respuesta)
         {
             //Console.WriteLine("Deserializando...");
             Respuesta deserializada = respuesta.DeSerialize();
             this.objetoRecibido(deserializada);
 
-            allDone.Set(); //signals thread to continue
-                           //So it jumps back to the first while loop and starts waiting for a connection again.
-        }
-    }
+            allDone.Set(); //Hilo de señales para continuar
+						   //Así que salta de nuevo al primer bucle y comienza a esperar una conexión de nuevo
+		}
+	}
 }
