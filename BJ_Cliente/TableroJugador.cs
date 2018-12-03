@@ -20,10 +20,10 @@ namespace BJ_Cliente
 		Juego juego;
 
 		#region Para los Listboxes
-		int x = 100;
-		int y = 150;
-		int x2 = 513;
-		int y2 = 166;
+		int x = 120;
+		int y = 180;
+		int x2 = 533;
+		int y2 = 184;
 		int i = 1;
 		#endregion
 
