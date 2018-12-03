@@ -86,7 +86,8 @@ namespace BlackJack
 			{
 				puertosClientes.Add(respuesta.puerto);
 				nombresClientes.Add(nombre);
-                puertosJugadores.Add(nombre, respuesta.puerto);
+				try { puertosJugadores.Add(nombre, respuesta.puerto); }
+				catch { }
 
 				ActualizarLog("Cliente " + nombre + " encontrado en el puerto " + respuesta.puerto.ToString() + ".");
 
@@ -283,7 +284,8 @@ namespace BlackJack
             enviar.SetearBancarrota(nombre);
             enviar.Start(puertosClientes[0]);
             enviar.Start(puertosClientes[1]);
-            nombresClientes.Clear();
+			dineroJugadores.Remove(nombre);
+			nombresClientes.Clear();
             puertosClientes.Clear();
         }
 
@@ -330,8 +332,11 @@ namespace BlackJack
 					dineroJugadores[nombresClientes[0]] += 100;
 
 					dineroJugadores[nombresClientes[1]] -= 100;
-                    //Cliente 2 queda en bancarrota
-                    if (dineroJugadores[nombresClientes[1]] <= 0)
+					ActualizarLog("Dinero de " + nombresClientes[1] + ": $" + dineroJugadores[nombresClientes[1]]);
+					ActualizarLog("Dinero de " + nombresClientes[0] + ": $" + dineroJugadores[nombresClientes[0]]);
+					EnviarDineros(nombresClientes[0], nombresClientes[1]);
+					//Cliente 2 queda en bancarrota
+					if (dineroJugadores[nombresClientes[1]] <= 0)
                     {
                         if (listLog.InvokeRequired)
                         {
@@ -342,8 +347,8 @@ namespace BlackJack
                         mazo = new Mazo();
                         conexionEstablecida = false;
                         EnviarBancarrota(nombresClientes[1]);
-                        //lo quito de la lista de clientes, para que le den sus $500 iniciales
-
+						//lo quito de la lista de clientes, para que le den sus $500 iniciales
+						//dineroJugadores.Remove(nombresClientes[0]);
 
 
 
@@ -354,8 +359,11 @@ namespace BlackJack
 					dineroJugadores[nombresClientes[1]] += 100;
 
 					dineroJugadores[nombresClientes[0]] -= 100;
-                    //Cliente 1 queda en bancarrota
-                    if (dineroJugadores[nombresClientes[0]] <= 0)
+					ActualizarLog("Dinero de " + nombresClientes[1] + ": $" + dineroJugadores[nombresClientes[1]]);
+					ActualizarLog("Dinero de " + nombresClientes[0] + ": $" + dineroJugadores[nombresClientes[0]]);
+					EnviarDineros(nombresClientes[0], nombresClientes[1]);
+					//Cliente 1 queda en bancarrota
+					if (dineroJugadores[nombresClientes[0]] <= 0)
                     {
                         if (listLog.InvokeRequired)
                         {
@@ -374,9 +382,9 @@ namespace BlackJack
 
                     }
                 }
-				ActualizarLog("Dinero de " + nombresClientes[1] + ": $" + dineroJugadores[nombresClientes[1]]);
-				ActualizarLog("Dinero de " + nombresClientes[0] + ": $" + dineroJugadores[nombresClientes[0]]);
-				EnviarDineros(nombresClientes[0], nombresClientes[1]);
+				//ActualizarLog("Dinero de " + nombresClientes[1] + ": $" + dineroJugadores[nombresClientes[1]]);
+				//ActualizarLog("Dinero de " + nombresClientes[0] + ": $" + dineroJugadores[nombresClientes[0]]);
+				//EnviarDineros(nombresClientes[0], nombresClientes[1]);
 			}
 		}
 
