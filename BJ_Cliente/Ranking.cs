@@ -151,7 +151,8 @@ namespace BJ_Cliente
 
         private void panelSalir_Click(object sender, EventArgs e)
         {
-            Application.ExitThread();
+            //Application.ExitThread();
+            Close();
         }
 
         #region Para arrastrar la ventana
