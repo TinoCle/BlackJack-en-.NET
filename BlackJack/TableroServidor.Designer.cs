@@ -32,6 +32,7 @@
             this.timerCheckBuffer = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.listLog = new System.Windows.Forms.ListBox();
+            this.panelReiniciarRanking = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = global::BlackJack.Properties.Resources.Server;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1932, 967);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -61,13 +62,21 @@
             this.listLog.FormattingEnabled = true;
             this.listLog.ItemHeight = 31;
             this.listLog.Location = new System.Drawing.Point(1148, 265);
-            this.listLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listLog.Margin = new System.Windows.Forms.Padding(4);
             this.listLog.Name = "listLog";
             this.listLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.listLog.Size = new System.Drawing.Size(564, 465);
             this.listLog.TabIndex = 1;
             this.listLog.TabStop = false;
             this.listLog.UseTabStops = false;
+            // 
+            // panelReiniciarRanking
+            // 
+            this.panelReiniciarRanking.Location = new System.Drawing.Point(1782, 817);
+            this.panelReiniciarRanking.Name = "panelReiniciarRanking";
+            this.panelReiniciarRanking.Size = new System.Drawing.Size(150, 150);
+            this.panelReiniciarRanking.TabIndex = 2;
+            this.panelReiniciarRanking.Click += new System.EventHandler(this.panelReiniciarRanking_Click);
             // 
             // TableroServidor
             // 
@@ -76,10 +85,11 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(1370, 750);
+            this.ClientSize = new System.Drawing.Size(2031, 1077);
+            this.Controls.Add(this.panelReiniciarRanking);
             this.Controls.Add(this.listLog);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "TableroServidor";
             this.ShowIcon = false;
@@ -95,6 +105,7 @@
         private System.Windows.Forms.Timer timerCheckBuffer;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListBox listLog;
+        private System.Windows.Forms.Panel panelReiniciarRanking;
     }
 }
 

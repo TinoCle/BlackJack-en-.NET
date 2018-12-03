@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -143,7 +144,6 @@ namespace BJ_Cliente
                             {
                                 panelPlantarse.Invoke(new MethodInvoker(delegate { btnPlantarse_Click(new object(), new EventArgs()); }));
                             }
-							MessageBox.Show("Te pasaste de 21");
 						}
 						//EliminarCartas();
 						else
@@ -209,7 +209,16 @@ namespace BJ_Cliente
 					{
                         Resultados resultados = new Resultados(
                             nombreCliente, lblRival.Text, lblPuntos.Text,lblPuntosRival.Text,"¡Ganaste $100!");
-                        Task.Run(() => { resultados.ShowDialog(); });
+                        try
+                        {
+                            Task.Run(() => { resultados.ShowDialog(); });
+                        }
+                        catch
+                        {
+                            Thread.Sleep(300);
+                            Task.Run(() => { resultados.ShowDialog(); });
+                        }
+                        
                         if (lblDineroMio.InvokeRequired)
 						{
 							lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = juego.Fichas.ToString(); }));
@@ -219,13 +228,29 @@ namespace BJ_Cliente
                     {
                         Resultados resultados = new Resultados(
                             nombreCliente, lblRival.Text, lblPuntos.Text, lblPuntosRival.Text, "¡Empate!");
-                        Task.Run(() => { resultados.ShowDialog(); });
+                        try
+                        {
+                            Task.Run(() => { resultados.ShowDialog(); });
+                        }
+                        catch
+                        {
+                            Thread.Sleep(300);
+                            Task.Run(() => { resultados.ShowDialog(); });
+                        }
                     }
 					else
 					{
                         Resultados resultados = new Resultados(
                             nombreCliente, lblRival.Text, lblPuntos.Text, lblPuntosRival.Text, "¡Perdiste $100!");
-                        Task.Run(() => { resultados.ShowDialog(); });
+                        try
+                        {
+                            Task.Run(() => { resultados.ShowDialog(); });
+                        }
+                        catch
+                        {
+                            Thread.Sleep(300);
+                            Task.Run(() => { resultados.ShowDialog(); });
+                        }
                         if (lblDineroMio.InvokeRequired)
 						{
 							lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = juego.Fichas.ToString(); }));
@@ -243,6 +268,28 @@ namespace BJ_Cliente
                     ventanaLogin.ReOpen();
 					ventanaLogin.Show();
 					break;
+                //bancarrota
+                case 77:
+                    if(respuesta.nombre == nombreCliente)
+                    {
+
+                        MessageBox.Show("Se te acabó el dinero, quedaste en bancarrota.");
+                        ResetPuntos();
+                        EliminarCartas();
+                        Invoke(new MethodInvoker(delegate () { Hide(); }));
+                        ventanaLogin.ReOpen();
+                        ventanaLogin.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show(respuesta.nombre+" quedó en bancarrota.");
+                        ResetPuntos();
+                        EliminarCartas();
+                        Invoke(new MethodInvoker(delegate () { Hide(); }));
+                        ventanaLogin.ReOpen();
+                        ventanaLogin.Show();
+                    }
+                    break;
 			}
 		}
 
@@ -426,7 +473,7 @@ namespace BJ_Cliente
 			}
 			else
 			{
-				MessageBox.Show("Todavia no pidio ninguna Carta");
+				MessageBox.Show("Todavia no pidió ninguna carta.");
 			}
         }
 

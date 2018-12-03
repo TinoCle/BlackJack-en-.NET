@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,6 +45,8 @@ namespace BlackJack
             timerCheckBuffer.Start();
             escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);
             listLog.Items.Insert(0, "Servidor iniciado.");
+            panelReiniciarRanking.Parent = pictureBox1;
+            panelReiniciarRanking.BackColor = Color.Transparent;
             Serializador serializador = new Serializador();
             puertosJugadores = new Dictionary<string, int>();
             try
@@ -233,7 +236,7 @@ namespace BlackJack
 				conexionEstablecida = false;
 				EnviarAbandono(respuesta.nombre);
 				conexionEstablecida = false;
-				ActualizarLog(puertosClientes.Count.ToString());
+				//ActualizarLog(puertosClientes.Count.ToString());
 
 				Serializador serializador = new Serializador();
 				serializador.Serialize(dineroJugadores);
@@ -270,6 +273,19 @@ namespace BlackJack
 			enviar.SetearRanking(aux);
 			enviar.Start(puerto);
 		}
+
+        /// <summary>
+        /// Este método envía a ambos clientes la notificación de que uno quebró
+        /// </summary>
+        /// <param name="nombre">Nombre del cliente que quebró</param>
+        private void EnviarBancarrota(string nombre)
+        {
+            enviar.SetearBancarrota(nombre);
+            enviar.Start(puertosClientes[0]);
+            enviar.Start(puertosClientes[1]);
+            nombresClientes.Clear();
+            puertosClientes.Clear();
+        }
 
 		/// <summary>
 		/// Este método envia al usuario todavía conectado la notificación del 
@@ -314,9 +330,23 @@ namespace BlackJack
 					dineroJugadores[nombresClientes[0]] += 100;
 
 					dineroJugadores[nombresClientes[1]] -= 100;
+                    //Cliente 2 queda en bancarrota
                     if (dineroJugadores[nombresClientes[1]] <= 0)
                     {
-                        //JUGADOR 2 PIERDE
+                        if (listLog.InvokeRequired)
+                        {
+                            listLog.Invoke(new MethodInvoker(delegate { listLog.Items.Clear(); }));
+                        }
+                        ActualizarLog("Partida Finalizada.");
+                        ActualizarLog("El cliente " + nombresClientes[1] + " quebró.");
+                        mazo = new Mazo();
+                        conexionEstablecida = false;
+                        EnviarBancarrota(nombresClientes[1]);
+                        //lo quito de la lista de clientes, para que le den sus $500 iniciales
+
+
+
+
                     }
 				}
 				if (ganador == nombresClientes[1])
@@ -324,12 +354,26 @@ namespace BlackJack
 					dineroJugadores[nombresClientes[1]] += 100;
 
 					dineroJugadores[nombresClientes[0]] -= 100;
+                    //Cliente 1 queda en bancarrota
                     if (dineroJugadores[nombresClientes[0]] <= 0)
                     {
-                        //JUGADOR 1 PIERDE
+                        if (listLog.InvokeRequired)
+                        {
+                            listLog.Invoke(new MethodInvoker(delegate { listLog.Items.Clear(); }));
+                        }
+                        ActualizarLog("Partida Finalizada.");
+                        ActualizarLog("El cliente " + nombresClientes[0] + " quebró.");
+                        mazo = new Mazo();
+                        conexionEstablecida = false;
+                        EnviarBancarrota(nombresClientes[0]);
+                        //lo quito de la lista de clientes, para que le den sus $500 iniciales
+
+
+
+
+
                     }
                 }
-
 				ActualizarLog("Dinero de " + nombresClientes[1] + ": $" + dineroJugadores[nombresClientes[1]]);
 				ActualizarLog("Dinero de " + nombresClientes[0] + ": $" + dineroJugadores[nombresClientes[0]]);
 				EnviarDineros(nombresClientes[0], nombresClientes[1]);
@@ -439,6 +483,21 @@ namespace BlackJack
         private void TableroServidor_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.ExitThread();
+        }
+
+        private void panelReiniciarRanking_Click(object sender, EventArgs e)
+        {
+            if (!conexionEstablecida)
+            {
+                DialogResult result = MessageBox.Show("Ha encontrado el botón oculto para reiniciar el ranking.\r\n" +
+                "¿Está seguro que desea hacerlo?", "Reiniciar ranking", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (result == DialogResult.Yes)
+                {
+                    dineroJugadores = new Dictionary<string, int>();
+                    Serializador serializador = new Serializador();
+                    serializador.Serialize(dineroJugadores);
+                }
+            }
         }
     }
 }

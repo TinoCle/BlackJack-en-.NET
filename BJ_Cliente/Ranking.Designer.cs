@@ -143,7 +143,7 @@
             // 
             this.lblDinero5.BackColor = System.Drawing.Color.White;
             this.lblDinero5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDinero5.Location = new System.Drawing.Point(748, 837);
+            this.lblDinero5.Location = new System.Drawing.Point(748, 825);
             this.lblDinero5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDinero5.Name = "lblDinero5";
             this.lblDinero5.Size = new System.Drawing.Size(275, 81);
@@ -155,7 +155,7 @@
             // 
             this.lblQuintoLugar.BackColor = System.Drawing.Color.White;
             this.lblQuintoLugar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuintoLugar.Location = new System.Drawing.Point(438, 840);
+            this.lblQuintoLugar.Location = new System.Drawing.Point(438, 828);
             this.lblQuintoLugar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuintoLugar.Name = "lblQuintoLugar";
             this.lblQuintoLugar.Size = new System.Drawing.Size(275, 81);
@@ -168,7 +168,7 @@
             this.fondoRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.fondoRanking.Image = global::BJ_Cliente.Properties.Resources.Ranking;
             this.fondoRanking.Location = new System.Drawing.Point(0, -23);
-            this.fondoRanking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fondoRanking.Margin = new System.Windows.Forms.Padding(4);
             this.fondoRanking.Name = "fondoRanking";
             this.fondoRanking.Size = new System.Drawing.Size(1304, 1058);
             this.fondoRanking.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -181,7 +181,7 @@
             // panelSalir
             // 
             this.panelSalir.Location = new System.Drawing.Point(30, 842);
-            this.panelSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSalir.Margin = new System.Windows.Forms.Padding(4);
             this.panelSalir.Name = "panelSalir";
             this.panelSalir.Size = new System.Drawing.Size(116, 117);
             this.panelSalir.TabIndex = 22;
@@ -207,7 +207,7 @@
             this.Controls.Add(this.lblDinero1);
             this.Controls.Add(this.lblPrimerLugar);
             this.Controls.Add(this.fondoRanking);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Ranking";
             this.Text = "Form3";
             ((System.ComponentModel.ISupportInitialize)(this.fondoRanking)).EndInit();

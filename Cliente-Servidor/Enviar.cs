@@ -167,6 +167,17 @@ namespace Cliente_Servidor
 			respuesta.nombre = nombre;
 		}
 
+        /// <summary>
+        /// Mensaje que utiliza el server para notificar que un cliente quebró, se envía a los dos.
+        /// </summary>
+        /// <param name="nombre">Nombre del cliente que quebró</param>
+        /// <param name="tipo">tipo de respuesta que va a recibir el cliente</param>
+        public void SetearBancarrota(string nombre, int tipo = 77)
+        {
+            respuesta.tipo = tipo;
+            respuesta.nombre = nombre;
+        }
+
 		/// <summary>
 		/// Servidor: Setea un mensaje que va a contener toda la información acerca del Ranking
 		/// Cliente: Setea un mensaje de tipo 999 para la solicitud de Ranking
