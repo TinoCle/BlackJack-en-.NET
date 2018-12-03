@@ -104,7 +104,7 @@ namespace BJ_Cliente
 		{
 			Ranking ranking = new Ranking();
             ranking.SetAux(respuesta.ranking);
-			Task.Run(() => { ranking.ShowDialog(this); });
+			Task.Run(() => { ranking.ShowDialog(); });
 		}
 
 		/// <summary>

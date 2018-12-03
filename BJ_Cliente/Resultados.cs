@@ -40,15 +40,19 @@ namespace BJ_Cliente
 
         private void panelSalir_Click(object sender, EventArgs e)
         {
-            Application.ExitThread();
+            //Application.ExitThread();
+            Close();
         }
 
+        /*
         private void Resultados_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.ExitThread();
+            //Application.ExitThread();
+            Close();
         }
+        */
 
-
+        #region Para arrastrar la ventana
         bool drag;
         int mousex;
         int mousey;
@@ -72,5 +76,6 @@ namespace BJ_Cliente
         {
             drag = false;
         }
+        #endregion
     }
 }

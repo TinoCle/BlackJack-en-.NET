@@ -63,7 +63,6 @@ namespace BJ_Cliente
 			puntosRival = 0;
 			yaEsMiTurno = false;
             ventanaLogin.enterPresionado += new Login.ElegirNombre(SetNombre);
-			//ventanaLogin.enviarDinero += new Login.EnviarDinero(SetDinero);
 
             escuchar = new Escuchar();
             escuchar.objetoRecibido += new Escuchar.Recibido(ObjetoRecibido);

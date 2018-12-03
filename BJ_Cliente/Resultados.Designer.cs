@@ -139,7 +139,6 @@
             this.Controls.Add(this.fondoResultados);
             this.Name = "Resultados";
             this.Text = "Resultados";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Resultados_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.fondoResultados)).EndInit();
             this.ResumeLayout(false);
 
