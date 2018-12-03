@@ -28,155 +28,204 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbPrimerLugar = new System.Windows.Forms.TextBox();
-            this.tbSegundoLugar = new System.Windows.Forms.TextBox();
-            this.tbTercerLugar = new System.Windows.Forms.TextBox();
-            this.tbDinero1 = new System.Windows.Forms.TextBox();
-            this.tbDinero2 = new System.Windows.Forms.TextBox();
-            this.tbDinero3 = new System.Windows.Forms.TextBox();
-            this.tbDinero5 = new System.Windows.Forms.TextBox();
-            this.tbDinero4 = new System.Windows.Forms.TextBox();
-            this.tbQuintoLugar = new System.Windows.Forms.TextBox();
-            this.tbCuartoLugar = new System.Windows.Forms.TextBox();
+            this.lblPrimerLugar = new System.Windows.Forms.Label();
+            this.lblDinero1 = new System.Windows.Forms.Label();
+            this.lblDinero2 = new System.Windows.Forms.Label();
+            this.lblSegundoLugar = new System.Windows.Forms.Label();
+            this.lblDinero3 = new System.Windows.Forms.Label();
+            this.lblTercerLugar = new System.Windows.Forms.Label();
+            this.lblDinero4 = new System.Windows.Forms.Label();
+            this.lblCuartoLugar = new System.Windows.Forms.Label();
+            this.lblDinero5 = new System.Windows.Forms.Label();
+            this.lblQuintoLugar = new System.Windows.Forms.Label();
+            this.fondoRanking = new System.Windows.Forms.PictureBox();
+            this.panelSalir = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.fondoRanking)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblPrimerLugar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(666, 58);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Ranking";
+            this.lblPrimerLugar.AutoSize = true;
+            this.lblPrimerLugar.BackColor = System.Drawing.Color.White;
+            this.lblPrimerLugar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrimerLugar.Location = new System.Drawing.Point(219, 199);
+            this.lblPrimerLugar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPrimerLugar.Name = "lblPrimerLugar";
+            this.lblPrimerLugar.Size = new System.Drawing.Size(60, 24);
+            this.lblPrimerLugar.TabIndex = 11;
+            this.lblPrimerLugar.Text = "label2";
             // 
-            // tbPrimerLugar
+            // lblDinero1
             // 
-            this.tbPrimerLugar.Location = new System.Drawing.Point(450, 156);
-            this.tbPrimerLugar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbPrimerLugar.Name = "tbPrimerLugar";
-            this.tbPrimerLugar.ReadOnly = true;
-            this.tbPrimerLugar.Size = new System.Drawing.Size(196, 31);
-            this.tbPrimerLugar.TabIndex = 1;
+            this.lblDinero1.AutoSize = true;
+            this.lblDinero1.BackColor = System.Drawing.Color.White;
+            this.lblDinero1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDinero1.Location = new System.Drawing.Point(374, 199);
+            this.lblDinero1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDinero1.Name = "lblDinero1";
+            this.lblDinero1.Size = new System.Drawing.Size(60, 24);
+            this.lblDinero1.TabIndex = 12;
+            this.lblDinero1.Text = "label2";
             // 
-            // tbSegundoLugar
+            // lblDinero2
             // 
-            this.tbSegundoLugar.Location = new System.Drawing.Point(450, 275);
-            this.tbSegundoLugar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbSegundoLugar.Name = "tbSegundoLugar";
-            this.tbSegundoLugar.ReadOnly = true;
-            this.tbSegundoLugar.Size = new System.Drawing.Size(196, 31);
-            this.tbSegundoLugar.TabIndex = 2;
+            this.lblDinero2.AutoSize = true;
+            this.lblDinero2.BackColor = System.Drawing.Color.White;
+            this.lblDinero2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDinero2.Location = new System.Drawing.Point(374, 259);
+            this.lblDinero2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDinero2.Name = "lblDinero2";
+            this.lblDinero2.Size = new System.Drawing.Size(60, 24);
+            this.lblDinero2.TabIndex = 14;
+            this.lblDinero2.Text = "label2";
             // 
-            // tbTercerLugar
+            // lblSegundoLugar
             // 
-            this.tbTercerLugar.Location = new System.Drawing.Point(450, 394);
-            this.tbTercerLugar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbTercerLugar.Name = "tbTercerLugar";
-            this.tbTercerLugar.ReadOnly = true;
-            this.tbTercerLugar.Size = new System.Drawing.Size(196, 31);
-            this.tbTercerLugar.TabIndex = 3;
+            this.lblSegundoLugar.AutoSize = true;
+            this.lblSegundoLugar.BackColor = System.Drawing.Color.White;
+            this.lblSegundoLugar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSegundoLugar.Location = new System.Drawing.Point(219, 262);
+            this.lblSegundoLugar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSegundoLugar.Name = "lblSegundoLugar";
+            this.lblSegundoLugar.Size = new System.Drawing.Size(60, 24);
+            this.lblSegundoLugar.TabIndex = 13;
+            this.lblSegundoLugar.Text = "label2";
             // 
-            // tbDinero1
+            // lblDinero3
             // 
-            this.tbDinero1.Location = new System.Drawing.Point(772, 156);
-            this.tbDinero1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbDinero1.Name = "tbDinero1";
-            this.tbDinero1.ReadOnly = true;
-            this.tbDinero1.Size = new System.Drawing.Size(196, 31);
-            this.tbDinero1.TabIndex = 4;
+            this.lblDinero3.AutoSize = true;
+            this.lblDinero3.BackColor = System.Drawing.Color.White;
+            this.lblDinero3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDinero3.Location = new System.Drawing.Point(374, 316);
+            this.lblDinero3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDinero3.Name = "lblDinero3";
+            this.lblDinero3.Size = new System.Drawing.Size(60, 24);
+            this.lblDinero3.TabIndex = 16;
+            this.lblDinero3.Text = "label2";
             // 
-            // tbDinero2
+            // lblTercerLugar
             // 
-            this.tbDinero2.Location = new System.Drawing.Point(772, 275);
-            this.tbDinero2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbDinero2.Name = "tbDinero2";
-            this.tbDinero2.ReadOnly = true;
-            this.tbDinero2.Size = new System.Drawing.Size(196, 31);
-            this.tbDinero2.TabIndex = 5;
+            this.lblTercerLugar.AutoSize = true;
+            this.lblTercerLugar.BackColor = System.Drawing.Color.White;
+            this.lblTercerLugar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTercerLugar.Location = new System.Drawing.Point(219, 319);
+            this.lblTercerLugar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTercerLugar.Name = "lblTercerLugar";
+            this.lblTercerLugar.Size = new System.Drawing.Size(60, 24);
+            this.lblTercerLugar.TabIndex = 15;
+            this.lblTercerLugar.Text = "label2";
             // 
-            // tbDinero3
+            // lblDinero4
             // 
-            this.tbDinero3.Location = new System.Drawing.Point(772, 394);
-            this.tbDinero3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbDinero3.Name = "tbDinero3";
-            this.tbDinero3.ReadOnly = true;
-            this.tbDinero3.Size = new System.Drawing.Size(196, 31);
-            this.tbDinero3.TabIndex = 6;
+            this.lblDinero4.AutoSize = true;
+            this.lblDinero4.BackColor = System.Drawing.Color.White;
+            this.lblDinero4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDinero4.Location = new System.Drawing.Point(374, 373);
+            this.lblDinero4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDinero4.Name = "lblDinero4";
+            this.lblDinero4.Size = new System.Drawing.Size(60, 24);
+            this.lblDinero4.TabIndex = 18;
+            this.lblDinero4.Text = "label2";
             // 
-            // tbDinero5
+            // lblCuartoLugar
             // 
-            this.tbDinero5.Location = new System.Drawing.Point(772, 612);
-            this.tbDinero5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbDinero5.Name = "tbDinero5";
-            this.tbDinero5.ReadOnly = true;
-            this.tbDinero5.Size = new System.Drawing.Size(196, 31);
-            this.tbDinero5.TabIndex = 10;
+            this.lblCuartoLugar.AutoSize = true;
+            this.lblCuartoLugar.BackColor = System.Drawing.Color.White;
+            this.lblCuartoLugar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCuartoLugar.Location = new System.Drawing.Point(219, 375);
+            this.lblCuartoLugar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCuartoLugar.Name = "lblCuartoLugar";
+            this.lblCuartoLugar.Size = new System.Drawing.Size(60, 24);
+            this.lblCuartoLugar.TabIndex = 17;
+            this.lblCuartoLugar.Text = "label2";
             // 
-            // tbDinero4
+            // lblDinero5
             // 
-            this.tbDinero4.Location = new System.Drawing.Point(772, 492);
-            this.tbDinero4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbDinero4.Name = "tbDinero4";
-            this.tbDinero4.ReadOnly = true;
-            this.tbDinero4.Size = new System.Drawing.Size(196, 31);
-            this.tbDinero4.TabIndex = 9;
+            this.lblDinero5.AutoSize = true;
+            this.lblDinero5.BackColor = System.Drawing.Color.White;
+            this.lblDinero5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDinero5.Location = new System.Drawing.Point(374, 435);
+            this.lblDinero5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDinero5.Name = "lblDinero5";
+            this.lblDinero5.Size = new System.Drawing.Size(60, 24);
+            this.lblDinero5.TabIndex = 20;
+            this.lblDinero5.Text = "label2";
             // 
-            // tbQuintoLugar
+            // lblQuintoLugar
             // 
-            this.tbQuintoLugar.Location = new System.Drawing.Point(450, 612);
-            this.tbQuintoLugar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbQuintoLugar.Name = "tbQuintoLugar";
-            this.tbQuintoLugar.ReadOnly = true;
-            this.tbQuintoLugar.Size = new System.Drawing.Size(196, 31);
-            this.tbQuintoLugar.TabIndex = 8;
+            this.lblQuintoLugar.AutoSize = true;
+            this.lblQuintoLugar.BackColor = System.Drawing.Color.White;
+            this.lblQuintoLugar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuintoLugar.Location = new System.Drawing.Point(219, 437);
+            this.lblQuintoLugar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblQuintoLugar.Name = "lblQuintoLugar";
+            this.lblQuintoLugar.Size = new System.Drawing.Size(60, 24);
+            this.lblQuintoLugar.TabIndex = 19;
+            this.lblQuintoLugar.Text = "label2";
             // 
-            // tbCuartoLugar
+            // fondoRanking
             // 
-            this.tbCuartoLugar.Location = new System.Drawing.Point(450, 492);
-            this.tbCuartoLugar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tbCuartoLugar.Name = "tbCuartoLugar";
-            this.tbCuartoLugar.ReadOnly = true;
-            this.tbCuartoLugar.Size = new System.Drawing.Size(196, 31);
-            this.tbCuartoLugar.TabIndex = 7;
+            this.fondoRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.fondoRanking.Image = global::BJ_Cliente.Properties.Resources.Ranking;
+            this.fondoRanking.Location = new System.Drawing.Point(0, -12);
+            this.fondoRanking.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.fondoRanking.Name = "fondoRanking";
+            this.fondoRanking.Size = new System.Drawing.Size(652, 550);
+            this.fondoRanking.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.fondoRanking.TabIndex = 21;
+            this.fondoRanking.TabStop = false;
+            this.fondoRanking.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fondoRanking_MouseDown);
+            this.fondoRanking.MouseMove += new System.Windows.Forms.MouseEventHandler(this.fondoRanking_MouseMove);
+            this.fondoRanking.MouseUp += new System.Windows.Forms.MouseEventHandler(this.fondoRanking_MouseUp);
+            // 
+            // panelSalir
+            // 
+            this.panelSalir.Location = new System.Drawing.Point(15, 438);
+            this.panelSalir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelSalir.Name = "panelSalir";
+            this.panelSalir.Size = new System.Drawing.Size(58, 61);
+            this.panelSalir.TabIndex = 22;
+            this.panelSalir.Click += new System.EventHandler(this.panelSalir_Click);
             // 
             // Ranking
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1600, 865);
-            this.Controls.Add(this.tbDinero5);
-            this.Controls.Add(this.tbDinero4);
-            this.Controls.Add(this.tbQuintoLugar);
-            this.Controls.Add(this.tbCuartoLugar);
-            this.Controls.Add(this.tbDinero3);
-            this.Controls.Add(this.tbDinero2);
-            this.Controls.Add(this.tbDinero1);
-            this.Controls.Add(this.tbTercerLugar);
-            this.Controls.Add(this.tbSegundoLugar);
-            this.Controls.Add(this.tbPrimerLugar);
-            this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.ClientSize = new System.Drawing.Size(652, 529);
+            this.Controls.Add(this.panelSalir);
+            this.Controls.Add(this.lblDinero5);
+            this.Controls.Add(this.lblQuintoLugar);
+            this.Controls.Add(this.lblDinero4);
+            this.Controls.Add(this.lblCuartoLugar);
+            this.Controls.Add(this.lblDinero3);
+            this.Controls.Add(this.lblTercerLugar);
+            this.Controls.Add(this.lblDinero2);
+            this.Controls.Add(this.lblSegundoLugar);
+            this.Controls.Add(this.lblDinero1);
+            this.Controls.Add(this.lblPrimerLugar);
+            this.Controls.Add(this.fondoRanking);
             this.Name = "Ranking";
             this.Text = "Form3";
+            ((System.ComponentModel.ISupportInitialize)(this.fondoRanking)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox tbPrimerLugar;
-		private System.Windows.Forms.TextBox tbSegundoLugar;
-		private System.Windows.Forms.TextBox tbTercerLugar;
-		private System.Windows.Forms.TextBox tbDinero1;
-		private System.Windows.Forms.TextBox tbDinero2;
-		private System.Windows.Forms.TextBox tbDinero3;
-		private System.Windows.Forms.TextBox tbDinero5;
-		private System.Windows.Forms.TextBox tbDinero4;
-		private System.Windows.Forms.TextBox tbQuintoLugar;
-		private System.Windows.Forms.TextBox tbCuartoLugar;
-	}
+        private System.Windows.Forms.Label lblPrimerLugar;
+        private System.Windows.Forms.Label lblDinero1;
+        private System.Windows.Forms.Label lblDinero2;
+        private System.Windows.Forms.Label lblSegundoLugar;
+        private System.Windows.Forms.Label lblDinero3;
+        private System.Windows.Forms.Label lblTercerLugar;
+        private System.Windows.Forms.Label lblDinero4;
+        private System.Windows.Forms.Label lblCuartoLugar;
+        private System.Windows.Forms.Label lblDinero5;
+        private System.Windows.Forms.Label lblQuintoLugar;
+        private System.Windows.Forms.PictureBox fondoRanking;
+        private System.Windows.Forms.Panel panelSalir;
+    }
 }

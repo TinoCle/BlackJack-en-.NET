@@ -300,5 +300,8 @@
   <ItemGroup>
     <None Include="Resources\As de picas.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ranking.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

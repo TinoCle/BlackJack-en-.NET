@@ -16,15 +16,13 @@ namespace BJ_Cliente
     {
         public delegate void ElegirNombre(string n);
         public event ElegirNombre enterPresionado;
-		//public delegate void EnviarDinero(int dinero);
-		//public event EnviarDinero enviarDinero;
 		Escuchar escuchar2;
 		Enviar enviar2;
 
 		public Login()
         {
             InitializeComponent();
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
 			escuchar2 = new Escuchar();
 			enviar2 = new Enviar();
@@ -89,28 +87,9 @@ namespace BJ_Cliente
 
 		private void VisualizarRanking(Respuesta respuesta)
 		{
-            /*
-			MessageBox.Show("Ranking recibido?");
-			MessageBox.Show("Respuesta tipo:" + respuesta.tipo);
-			MessageBox.Show("Diccionario de Tamaño:" + respuesta.ranking.Count.ToString());
-            */
-
 			Ranking ranking = new Ranking();
             ranking.SetAux(respuesta.ranking);
 			Task.Run(() => { ranking.ShowDialog(); });
-			
-			/*if (this.InvokeRequired)
-			{
-				Form3 form3 = new Form3();
-				form3.Show();
-			}
-			else
-			{
-				
-			}*/
-			//form3 = new Form3();
-			//form3.SetAux(respuesta.ranking);
-			//form3.Show();
 		}
 
 		private void btRanking_Click(object sender, EventArgs e)
@@ -118,5 +97,31 @@ namespace BJ_Cliente
 			enviar2.SetearRanking(null,escuchar2.puerto);
 			enviar2.Start(5555);
 		}
-	}
+
+        #region Para arrastrar la ventana
+        bool drag;
+        int mousex;
+        int mousey;
+        private void fondoLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            drag = true;
+            mousex = Cursor.Position.X - Left;
+            mousey = Cursor.Position.Y - Top;
+        }
+
+        private void fondoLogin_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (drag)
+            {
+                Left = Cursor.Position.X - mousex;
+                Top = Cursor.Position.Y - mousey;
+            }
+        }
+
+        private void fondoLogin_MouseUp(object sender, MouseEventArgs e)
+        {
+            drag = false;
+        }
+        #endregion
+    }
 }

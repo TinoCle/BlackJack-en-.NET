@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cliente_Servidor;
+using System.Drawing.Text;
 
 namespace BJ_Cliente
 {
@@ -20,9 +21,27 @@ namespace BJ_Cliente
 		public Ranking()
 		{
 			InitializeComponent();
-		}
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panelSalir.Parent = fondoRanking;
+            panelSalir.BackColor = Color.Transparent;
+            #region Seteo de fuentes privadas
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile("..\\..\\Resources\\Comfortaa-Bold.ttf");
+            lblDinero1.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblDinero2.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblDinero3.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblDinero4.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblDinero5.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblPrimerLugar.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblSegundoLugar.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblTercerLugar.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblCuartoLugar.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            lblQuintoLugar.Font = new Font(pfc.Families[0], 14, FontStyle.Bold);
+            #endregion
 
-		public void SetAux(ArrayList value)
+        }
+
+        public void SetAux(ArrayList value)
 		{
 			aux = value;
 			HacerRanking();
@@ -57,13 +76,13 @@ namespace BJ_Cliente
 				auxiliar2 = ordenado.ElementAt(0);
 				if (auxiliar2.Key == null || auxiliar2.Key == "Vacio" || auxiliar2.Key == "")
 				{
-					tbPrimerLugar.Text = "-";
-					tbDinero1.Text = "-";
+					lblPrimerLugar.Text = "-";
+					lblDinero1.Text = "-";
 				}
 				else
 				{
-					tbPrimerLugar.Text = auxiliar2.Key;
-					tbDinero1.Text = "$" + auxiliar2.Value.ToString();
+					lblPrimerLugar.Text = auxiliar2.Key;
+					lblDinero1.Text = "$" + auxiliar2.Value.ToString();
 				}
 			}
 			catch{}
@@ -73,13 +92,13 @@ namespace BJ_Cliente
 				auxiliar2 = ordenado.ElementAt(1);
 				if (auxiliar2.Key == "Vacio")
 					throw new Exception();
-				tbSegundoLugar.Text = auxiliar2.Key;
-				tbDinero2.Text = "$" + auxiliar2.Value.ToString();
+				lblSegundoLugar.Text = auxiliar2.Key;
+				lblDinero2.Text = "$" + auxiliar2.Value.ToString();
 			}
 			catch
 			{
-				tbSegundoLugar.Text = "-";
-				tbDinero2.Text = "-";
+				lblSegundoLugar.Text = "-";
+				lblDinero2.Text = "-";
 			}
 			//Tercer Lugar
 			try
@@ -87,13 +106,13 @@ namespace BJ_Cliente
 				auxiliar2 = ordenado.ElementAt(2);
 				if (auxiliar2.Key == "Vacio")
 					throw new Exception();
-				tbTercerLugar.Text = auxiliar2.Key;
-				tbDinero3.Text = "$" + auxiliar2.Value.ToString();
+				lblTercerLugar.Text = auxiliar2.Key;
+				lblDinero3.Text = "$" + auxiliar2.Value.ToString();
 			}
 			catch
 			{
-				tbTercerLugar.Text = "-";
-				tbDinero3.Text = "-";
+				lblTercerLugar.Text = "-";
+				lblDinero3.Text = "-";
 			}
 			//Cuarto Lugar
 			try
@@ -101,13 +120,13 @@ namespace BJ_Cliente
 				auxiliar2 = ordenado.ElementAt(3);
 				if (auxiliar2.Key == "Vacio")
 					throw new Exception();
-				tbCuartoLugar.Text = auxiliar2.Key;
-				tbDinero4.Text = "$" + auxiliar2.Value.ToString();
+				lblCuartoLugar.Text = auxiliar2.Key;
+				lblDinero4.Text = "$" + auxiliar2.Value.ToString();
 			}
 			catch
 			{
-				tbCuartoLugar.Text = "-";
-				tbDinero4.Text = "-";
+				lblCuartoLugar.Text = "-";
+				lblDinero4.Text = "-";
 			}
 			//Quinto Lugar
 			try
@@ -115,15 +134,46 @@ namespace BJ_Cliente
 				auxiliar2 = ordenado.ElementAt(4);
 				if (auxiliar2.Key == "Vacio")
 					throw new Exception();
-				tbQuintoLugar.Text = auxiliar2.Key;
-				tbDinero5.Text = "$" + auxiliar2.Value.ToString();
+				lblQuintoLugar.Text = auxiliar2.Key;
+				lblDinero5.Text = "$" + auxiliar2.Value.ToString();
 			}
 			catch
 			{
-				tbQuintoLugar.Text = "-";
-				tbDinero5.Text = "-";
+				lblQuintoLugar.Text = "-";
+				lblDinero5.Text = "-";
 			}
 			}
 
-	}
+        private void panelSalir_Click(object sender, EventArgs e)
+        {
+            Application.ExitThread();
+        }
+
+        #region Para arrastrar la ventana
+        bool drag;
+        int mousex;
+        int mousey;
+
+        private void fondoRanking_MouseDown(object sender, MouseEventArgs e)
+        {
+            drag = true;
+            mousex = Cursor.Position.X - Left;
+            mousey = Cursor.Position.Y - Top;
+        }
+
+        private void fondoRanking_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (drag)
+            {
+                Left = Cursor.Position.X - mousex;
+                Top = Cursor.Position.Y - mousey;
+            }
+        }
+
+        private void fondoRanking_MouseUp(object sender, MouseEventArgs e)
+        {
+            drag = false;
+        }
+        #endregion
+    }
 }
