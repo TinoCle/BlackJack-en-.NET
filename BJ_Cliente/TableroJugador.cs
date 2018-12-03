@@ -72,7 +72,12 @@ namespace BJ_Cliente
 
         }
 
-        private void ObjetoRecibido(Respuesta respuesta)
+		/// <summary>
+		/// Este método se ejecuta cuando se recibe un objeto a través del Socket, dependiendo del tipo de Respuesta recibida,
+		/// realizará una acción determinada
+		/// </summary>
+		/// <param name="respuesta"></param>
+		private void ObjetoRecibido(Respuesta respuesta)
         {
 			//Esperando Conexion
 			switch (respuesta.tipo)
@@ -304,6 +309,9 @@ namespace BJ_Cliente
 		}
 		#endregion
 
+		/// <summary>
+		/// ResetPuntos resetea los puntos de los Jugadores al terminar la Ronda
+		/// </summary>
 		private void ResetPuntos()
 		{
 			lblPuntos.Invoke(new MethodInvoker(delegate () { lblPuntos.Text= "0";}));
@@ -311,6 +319,9 @@ namespace BJ_Cliente
 			puntosRival = 0;
 		}
 
+		/// <summary>
+		/// Habilita los Botones del Jugador cuando es su turno
+		/// </summary>
 		private void HabilitarBotones()
 		{
             //Cambia la imágen de fondo
@@ -329,6 +340,9 @@ namespace BJ_Cliente
             }
 		}
 
+		/// <summary>
+		/// Deshabilita los botones del Jugador cuando ya no es su turno.
+		/// </summary>
 		private void DeshabilitarBotones()
 		{
             //Cambia la imágen de fondo
@@ -347,6 +361,9 @@ namespace BJ_Cliente
             }
         }
 
+		/// <summary>
+		/// Envia un Mensaje "ACK" al servidor para notificarle que recibió el mensaje
+		/// </summary>
 		private void EnviarACK()
 		{
 			enviar.SetearACK(nombreCliente);
@@ -354,7 +371,7 @@ namespace BJ_Cliente
 		}
 
 		/// <summary>
-		/// Para Limpiar el Tablero, la funcion que te dije
+		/// Eliminar Cartas elimina las cartas para limpiar la mesa
 		/// </summary>
 		private void EliminarCartas()
 		{
@@ -373,13 +390,10 @@ namespace BJ_Cliente
 			juego = new Juego(int.Parse(lblDineroMio.Text));
 		}
 
-
-
 		/// <summary>
 		/// Se envian los valores iniciales del cliente para que el servidor lo registre
 		/// </summary>
 		/// <param name="n">string con el nombre del jugador</param>
-        
 		private void SetNombre(string n)
         {
             nombreCliente = n;
@@ -387,12 +401,22 @@ namespace BJ_Cliente
             enviar.Start(5555);
         }
 
+		/// <summary>
+		/// Manda una Solicitud al Server para que éste le envie otra carta.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void btnOtra_Click(object sender, EventArgs e)
         {
             enviar.SetearClase(true, nombreCliente);
             enviar.Start(5555);
         }
 
+		/// <summary>
+		/// Manda un mensaje al server indicando que se planta y cede su turno
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void btnPlantarse_Click(object sender, EventArgs e)
         {
 			if (int.Parse(lblPuntos.Text) > 0)
@@ -407,6 +431,11 @@ namespace BJ_Cliente
 			}
         }
 
+		/// <summary>
+		/// Para que el Formulario no se muestre al principio
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void Form1_Shown(object sender, EventArgs e)
         {
             this.Hide();
@@ -417,6 +446,11 @@ namespace BJ_Cliente
             escuchar.EsperarRespuesta();
         }
 
+		/// <summary>
+		/// Antes de que el formulario se cierre, manda un mensaje al Server notificandole su desconexión
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void TableroJugador_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			enviar.SetearDesconexion(nombreCliente);

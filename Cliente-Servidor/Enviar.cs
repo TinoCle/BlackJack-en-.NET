@@ -56,26 +56,47 @@ namespace Cliente_Servidor
         }
 
 		
-
+		/// <summary>
+		/// Establece la configuración del Mensaje de Tipo 101 (ACK)
+		/// </summary>
+		/// <param name="nombre">Nombre del Usuario que va a enviar el Mensaje</param>
+		/// <param name="tipo"></param>
 		public void SetearACK(string nombre, int tipo = 101)
 		{
 			respuesta.nombre = nombre;
 			respuesta.tipo = tipo;
 		}
 
+		/// <summary>
+		/// Setea un mensaje de tipo 99 para enviar los puntos a los Jugadores
+		/// </summary>
+		/// <param name="puntos"></param>
+		/// <param name="tipo"></param>
 		public void SetearPuntos(int puntos,int tipo = 99)
 		{
 			respuesta.tipo = 99;
 			respuesta.puntos = puntos;
 		}
 
+		/// <summary>
+		/// Setea un Mensaje de Tipo: 100 para indicar quien fue el ganador, es utilizado por el Server
+		/// </summary>
+		/// <param name="ganador">Nombre del Jugador que Ganó la Ronda</param>
+		/// <param name="tipo"></param>
 		public void SetearGanador(string ganador,int tipo = 100)
 		{
 			respuesta.nombre = ganador;
 			respuesta.tipo = 100;
 		}
 
-		//Se usa solo al principio para que cuando uno de los 2 jugadores se conecte, no empiece sin el otro
+		/// <summary>
+		/// Este mensaje se utiliza solo al principo para que cuando uno de los dos jugadores se conecte, no empiece
+		/// hasta que el otro jugador se conecte
+		/// </summary>
+		/// <param name="conexion"></param>
+		/// <param name="nombre"></param>
+		/// <param name="puerto"></param>
+		/// <param name="tipo"></param>
 		public void SetearConexion(bool conexion = false, string nombre = null, int puerto = 0, int tipo = 0)
 		{
 			respuesta.tipo = tipo;
@@ -85,6 +106,11 @@ namespace Cliente_Servidor
 		}
 
 		//Para que al principio ambos jugadores reciban el nombre del otro jugador
+		/// <summary>
+		/// Setea un tipo de mensaje utilizado para el intercambio de nombres de usuario entre Jugadores
+		/// </summary>
+		/// <param name="nombre">Nombre del Jugador</param>
+		/// <param name="tipo"></param>
 		public void SetearNombres(string nombre, int tipo = 1)
 		{
 			respuesta.tipo = tipo;
@@ -93,6 +119,13 @@ namespace Cliente_Servidor
 			respuesta.otra = false;
 		}
 
+		/// <summary>
+		/// Se utiliza para enviar el Dinero correspondiente a cada Jugador y también para el
+		/// intercambio de información de cuánto dinero tiene cada Jugador
+		/// </summary>
+		/// <param name="dinero">Cantidad de Dinero</param>
+		/// <param name="nombre">Nombre del Jugador que tiene ese Dinero</param>
+		/// <param name="tipo"></param>
 		public void SetearDinero(int dinero, string nombre, int tipo = 4)
 		{
 			respuesta.dinero = dinero;
@@ -101,25 +134,46 @@ namespace Cliente_Servidor
 		}
 
 
-		//Para enviar de quien es el turno
+		/// <summary>
+		/// Setea un mensaje de Tipo 2, utilizado para enviar el turno al Jugador Correspondiente
+		/// </summary>
+		/// <param name="nombre">Nombre del Jugador al que le toca su turno</param>
+		/// <param name="tipo"></param>
 		public void SetearTurno(string nombre = null, int tipo = 2)
 		{
 			respuesta.tipo = tipo;
 			respuesta.nombre = nombre;
 		}
 
+		/// <summary>
+		/// Setea un Mensaje utilizado por el Cliente para notificarle al Servidor su Desconexión
+		/// </summary>
+		/// <param name="nombre">Nombre del Jugador que se desconecta</param>
+		/// <param name="tipo"></param>
 		public void SetearDesconexion(string nombre,int tipo = 200)
 		{
 			respuesta.tipo = tipo;
 			respuesta.nombre = nombre;
 		}
-		//Para notificarle al jugador conectado la desconexion de su rival
+
+		/// <summary>
+		/// Mensaje utilizado por el server para notificarle al otro Jugador la desconexión de su Rival
+		/// </summary>
+		/// <param name="nombre"></param>
+		/// <param name="tipo"></param>
 		public void SetearAbandono(string nombre, int tipo = 201)
 		{
 			respuesta.tipo = tipo;
 			respuesta.nombre = nombre;
 		}
 
+		/// <summary>
+		/// Servidor: Setea un mensaje que va a contener toda la información acerca del Ranking
+		/// Cliente: Setea un mensaje de tipo 999 para la solicitud de Ranking
+		/// </summary>
+		/// <param name="ranking">Colección que contiene toda la información acerca del Ranking</param>
+		/// <param name="puerto">Puerto por el que se tiene que enviar la Respuesta</param>
+		/// <param name="tipo"></param>
 		public void SetearRanking(ArrayList ranking,int puerto=0,int tipo= 999)
 		{
 			respuesta.ranking = ranking;
@@ -127,10 +181,11 @@ namespace Cliente_Servidor
 			respuesta.tipo = tipo;
 		}
 
-        ///
-        /// Starts the client and attempts to send an object to the server
-        ///
-        public void Start(int p)
+		/// <summary>
+		/// Inicia el cliente e intenta enviar un objeto al servidor y viceversa
+		/// </summary>
+		/// <param name="p">Puerto por el que mandar la información</param>
+		public void Start(int p)
         {
             port = p;
             Console.Out.WriteLine("Client waiting for connection...");
@@ -140,10 +195,11 @@ namespace Cliente_Servidor
             allDone.WaitOne(); //halts this thread until the connection is accepted
         }
 
-        ///
-        /// Starts when the connection was accepted by the remote hosts and prepares to send data
-        ///
-        public void Connect(IAsyncResult result)
+		/// <summary>
+		/// Se inicia cuando la conexión fue aceptada por los hosts remotos y se prepara para enviar datos.
+		/// </summary>
+		/// <param name="result"></param>
+		public void Connect(IAsyncResult result)
         {
             try
             {
@@ -161,10 +217,11 @@ namespace Cliente_Servidor
             }
         }
 
-        ///
-        /// Ends sending the data, waits for a readline until the thread quits
-        ///
-        public void Send(IAsyncResult result)
+		/// <summary>
+		/// Termina de enviar los datos, espera una línea de lectura hasta que el hilo se cierra.
+		/// </summary>
+		/// <param name="result"></param>
+		public void Send(IAsyncResult result)
         {
             Respuesta respuesta = (Respuesta)result.AsyncState;
             int size = respuesta.Socket.EndSend(result);

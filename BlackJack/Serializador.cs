@@ -10,6 +10,11 @@ namespace BlackJack
 {
 	class Serializador
 	{
+
+		/// <summary>
+		/// Método que se utiliza para serializar el Diccionario DineroJugadores del Server
+		/// </summary>
+		/// <param name="ranking"></param>
 		public void Serialize(Dictionary<string, int> ranking)
 		{
 			BinaryFormatter formatter = new BinaryFormatter();
@@ -18,6 +23,11 @@ namespace BlackJack
 			stream.Close();
 		}
 
+		/// <summary>
+		/// Método que Deserializa el archivo de ranking para así poder mandarlo al cliente que solicitó la información
+		/// del Ranking
+		/// </summary>
+		/// <returns></returns>
 		public Dictionary<string, int> Deserializar()
 		{
 			BinaryFormatter formatter = new BinaryFormatter();
