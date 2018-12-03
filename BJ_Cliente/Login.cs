@@ -34,9 +34,11 @@ namespace BJ_Cliente
             panelRanking.Parent = fondoLogin;
             panelSalir.Parent = fondoLogin;
             panelInstrucciones.Parent = fondoLogin;
+            panelAcercaDe.Parent = fondoLogin;
             panelRanking.BackColor = Color.Transparent;
             panelSalir.BackColor = Color.Transparent;
             panelInstrucciones.BackColor = Color.Transparent;
+            panelAcercaDe.BackColor = Color.Transparent;
             #endregion
 
             //Carga la fuente personalizada
@@ -151,6 +153,12 @@ namespace BJ_Cliente
         {
             Instrucciones instrucciones = new Instrucciones();
             Task.Run(() => { instrucciones.ShowDialog(); });
+        }
+
+        private void btAcercaDe_Click(object sender, EventArgs e)
+        {
+            AcercaDe acercaDe = new AcercaDe();
+            Task.Run(() => { acercaDe.ShowDialog(); });
         }
     }
 }

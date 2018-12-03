@@ -423,6 +423,16 @@ namespace BJ_Cliente.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AcercaDe {
+            get {
+                object obj = ResourceManager.GetObject("AcercaDe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap As_de_corazones {
             get {
                 object obj = ResourceManager.GetObject("As_de_corazones", resourceCulture);

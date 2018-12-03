@@ -33,6 +33,7 @@
             this.panelRanking = new System.Windows.Forms.Panel();
             this.panelSalir = new System.Windows.Forms.Panel();
             this.panelInstrucciones = new System.Windows.Forms.Panel();
+            this.panelAcercaDe = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.fondoLogin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,6 +93,15 @@
             this.panelInstrucciones.TabIndex = 6;
             this.panelInstrucciones.Click += new System.EventHandler(this.btInstrucciones_Click);
             // 
+            // panelAcercaDe
+            // 
+            this.panelAcercaDe.Location = new System.Drawing.Point(22, 261);
+            this.panelAcercaDe.Margin = new System.Windows.Forms.Padding(4);
+            this.panelAcercaDe.Name = "panelAcercaDe";
+            this.panelAcercaDe.Size = new System.Drawing.Size(100, 100);
+            this.panelAcercaDe.TabIndex = 7;
+            this.panelAcercaDe.Click += new System.EventHandler(this.btAcercaDe_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -99,6 +109,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(940, 877);
+            this.Controls.Add(this.panelAcercaDe);
             this.Controls.Add(this.panelInstrucciones);
             this.Controls.Add(this.panelSalir);
             this.Controls.Add(this.panelRanking);
@@ -122,5 +133,6 @@
         private System.Windows.Forms.Panel panelRanking;
         private System.Windows.Forms.Panel panelSalir;
         private System.Windows.Forms.Panel panelInstrucciones;
+        private System.Windows.Forms.Panel panelAcercaDe;
     }
 }

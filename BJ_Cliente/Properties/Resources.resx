@@ -121,11 +121,11 @@
   <data name="_2_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2 de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Jack_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jack de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Reina_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reina de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Rey_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rey de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Tablero_desactivado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tablero_desactivado.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_5_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\5 de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -141,6 +141,9 @@
   </data>
   <data name="Resultados" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Resultados.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_8_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\8 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_5_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\5 de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,17 +172,14 @@
   <data name="_10_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\10 de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_7_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\7 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_8_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Rey_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rey de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Tablero_desactivado" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Tablero_desactivado.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_10_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_4_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4 de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,8 +190,8 @@
   <data name="As_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\As de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Jack_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jack de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Rey_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rey de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Esperando" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Esperando.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,26 +202,26 @@
   <data name="_5_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\5 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_3_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Instrucciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instrucciones.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_4_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Jack_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Jack de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_9_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\9 de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_3_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3 de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="As_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\As de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_3_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3 de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_8_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\8 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_6_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\6 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_7_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_10_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\10 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,8 +232,8 @@
   <data name="_7_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\7 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_10_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\10 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Jack_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jack de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_4_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4 de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,8 +241,8 @@
   <data name="_8_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8 de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Rey_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rey de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Jack_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jack de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_4_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,14 +250,17 @@
   <data name="Reina_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Reina de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Jack_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jack de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_6_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_6_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\6 de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_3_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="As_de_diamantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\As de diamantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_9_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\9 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Reina_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Reina de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,28 +274,28 @@
   <data name="As_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\As de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Reina_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Reina de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_2_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Reina_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Reina de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Rey_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rey de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_3_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_3_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3 de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Reina_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reina de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Jack_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jack de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2_de_treboles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2 de treboles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_2_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_9_de_picas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\9 de picas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_9_de_corazones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\9 de corazones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Instrucciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instrucciones.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AcercaDe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AcercaDe.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
