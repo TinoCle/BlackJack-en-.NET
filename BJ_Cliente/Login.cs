@@ -66,7 +66,8 @@ namespace BJ_Cliente
 				if (txtUser.Text.Length >= 4)
 				{
 					fondoLogin.Image = global::BJ_Cliente.Properties.Resources.Esperando;
-					txtUser.Visible = false;
+					txtUser.Enabled = false;
+                    txtUser.Visible = false;
 					this.enterPresionado(txtUser.Text);
 					yaJugue = true;
 				}
@@ -89,7 +90,7 @@ namespace BJ_Cliente
 		{
 			Ranking ranking = new Ranking();
             ranking.SetAux(respuesta.ranking);
-			Task.Run(() => { ranking.ShowDialog(); });
+			Task.Run(() => { ranking.ShowDialog(this); });
 		}
 
 		private void btRanking_Click(object sender, EventArgs e)

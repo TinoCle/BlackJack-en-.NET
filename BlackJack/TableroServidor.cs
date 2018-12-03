@@ -132,8 +132,6 @@ namespace BlackJack
 						puntosJugador1 = respuesta.puntos;
 					if (nombresClientes[1] == nombre)
 						puntosJugador2 = respuesta.puntos;
-					//ActualizarLog("PUNTOS DE JUGADOR 1:" + puntosJugador1);
-					//ActualizarLog("PUNTOS JUGADOR 2:" + puntosJugador2);
 					if (puntosJugador2 == 0 || puntosJugador1 == 0)
 					{
 						if (nombresClientes[0] == nombre)

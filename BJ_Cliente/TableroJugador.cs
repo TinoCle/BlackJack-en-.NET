@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BJ_Cliente
@@ -202,20 +203,26 @@ namespace BJ_Cliente
 				case 100:
 					if (respuesta.nombre == nombreCliente)
 					{
-						MessageBox.Show("Ganaste", "Ganador");
-						//juego.Fichas += 100;
-						if (lblDineroMio.InvokeRequired)
+                        Resultados resultados = new Resultados(
+                            nombreCliente, lblRival.Text, lblPuntos.Text,lblPuntosRival.Text,"¡Ganaste $100!");
+                        Task.Run(() => { resultados.ShowDialog(); });
+                        if (lblDineroMio.InvokeRequired)
 						{
 							lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = juego.Fichas.ToString(); }));
 						}
 					}
 					else if (respuesta.nombre == "Empate")
-						MessageBox.Show("Empate");
+                    {
+                        Resultados resultados = new Resultados(
+                            nombreCliente, lblRival.Text, lblPuntos.Text, lblPuntosRival.Text, "¡Empate!");
+                        Task.Run(() => { resultados.ShowDialog(); });
+                    }
 					else
 					{
-						MessageBox.Show("Perdiste");
-						//juego.Fichas -= 100;
-						if (lblDineroMio.InvokeRequired)
+                        Resultados resultados = new Resultados(
+                            nombreCliente, lblRival.Text, lblPuntos.Text, lblPuntosRival.Text, "¡Perdiste $100!");
+                        Task.Run(() => { resultados.ShowDialog(); });
+                        if (lblDineroMio.InvokeRequired)
 						{
 							lblDineroMio.Invoke(new MethodInvoker(delegate { lblDineroMio.Text = juego.Fichas.ToString(); }));
 						}
